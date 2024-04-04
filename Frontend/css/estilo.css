@@ -1,0 +1,265 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap");
+body {
+  background: linear-gradient(to right, rgba(245, 224, 224, 0.9647058824), #dacecc);
+}
+
+body.dark-theme {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9647058824), #552a24);
+}
+
+.bi-sun, .bi-moon {
+  color: #D18F8F;
+}
+
+#scrollToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 5px;
+  width: 40px; /* Define a largura */
+  height: 40px; /* Define a altura */
+  background-color: #74342B;
+  color: #fff;
+  border: solid 1px white;
+  border-radius: 50%; /* Define o raio para criar um círculo perfeito */
+  cursor: pointer;
+  display: flex;
+  justify-content: center; /* Alinha horizontalmente */
+  align-items: center; /* Alinha verticalmente */
+  font-size: 20px; /* Define o tamanho do ícone */
+}
+
+.biArrow {
+  color: white;
+  height: 10px;
+  width: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  justify-content: center;
+  background-color: rgba(163, 160, 160, 0.7);
+}
+
+.navbar {
+  background-color: transparent;
+}
+
+.navbar li {
+  margin: 5px;
+}
+
+.navbar a {
+  color: #D18F8F;
+  font-weight: bold;
+  font-size: 18px;
+}
+.navbar a:hover {
+  color: black;
+  border: white;
+  border-radius: 2px;
+  text-decoration: underline;
+}
+
+.bloco_principal {
+  padding: 5rem;
+}
+
+.apresentacaoPrincipal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.apresentacaoPrincipal h1 {
+  text-align: center;
+  margin: 0;
+  color: #D18F8F;
+}
+
+.apresentacaoPrincipal h1 span {
+  color: #74342B !important;
+  font-family: "Reddit Mono", monospace;
+  font-size: 150%;
+}
+
+.apresentacaoPrincipal p {
+  color: #D18F8F;
+}
+
+.apresentacaoPrincipal p:last-of-type {
+  color: #74342B;
+}
+
+.linkSocial a {
+  color: #D18F8F;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.linkSocial a:hover {
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+.fotoPerfil {
+  display: none;
+}
+
+.conteudoBio h1, p {
+  color: #D18F8F;
+}
+
+small {
+  margin-top: 1em;
+  color: #D18F8F;
+}
+
+.bgProgress {
+  background: rgb(235, 235, 91) !important;
+}
+
+.icones {
+  display: flex;
+}
+
+.icones img {
+  height: 50px;
+}
+
+.container-card {
+  border-radius: 15px;
+  margin-bottom: 5em;
+}
+
+#user-form {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer {
+  background-color: #84b6f4;
+  text-align: center;
+  align-items: center;
+  color: white;
+  padding: 5px;
+}
+
+.timeline {
+  position: relative;
+  margin: 50px;
+  margin-bottom: 0;
+  display: flex;
+  overflow-x: hidden;
+  height: 40%;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 1350px;
+  height: 2px;
+  background-color: rgba(226, 177, 29, 0.9176470588);
+  margin-top: -1px;
+  z-index: -1; /* Move a linha para trás dos eventos */
+}
+
+.event {
+  flex: 0 0 auto;
+  position: relative;
+  text-align: center;
+  margin: 50px;
+}
+
+.event img {
+  border-radius: 5px;
+  margin-bottom: 5em;
+}
+
+.event::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(226, 177, 29, 0.9176470588);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Move as bolinhas para frente dos eventos */
+}
+
+.skills h1 {
+  color: rgba(226, 177, 29, 0.9176470588);
+}
+
+.flexContainer {
+  background-color: #74342B;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.card {
+  max-width: 425px;
+  padding: 5px;
+  margin: 15px;
+}
+
+.titulo_projeto {
+  text-align: center;
+}
+
+.descricao_projeto {
+  margin-bottom: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .bloco_principal {
+    padding-top: 9rem;
+    max-height: 750px;
+  }
+  .flexContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-item {
+    padding: 1px 25px;
+  }
+  .containerFotoPerfil {
+    position: relative;
+    background: linear-gradient(to right, rgba(240, 177, 83, 0.9647058824), #f1e364);
+    max-width: 350px; /* Largura fixa do círculo */
+    max-height: 350px; /* Altura fixa do círculo */
+    padding-top: 30px;
+    border-radius: 50%;
+    width: 50%;
+  }
+  .fotoPerfil {
+    position: absolute;
+    top: 35%; /* Isso posiciona a parte superior da foto no meio do círculo */
+    left: 50%; /* Isso posiciona a parte esquerda da foto no meio do círculo */
+    transform: translate(-50%, -44%); /* Isso ajusta o centro da foto para o centro do círculo */
+    max-width: 107%;
+    display: flex;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .containerFotoPerfil {
+    padding-top: 10em !important;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .icones img {
+    padding: 5px;
+  }
+}/*# sourceMappingURL=estilo.css.map */
