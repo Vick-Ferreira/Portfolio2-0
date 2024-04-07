@@ -83,7 +83,7 @@ scrollToTopBtn.addEventListener("click", () => {
 getProjetos();
 function getProjetos() {
   const containerProjetos = document.getElementById('container_projetos');
-  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto', {
+  fetch(`https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
