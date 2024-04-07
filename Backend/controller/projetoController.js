@@ -24,7 +24,7 @@ exports.createProjeto = async (req, res) => {
 exports.buscarProjeto = async (req, res) => {
     try{
         const projetos = await Projeto.find()
-        res.status(200).json(projetos)// Retorna uma matriz de projetos (array) mesmo se só tiver 1
+        res.status(200).json(Array.isArray(projetos) ? projetos : [projetos]);// Retorna uma matriz de projetos (array) mesmo se só tiver 1
     }catch(error){
         res.status(500).json({json: error})
     }
