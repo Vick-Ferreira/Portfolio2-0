@@ -83,7 +83,7 @@ scrollToTopBtn.addEventListener("click", () => {
 getProjetos();
 function getProjetos() {
   const containerProjetos = document.getElementById('container_projetos');
-  fetch(`https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto`, {
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -92,21 +92,15 @@ function getProjetos() {
   .then(res => res.json())
   .then(data => {
     console.log('Dados recebidos:', data);
-    if (Array.isArray(data)) { // Verifica se os dados são um array
-      data.forEach(projeto => {
-        const card = criarCardProjetos(projeto);
-        containerProjetos.appendChild(card);
-      });
-    } else {
-      const card = criarCardProjetos(data); // Se não for um array, assume que é um único objeto
+    data.forEach(projeto => {
+      const card = criarCardProjetos(projeto);
       containerProjetos.appendChild(card);
-    }
+    });
   })
   .catch(error => {
     console.error('Erro ao obter projetos:', error);
   });
 }
-
 
 function criarCardProjetos(projeto) {
   const card = document.createElement('div');
