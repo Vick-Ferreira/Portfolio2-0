@@ -92,15 +92,21 @@ function getProjetos() {
   .then(res => res.json())
   .then(data => {
     console.log('Dados recebidos:', data);
-    data.forEach(projeto => { //forEach só funciona com array e não com objeto(PROJETO é um objeto)
-      const card = criarCardProjetos(projeto);
+    if (Array.isArray(data)) { // Verifica se os dados são um array
+      data.forEach(projeto => {
+        const card = criarCardProjetos(projeto);
+        containerProjetos.appendChild(card);
+      });
+    } else {
+      const card = criarCardProjetos(data); // Se não for um array, assume que é um único objeto
       containerProjetos.appendChild(card);
-    });
+    }
   })
   .catch(error => {
     console.error('Erro ao obter projetos:', error);
   });
 }
+
 
 function criarCardProjetos(projeto) {
   const card = document.createElement('div');

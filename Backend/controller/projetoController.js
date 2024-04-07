@@ -22,10 +22,11 @@ exports.createProjeto = async (req, res) => {
 };
 //garantir rota /projeto sempre retorne uma matriz de projetos
 exports.buscarProjeto = async (req, res) => {
-    try{
-        const projetos = await Projeto.find()
-        res.status(200).json(Array.isArray(projetos) ? projetos : [projetos]);// Retorna uma matriz de projetos (array) mesmo se só tiver 1
-    }catch(error){
-        res.status(500).json({json: error})
-    }
+  try {
+      const projetos = await Projeto.find();
+      const projetosArray = Array.isArray(projetos) ? projetos : [projetos];
+      res.status(200).json(projetosArray);
+  } catch(error) {
+      res.status(500).json({ error: error.message });
+  }
 }
