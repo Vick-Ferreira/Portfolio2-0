@@ -1,8 +1,12 @@
 //chamar express, mongoDB
 const express = require('express')
 const app = express() // precisa do ()
+const cors = require('cors')
+
 const mongoose = require('mongoose')
+
 require('dotenv').config(); // Carregar variáveis de ambiente do arquivo .env
+
 const path = require('path')
 const port = process.env.PORT || 3000; //heroku
 
