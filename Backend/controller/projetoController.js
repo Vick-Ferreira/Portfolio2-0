@@ -7,8 +7,6 @@ exports.createProjeto = async (req, res) => {
     const file = req.file;
 
     console.log("Dados recebidos para criação do projeto:", titulo, descricao, file);
-
-
     // Usando o método create do modelo do Projeto para criar um novo documento no MongoDB
     const projeto = await Projeto.create({
       titulo,
@@ -22,11 +20,11 @@ exports.createProjeto = async (req, res) => {
     res.status(500).json({ message: "Erro ao salvar o projeto." });
   }
 };
-
+//garantir rota /projeto sempre retorne uma matriz de projetos
 exports.buscarProjeto = async (req, res) => {
     try{
-        const projeto = await Projeto.find()
-        res.status(200).json(projeto)
+        const projetos = await Projeto.find()
+        res.status(200).json(projetos)// Retorna uma matriz de projetos (array) mesmo se só tiver 1
     }catch(error){
         res.status(500).json({json: error})
     }

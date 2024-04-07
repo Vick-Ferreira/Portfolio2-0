@@ -92,7 +92,7 @@ function getProjetos() {
   .then(res => res.json())
   .then(data => {
     console.log('Dados recebidos:', data);
-    data.forEach(projeto => {
+    data.forEach(projeto => { //forEach só funciona com array e não com objeto(PROJETO é um objeto)
       const card = criarCardProjetos(projeto);
       containerProjetos.appendChild(card);
     });
