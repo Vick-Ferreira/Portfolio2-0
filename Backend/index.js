@@ -4,7 +4,8 @@ const app = express() // precisa do ()
 const mongoose = require('mongoose')
 require('dotenv').config(); // Carregar variáveis de ambiente do arquivo .env
 const path = require('path')
-const port = process.env.PORT || 3000 //heroku
+const port = process.env.PORT || 3000; //heroku
+
 
 // Configuração do middleware express.json()
 //Isso é importante para garantir que o corpo da solicitação seja analisado corretamente antes de ser passado para suas funções de rota.
