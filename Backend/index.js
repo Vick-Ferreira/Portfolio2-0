@@ -11,6 +11,9 @@ const port = process.env.PORT || 3000; //heroku
 //Isso é importante para garantir que o corpo da solicitação seja analisado corretamente antes de ser passado para suas funções de rota.
 app.use(express.json());
 
+// Habilitar o CORS para todas as solicitações
+app.use(cors());
+
 // Importando os modelos e controladores
 const projetoRouter = require('./router/projetoRouter');
 app.use('/projeto', projetoRouter)
