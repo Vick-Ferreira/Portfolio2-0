@@ -8,10 +8,6 @@ const upload = require("../config/multer")
 
 router.post('/', upload.single('video'), projetosController.createProjeto);
 
-router.get('/', (req, res) => {
-    console.log("Recebida requisição GET para /projeto");
-    // Chame a função buscarProjeto do controller
-    projetosController.buscarProjeto(req, res);
-});
+router.get('/', projetosController.buscarProjeto);
 
 module.exports = router;
