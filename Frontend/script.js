@@ -20,7 +20,7 @@ themeToggle.addEventListener("click", () => {
   }
 });
 
-/*
+
 //eventos para timeline + setas
 document.addEventListener('DOMContentLoaded', function () {
     const timeline = document.getElementById('timeline');
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
       timeline.scrollLeft = scrollAmount;
     });
 });
-*/
+
 
 window.addEventListener("scroll", () => { //fazendo com que o botão suma apos scroll
     console.log("Scrolling:", window.scrollY);
