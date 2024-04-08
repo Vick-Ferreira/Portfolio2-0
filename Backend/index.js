@@ -20,10 +20,11 @@ app.use(cors());
 
 // Importando os modelos e controladores
 const projetoRouter = require('./router/projetoRouter');
-app.use('/projeto', projetoRouter)
+app.use('/projeto', projetoRouter);
 
 // Configurar o middleware para servir arquivos estáticos do diretório 'uploads'
 app.use('/uploads', express.static(path.join(__dirname, './uploads')));
+
 
 //configuração para servir meus arquivos estáticos
 const frontendPath = path.join(__dirname,'../Frontend');
