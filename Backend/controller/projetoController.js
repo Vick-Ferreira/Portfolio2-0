@@ -21,12 +21,14 @@ exports.createProjeto = async (req, res) => {
   }
 };
 //garantir rota /projeto sempre retorne uma matriz de projetos
+// Função para buscar projetos
 exports.buscarProjeto = async (req, res) => {
   try {
+      console.log("Chamada da função buscarProjeto");
       const projetos = await Projeto.find();
       res.status(200).json(projetos);
   } catch(error) {
+      console.error("Erro ao buscar projetos:", error);
       res.status(500).json({ error: error.message });
-      console.log('erro aqui')
   }
-}
+};
