@@ -23,7 +23,7 @@ const projetoRouter = require('./router/projetoRouter');
 app.use('/projeto', projetoRouter);
 
 // Configurar o middleware para servir arquivos estáticos do diretório 'uploads'
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 
 
 //configuração para servir meus arquivos estáticos
