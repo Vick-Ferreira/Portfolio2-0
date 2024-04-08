@@ -35,10 +35,16 @@ app.use(express.urlencoded({extended:true}))//analisa dados das solicitações (
 app.get('/', (req, res) => {
     res.json({message:'Olá Vitoria, seu back está rodando porra!'})
 })
-
-// Configurar a conexão com o MongoDB
-const uri = process.env.MONGODB_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true, // Essa opção não é mais necessária, mas não causa problemas
+    useUnifiedTopology: true // Essa opção não é mais necessária, mas não causa problemas
+  })
+  .then(() => {
+    console.log('Conectado ao MongoDB');
+  })
+  .catch((error) => {
+    console.error('Erro ao conectar ao MongoDB:', error);
+  });
 
 const connection = mongoose.connection;
 connection.once('open', () => {
