@@ -24,8 +24,7 @@ exports.createProjeto = async (req, res) => {
 exports.buscarProjeto = async (req, res) => {
   try {
       const projetos = await Projeto.find();
-      const projetosArray = Array.isArray(projetos) ? projetos : [projetos];
-      res.status(200).json(projetosArray);
+      res.status(200).json(projetos);
   } catch(error) {
       res.status(500).json({ error: error.message });
       console.log('erro aqui')
