@@ -79,40 +79,103 @@ scrollToTopBtn.addEventListener("click", () => {
     behavior: 'smooth'
     });
 });
-function exibirDetalhesDoProjeto() {
-  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
+
+
+
+
+function buscarProjetos() {
+  // Realiza um fetch para obter os detalhes dos projetos
+  fetch('http://localhost:3000/projeto')
       .then(response => response.json())
       .then(data => {
-          // Extrair os detalhes do projeto, incluindo o caminho do vídeo
-          const projeto = data[0]; // Supondo que haja apenas um projeto por enquanto
+          // Para cada projeto, cria um botão e adiciona um evento de clique para exibir os detalhes em um modal
+          data.forEach(projeto => {
+              const button = document.createElement("button");              button.textContent = "Detalhes do Projeto";
+              button.addEventListener('click', function() {
+                  exibirDetalhesDoProjeto(projeto);
+              });
+              document.body.appendChild(button);
+          });
+      })
+      .catch(error => console.error('Erro ao buscar detalhes dos projetos:', error));
+}
 
-          // Criar um elemento de vídeo e definir o atributo src com o caminho do vídeo
-          const videoElement = document.createElement('video');
-          videoElement.src = projeto.video;
-          videoElement.controls = true; // Adicionar controles de reprodução ao vídeo
-          videoElement.width = 560; // Definir a largura do vídeo (opcional)
-          videoElement.height = 315; // Definir a altura do vídeo (opcional)
+function exibirDetalhesDoProjeto(projeto) {
+  // Criar um elemento de vídeo e definir o atributo src com o caminho do vídeo
+  const videoElement = document.createElement('video');
+  videoElement.classList = ('video_Element');
+  videoElement.src = projeto.video;
+  videoElement.controls = true; // Adicionar controles de reprodução ao vídeo
 
-          // Criar elementos para o título e descrição do projeto
-          const tituloElement = document.createElement('h2');
-          tituloElement.textContent = projeto.titulo;
+  // Criar elementos para o título e descrição do projeto
+  const tituloElement = document.createElement('h2');
+  tituloElement.textContent = projeto.titulo;
 
-          const descricaoElement = document.createElement('p');
-          descricaoElement.textContent = projeto.descricao;
+  const descricaoElement = document.createElement('p');
+  descricaoElement.textContent = projeto.descricao;
 
-          // Limpar qualquer conteúdo anterior
-          const projetoDetails = document.getElementById('projetoDetails');
-          projetoDetails.innerHTML = '';
+  // Limpar qualquer conteúdo anterior
+  const modalContent = document.getElementById('modalContent');
+  modalContent.innerHTML = '';
 
-          // Adicionar o elemento de vídeo, título e descrição ao modal
-          projetoDetails.appendChild(tituloElement);
-          projetoDetails.appendChild(descricaoElement);
-          projetoDetails.appendChild(videoElement);
+  // Adicionar o elemento de vídeo, título e descrição ao modal
+  modalContent.appendChild(tituloElement);
+  modalContent.appendChild(descricaoElement);
+  modalContent.appendChild(videoElement);
+
+  // Exibir o modal
+  const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+  modal.show();
+}
+
+// Chamar a função ao carregar a página
+buscarProjetos();
+
+
+
+
+
+
+
+/*
+function exibirDetalhesDoProjeto() {
+  // Adiciona um evento de clique ao botão openModalBtn
+  document.getElementById('openModalBtn').addEventListener('click', () => {
+    // Realiza um fetch para obter os detalhes do projeto
+    fetch('http://localhost:3000/projeto')
+      .then(response => response.json())
+      .then(data => {
+        // Extrair os detalhes do projeto, incluindo o caminho do vídeo
+        const projeto = data[0]; // Supondo que haja apenas um projeto por enquanto
+
+        // Criar um elemento de vídeo e definir o atributo src com o caminho do vídeo
+        const videoElement = document.createElement('video');
+        videoElement.classList = ('video_Element');
+        videoElement.src = projeto.video;
+        videoElement.controls = true; // Adicionar controles de reprodução ao vídeo
+        
+
+        // Criar elementos para o título e descrição do projeto
+        const tituloElement = document.createElement('h2');
+        tituloElement.textContent = projeto.titulo;
+
+        const descricaoElement = document.createElement('p');
+        descricaoElement.textContent = projeto.descricao;
+
+        // Limpar qualquer conteúdo anterior
+        const modalContent = document.getElementById('modalContent');
+        modalContent.innerHTML = '';
+
+        // Adicionar o elemento de vídeo, título e descrição ao modal
+        modalContent.appendChild(tituloElement);
+        modalContent.appendChild(descricaoElement);
+        modalContent.appendChild(videoElement);
 
         
       })
       .catch(error => console.error('Erro ao buscar detalhes do projeto:', error));
+  });
 }
-
 // Chamar a função ao carregar a página
 exibirDetalhesDoProjeto();
+*/

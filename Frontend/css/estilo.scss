@@ -218,6 +218,31 @@ small{
 .descricao_projeto{
     margin-bottom: 5px;
 }
+.img_projeto{
+  max-width: 350px ;
+  height: auto;
+}
+.openModalBtn {
+    border: none; /* Remove a borda padrão do botão */
+    background: none; /* Remove o fundo padrão do botão */
+    padding: 0; /* Remove o espaçamento interno do botão */
+    cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
+  }
+.video_Element{
+    width: 100%;
+    height: 315px;
+    text-align: center;
+}
+
+.modal-body a{
+    text-decoration: none;
+    background-color: #D18F8F;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+
+    
+}
 @media screen and (min-width: $mobile-widthMD) {
     .bloco_principal{
      padding-top: 9rem;
