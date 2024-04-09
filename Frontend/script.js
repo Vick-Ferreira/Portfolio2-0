@@ -107,24 +107,38 @@ function criarCardProjetos(projeto) {
 
   const tituloProjeto = document.createElement('h1');
   tituloProjeto.classList.add('titulo_projeto');
-  tituloProjeto.innerHTML = projeto.titulo;
+  tituloProjeto.textContent = projeto.titulo;
 
   const descricaoProjeto = document.createElement('p');
   descricaoProjeto.classList.add('descricao_projeto');
-  descricaoProjeto.innerHTML = projeto.descricao;
+  descricaoProjeto.textContent = projeto.descricao;
 
-  // Criar elemento de vídeo
-  const videoProjeto = document.createElement('video');
-  videoProjeto.classList.add('video');
-  videoProjeto.setAttribute('src', projeto.src);
-  videoProjeto.setAttribute('width', '560'); // Defina a largura e a altura conforme necessário
-  videoProjeto.setAttribute('height', '315');
-  videoProjeto.setAttribute('controls', ''); // Adicione os controles de vídeo (play, pause, etc.)
+  // Verificar o tipo de URL do vídeo e criar o elemento correspondente
+  if (projeto.src.includes('youtube.com')) {
+    const videoProjeto = document.createElement('iframe');
+    videoProjeto.classList.add('video');
+    videoProjeto.setAttribute('width', '560');
+    videoProjeto.setAttribute('height', '315');
+    videoProjeto.setAttribute('src', projeto.src);
+    videoProjeto.setAttribute('frameborder', '0');
+    videoProjeto.setAttribute('allowfullscreen', '');
+    card.appendChild(videoProjeto);
+  } else if (projeto.src.includes('vimeo.com')) {
+    // Lógica para tratar vídeos do Vimeo
+  } else {
+    // Trate outros tipos de vídeos (por exemplo, vídeos hospedados localmente)
+    const videoProjeto = document.createElement('video');
+    videoProjeto.classList.add('video');
+    videoProjeto.setAttribute('src', projeto.src);
+    videoProjeto.setAttribute('width', '560');
+    videoProjeto.setAttribute('height', '315');
+    videoProjeto.setAttribute('controls', '');
+    card.appendChild(videoProjeto);
+  }
 
   // Adicionar elementos ao cartão
   card.appendChild(tituloProjeto);
   card.appendChild(descricaoProjeto);
-  card.appendChild(videoProjeto);
 
   // Adicionar o ID do projeto como um atributo de dados para o card
   card.dataset.projetoId = projeto._id;
