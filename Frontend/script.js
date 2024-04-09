@@ -81,7 +81,6 @@ scrollToTopBtn.addEventListener("click", () => {
 });
 // Obtendo projetos do servidor
 function getProjetos() {
-  const containerProjetos = document.getElementById('container_projetos');
   fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto', {
     method: 'GET',
     headers: {
@@ -93,7 +92,7 @@ function getProjetos() {
     console.log('Dados recebidos:', data);
     data.forEach(projeto => {
       const card = criarCardProjetos(projeto);
-      containerProjetos.appendChild(card);
+      document.getElementById('container_projetos').appendChild(card);
     });
   })
   .catch(error => {
@@ -101,7 +100,6 @@ function getProjetos() {
   });
 }
 
-// Criar elementos HTML para exibir os projetos
 function criarCardProjetos(projeto) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -115,53 +113,29 @@ function criarCardProjetos(projeto) {
   descricaoProjeto.innerHTML = projeto.descricao;
 
   // Criar elemento de vídeo
-  const videoProjeto = document.createElement('video');
-  videoProjeto.classList.add('video');
-  videoProjeto.setAttribute('src', projeto.src);
-  videoProjeto.setAttribute('width', '560'); // Defina a largura e a altura conforme necessário
-  videoProjeto.setAttribute('height', '315');
-  videoProjeto.setAttribute('controls', ''); // Adicione os controles de vídeo (play, pause, etc.)
+  const videoContainer = document.createElement('div');
+  videoContainer.classList.add('video-container');
+  const videoEmbed = document.createElement('iframe');
+  videoEmbed.setAttribute('width', '560');
+  videoEmbed.setAttribute('height', '315');
+  videoEmbed.setAttribute('src', projeto.src);
+  videoEmbed.setAttribute('frameborder', '0');
+  videoEmbed.setAttribute('allowfullscreen', '');
+
+  videoContainer.appendChild(videoEmbed);
 
   // Adicionar elementos ao cartão
   card.appendChild(tituloProjeto);
   card.appendChild(descricaoProjeto);
-  card.appendChild(videoProjeto);
+  card.appendChild(videoContainer);
 
   // Adicionar o ID do projeto como um atributo de dados para o card
   card.dataset.projetoId = projeto._id;
 
   return card;
 }
-function criarCardProjetos(projeto) {
-  const card = document.createElement('div');
-  card.classList.add('card');
 
-  const tituloProjeto = document.createElement('h1');
-  tituloProjeto.classList.add('titulo_projeto');
-  tituloProjeto.innerHTML = projeto.titulo;
-
-  const descricaoProjeto = document.createElement('p');
-  descricaoProjeto.classList.add('descricao_projeto');
-  descricaoProjeto.innerHTML = projeto.descricao;
-
-  // Criar elemento de vídeo
-  const videoProjeto = document.createElement('video');
-  videoProjeto.classList.add('video');
-  videoProjeto.setAttribute('controls', ''); // Adicione os controles de vídeo (play, pause, etc.)
-  videoProjeto.innerHTML = `<source src="${projeto.src}" type="video/mp4">`; // Defina a URL do vídeo como fonte do vídeo
-
-  // Adicionar elementos ao cartão
-  card.appendChild(tituloProjeto);
-  card.appendChild(descricaoProjeto);
-  card.appendChild(videoProjeto);
-
-  // Adicionar o ID do projeto como um atributo de dados para o card
-  card.dataset.projetoId = projeto._id;
-
-  return card;
-}
 getProjetos();
-
 
 
 
