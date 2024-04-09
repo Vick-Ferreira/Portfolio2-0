@@ -91,8 +91,8 @@ function getProjetos() {
   .then(res => res.json())
   .then(data => {
     console.log('Dados recebidos:', data);
-    data.forEach(projeto => {
-      const card = criarCardProjetos(projeto);
+    data.forEach(projetos => {
+      const card = criarCardProjetos(projetos);
       containerProjetos.appendChild(card);
     });
   })
