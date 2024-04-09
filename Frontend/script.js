@@ -80,7 +80,6 @@ scrollToTopBtn.addEventListener("click", () => {
     });
 });
 
-getProjetos();
 function getProjetos() {
   const containerProjetos = document.getElementById('container_projetos');
   fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto', {
@@ -117,7 +116,7 @@ function criarCardProjetos(projeto) {
   // Criar elemento de vídeo
   const videoProjeto = document.createElement('video');
   videoProjeto.classList.add('video')
-  videoProjeto.setAttribute('src', `http://localhost:3000/${projeto.src.replace(/\\/g, '/')}`);
+  videoProjeto.setAttribute('src', projeto.src);
   videoProjeto.setAttribute('width', '560'); // Defina a largura e a altura conforme necessário
   videoProjeto.setAttribute('height', '315');
   videoProjeto.setAttribute('controls', ''); // Adicione os controles de vídeo (play, pause, etc.)
@@ -133,4 +132,6 @@ function criarCardProjetos(projeto) {
   return card;
 }
 
+// Chamar a função para obter projetos ao carregar a página
+getProjetos();
 
