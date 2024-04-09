@@ -115,7 +115,7 @@ function criarCardProjetos(projeto) {
 
   // Criar elemento de vídeo
   const videoProjeto = document.createElement('video');
-  videoProjeto.classList.add('video')
+  videoProjeto.classList.add('video');
   videoProjeto.setAttribute('src', projeto.src);
   videoProjeto.setAttribute('width', '560'); // Defina a largura e a altura conforme necessário
   videoProjeto.setAttribute('height', '315');
