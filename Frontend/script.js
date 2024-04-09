@@ -84,7 +84,7 @@ function exibirDetalhesDoProjeto() {
   document.getElementById('openModalBtn').addEventListener('click', () => {
     // Realiza um fetch para obter os detalhes do projeto
     fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
-      .then(response => response.json())
+      .then(resp => resp.json())
       .then(data => {
         // Extrair os detalhes do projeto, incluindo o caminho do vídeo
         const projeto = data[0]; // Supondo que haja apenas um projeto por enquanto
@@ -118,6 +118,7 @@ function exibirDetalhesDoProjeto() {
       .catch(error => console.error('Erro ao buscar detalhes do projeto:', error));
   });
 }
+
 
 // Chamar a função ao carregar a página
 exibirDetalhesDoProjeto();
