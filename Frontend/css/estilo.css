@@ -4,6 +4,10 @@ body {
   background: linear-gradient(to right, rgba(245, 224, 224, 0.9647058824), #dacecc);
 }
 
+.img_logo {
+  height: 25px;
+}
+
 body.dark-theme {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.9647058824), #552a24);
 }
