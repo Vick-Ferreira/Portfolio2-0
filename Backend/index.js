@@ -26,6 +26,9 @@ const projetoRouter = require('./router/projetoRouter');
 app.use('/projeto', projetoRouter)
 
 
+const feedbackRouter = require('./router/feedbackRouter');
+app.use('/feedback', feedbackRouter);
+
 
 //configuração para servir meus arquivos estáticos
 const frontendPath = path.join(__dirname,'../Frontend');
