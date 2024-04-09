@@ -3,20 +3,22 @@ const Projeto = require("../models/projetos");
 
 exports.createProjeto = async (req, res) => {
   try {
-    const { titulo, descricao } = req.body;
-    const file = req.file;
+    const { titulo, descricao, src } = req.body;
 
-    console.log("Dados recebidos para criação do projeto:", titulo, descricao, file);
-    // Usando o método create do modelo do Projeto para criar um novo documento no MongoDB
+    console.log("Dados recebidos para criação do projeto:", titulo, descricao, src);
+
+    // Crie o projeto diretamente no MongoDB com a URL do vídeo
     const projeto = await Projeto.create({
       titulo,
       descricao,
-      src: file.path,
+      src
     });
+
     console.log("Projeto criado com sucesso:", projeto);
     
     res.json({ projeto, msg: "Projeto salvo com sucesso" });
   } catch (err) {
+    console.error("Erro ao salvar o projeto:", err);
     res.status(500).json({ message: "Erro ao salvar o projeto." });
   }
 };
