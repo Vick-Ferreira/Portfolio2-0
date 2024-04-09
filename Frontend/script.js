@@ -81,7 +81,7 @@ scrollToTopBtn.addEventListener("click", () => {
 });
 
 function exibirDetalhesDoProjeto() {
-  fetch('http://localhost:3000/projeto')
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
       .then(response => response.json())
       .then(data => {
           // Extrair os detalhes do projeto, incluindo o caminho do vídeo
