@@ -79,7 +79,7 @@ scrollToTopBtn.addEventListener("click", () => {
     behavior: 'smooth'
     });
 });
-
+getProjetos();
 function getProjetos() {
   const containerProjetos = document.getElementById('container_projetos');
   fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto', {
@@ -132,6 +132,7 @@ function criarCardProjetos(projeto) {
   return card;
 }
 
+
 // Chamar a função para obter projetos ao carregar a página
-getProjetos();
+
 

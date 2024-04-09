@@ -3,7 +3,8 @@ const Projeto = require("../models/projetos");
 
 exports.createProjeto = async (req, res) => {
   try {
-    const { titulo, descricao, src } = req.body;
+    const { titulo, descricao } = req.body;
+    const src = req.body.src; // Alteração aqui
 
     console.log("Dados recebidos para criação do projeto:", titulo, descricao, src);
 
@@ -21,7 +22,8 @@ exports.createProjeto = async (req, res) => {
     console.error("Erro ao salvar o projeto:", err);
     res.status(500).json({ message: "Erro ao salvar o projeto." });
   }
-};
+};  
+
 //garantir rota /projeto sempre retorne uma matriz de projetos
 // Função para buscar projetos
 exports.buscarProjeto = async (req, res) => {
