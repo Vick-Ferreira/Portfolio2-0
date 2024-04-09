@@ -79,28 +79,44 @@ scrollToTopBtn.addEventListener("click", () => {
     behavior: 'smooth'
     });
 });
-
 function exibirDetalhesDoProjeto() {
-  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
+  // Adiciona um evento de clique ao botão openModalBtn
+  document.getElementById('openModalBtn').addEventListener('click', () => {
+    // Realiza um fetch para obter os detalhes do projeto
+    fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
       .then(response => response.json())
       .then(data => {
-          // Extrair os detalhes do projeto, incluindo o caminho do vídeo
-          const projeto = data[0]; // Supondo que haja apenas um projeto por enquanto
+        // Extrair os detalhes do projeto, incluindo o caminho do vídeo
+        const projeto = data[0]; // Supondo que haja apenas um projeto por enquanto
 
-          // Criar um elemento de vídeo e definir o atributo src com o caminho do vídeo
-          const videoElement = document.createElement('video');
-          videoElement.src = projeto.video;
-          videoElement.controls = true; // Adicionar controles de reprodução ao vídeo
-          videoElement.width = 560; // Definir a largura do vídeo (opcional)
-          videoElement.height = 315; // Definir a altura do vídeo (opcional)
+        // Criar um elemento de vídeo e definir o atributo src com o caminho do vídeo
+        const videoElement = document.createElement('video');
+        videoElement.src = projeto.video;
+        videoElement.controls = true; // Adicionar controles de reprodução ao vídeo
+        videoElement.width = 560; // Definir a largura do vídeo (opcional)
+        videoElement.height = 315; // Definir a altura do vídeo (opcional)
 
-          // Limpar qualquer conteúdo anterior
-          document.getElementById('projetoDetails').innerHTML = '';
+        // Criar elementos para o título e descrição do projeto
+        const tituloElement = document.createElement('h2');
+        tituloElement.textContent = projeto.titulo;
 
-          // Adicionar o elemento de vídeo ao documento
-          document.getElementById('projetoDetails').appendChild(videoElement);
+        const descricaoElement = document.createElement('p');
+        descricaoElement.textContent = projeto.descricao;
+
+        // Limpar qualquer conteúdo anterior
+        const modalContent = document.getElementById('modalContent');
+        modalContent.innerHTML = '';
+
+        // Adicionar o elemento de vídeo, título e descrição ao modal
+        modalContent.appendChild(tituloElement);
+        modalContent.appendChild(descricaoElement);
+        modalContent.appendChild(videoElement);
+
+        // Exibir o modal
+        document.getElementById('myModal').style.display = 'block';
       })
       .catch(error => console.error('Erro ao buscar detalhes do projeto:', error));
+  });
 }
 
 // Chamar a função ao carregar a página
