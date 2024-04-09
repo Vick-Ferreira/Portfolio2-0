@@ -79,63 +79,29 @@ scrollToTopBtn.addEventListener("click", () => {
     behavior: 'smooth'
     });
 });
-// Obtendo projetos do servidor
-function getProjetos() {
-  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log('Dados recebidos:', data);
-    data.forEach(projeto => {
-      const card = criarCardProjetos(projeto);
-      document.getElementById('container_projetos').appendChild(card);
-    });
-  })
-  .catch(error => {
-    console.error('Erro ao obter projetos:', error);
-  });
+
+function exibirDetalhesDoProjeto() {
+  fetch('http://localhost:3000/projeto')
+      .then(response => response.json())
+      .then(data => {
+          // Extrair os detalhes do projeto, incluindo o caminho do vídeo
+          const projeto = data[0]; // Supondo que haja apenas um projeto por enquanto
+
+          // Criar um elemento de vídeo e definir o atributo src com o caminho do vídeo
+          const videoElement = document.createElement('video');
+          videoElement.src = projeto.video;
+          videoElement.controls = true; // Adicionar controles de reprodução ao vídeo
+          videoElement.width = 560; // Definir a largura do vídeo (opcional)
+          videoElement.height = 315; // Definir a altura do vídeo (opcional)
+
+          // Limpar qualquer conteúdo anterior
+          document.getElementById('projetoDetails').innerHTML = '';
+
+          // Adicionar o elemento de vídeo ao documento
+          document.getElementById('projetoDetails').appendChild(videoElement);
+      })
+      .catch(error => console.error('Erro ao buscar detalhes do projeto:', error));
 }
 
-function criarCardProjetos(projeto) {
-  const card = document.createElement('div');
-  card.classList.add('card');
-
-  const tituloProjeto = document.createElement('h1');
-  tituloProjeto.classList.add('titulo_projeto');
-  tituloProjeto.innerHTML = projeto.titulo;
-
-  const descricaoProjeto = document.createElement('p');
-  descricaoProjeto.classList.add('descricao_projeto');
-  descricaoProjeto.innerHTML = projeto.descricao;
-
-  // Criar elemento de vídeo
-  const videoContainer = document.createElement('div');
-  videoContainer.classList.add('video-container');
-  const videoEmbed = document.createElement('iframe');
-  videoEmbed.setAttribute('width', '560');
-  videoEmbed.setAttribute('height', '315');
-  videoEmbed.setAttribute('src', projeto.src);
-  videoEmbed.setAttribute('frameborder', '0');
-  videoEmbed.setAttribute('allowfullscreen', '');
-
-  videoContainer.appendChild(videoEmbed);
-
-  // Adicionar elementos ao cartão
-  card.appendChild(tituloProjeto);
-  card.appendChild(descricaoProjeto);
-  card.appendChild(videoContainer);
-
-  // Adicionar o ID do projeto como um atributo de dados para o card
-  card.dataset.projetoId = projeto._id;
-
-  return card;
-}
-
-getProjetos();
-
-
-
+// Chamar a função ao carregar a página
+exibirDetalhesDoProjeto();

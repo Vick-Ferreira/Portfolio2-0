@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-
 const Projeto = mongoose.model('Projeto', {
     titulo: String,
     descricao: String,
-    src: String
+    video: String 
 });
 
-module.exports = Projeto
+module.exports = Projeto;

@@ -5,7 +5,8 @@ body {
 }
 
 .img_logo {
-  height: 25px;
+  height: 100px;
+  text-align: left;
 }
 
 body.dark-theme {

@@ -8,6 +8,10 @@ const path = require('path')
 // Definição da porta do servidor
 const port = process.env.PORT || 3000;
 
+const uploads = require("./config/multer");
+
+// Configurar o middleware para servir arquivos estáticos do diretório 'uploads'
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // Configuração do middleware express.json()
