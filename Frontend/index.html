@@ -11,6 +11,7 @@
 </head>
 <header>
   <button class="btn p-0 m-0" id="scrollToTopBtn"><i class="bi bi-arrow-up"></i></button>
+
   <nav class="navbar p-0">
     <div class="container-fluid  p-2 justify-content-center ">
       <ul class="nav">
@@ -112,7 +113,29 @@
 </div>
 </div>
 
-<div class="container d-flex flex-wrap justify-content-center align-item-center"id="container_projetos"></div>
+<div class="container d-flex flex-wrap justify-content-center align-item-center"id=""></div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <img src="./img/Vitoria (1).png">
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Titulo projeto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <video id="container_projetos">renderizar video do banco aqui</video>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script src="./script.js"></script>

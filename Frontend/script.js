@@ -132,11 +132,36 @@ function criarCardProjetos(projeto) {
 
   return card;
 }
+function criarCardProjetos(projeto) {
+  const card = document.createElement('div');
+  card.classList.add('card');
 
-// Chamar a função para obter projetos ao carregar a página
+  const tituloProjeto = document.createElement('h1');
+  tituloProjeto.classList.add('titulo_projeto');
+  tituloProjeto.innerHTML = projeto.titulo;
+
+  const descricaoProjeto = document.createElement('p');
+  descricaoProjeto.classList.add('descricao_projeto');
+  descricaoProjeto.innerHTML = projeto.descricao;
+
+  // Criar elemento de vídeo
+  const videoProjeto = document.createElement('video');
+  videoProjeto.classList.add('video');
+  videoProjeto.setAttribute('controls', ''); // Adicione os controles de vídeo (play, pause, etc.)
+  videoProjeto.innerHTML = `<source src="${projeto.src}" type="video/mp4">`; // Defina a URL do vídeo como fonte do vídeo
+
+  // Adicionar elementos ao cartão
+  card.appendChild(tituloProjeto);
+  card.appendChild(descricaoProjeto);
+  card.appendChild(videoProjeto);
+
+  // Adicionar o ID do projeto como um atributo de dados para o card
+  card.dataset.projetoId = projeto._id;
+
+  return card;
+}
 getProjetos();
 
 
-// Chamar a função para obter projetos ao carregar a página
 
 
