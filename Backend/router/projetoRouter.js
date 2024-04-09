@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Projeto = require('../models/projetos')
 const projetosController = require('../controller/projetoController')
 
-const upload = require("../config/multer")
+
 
 //crinado rotas para a API
 
