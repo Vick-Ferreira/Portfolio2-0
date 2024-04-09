@@ -2,13 +2,12 @@
 const express = require('express')
 const app = express() // precisa do ()
 const cors = require('cors')
-
 const mongoose = require('mongoose')
-
 require('dotenv').config(); // Carregar variáveis de ambiente do arquivo .env
-
 const path = require('path')
-const port = process.env.PORT || 3000; //heroku
+// Definição da porta do servidor
+const port = process.env.PORT || 3000;
+
 
 
 // Configuração do middleware express.json()
@@ -32,25 +31,27 @@ app.use(express.urlencoded({extended:true}))//analisa dados das solicitações (
 
 //metodo teste
 app.get('/', (req, res) => {
-    res.json({message:'Olá Vitoria, seu back está rodando porra!'})
-})
+  res.json({ message: 'Olá Vitoria, seu backend está rodando!' });
+});
+// Conexão com o banco de dados MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true, // Essa opção não é mais necessária, mas não causa problemas
-    useUnifiedTopology: true // Essa opção não é mais necessária, mas não causa problemas
-  })
-  .then(() => {
-    console.log('Conectado ao MongoDB');
-  })
-  .catch((error) => {
-    console.error('Erro ao conectar ao MongoDB:', error);
-  });
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('Conectado ao MongoDB');
+})
+.catch((error) => {
+  console.error('Erro ao conectar ao MongoDB:', error);
+});
 
 const connection = mongoose.connection;
 connection.once('open', () => {
-    console.log("Conexão com MongoDB estabelecida com sucesso!");
+  console.log("Conexão com MongoDB estabelecida com sucesso!");
 });
 
 // Restante do seu código, como definição de rotas, configuração do servidor, etc.
+// Inicialização do servidor
 app.listen(port, () => {
-    console.log(`Servidor está rodando na porta: ${port}`);
+  console.log(`Servidor está rodando na porta: ${port}`);
 });
