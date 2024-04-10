@@ -146,60 +146,11 @@ small {
 }
 
 .footer {
-  background-color: #84b6f4;
+  background-color: #74342B;
   text-align: center;
   align-items: center;
   color: white;
-  padding: 5px;
-}
-
-.timeline {
-  position: relative;
-  margin: 50px;
-  margin-bottom: 0;
-  display: flex;
-  overflow-x: hidden;
-  height: 40%;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 1350px;
-  height: 2px;
-  background-color: rgba(226, 177, 29, 0.9176470588);
-  margin-top: -1px;
-  z-index: -1; /* Move a linha para trás dos eventos */
-}
-
-.event {
-  flex: 0 0 auto;
-  position: relative;
-  text-align: center;
-  margin: 50px;
-}
-
-.event img {
-  border-radius: 5px;
-  margin-bottom: 5em;
-}
-
-.event::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: rgba(226, 177, 29, 0.9176470588);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1; /* Move as bolinhas para frente dos eventos */
-}
-
-.skills h1 {
-  color: rgba(226, 177, 29, 0.9176470588);
+  padding: 25px;
 }
 
 .flexContainer {
@@ -245,12 +196,54 @@ small {
   text-align: center;
 }
 
+#minhaDiv {
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+}
+
+.btn_modal {
+  border-radius: 5px;
+  background-color: transparent;
+  justify-content: center;
+  margin: auto;
+}
+
+.modal-body-link {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
 .modal-body a {
   text-decoration: none;
   background-color: #D18F8F;
   padding: 5px;
   border-radius: 5px;
   color: #fff;
+}
+
+.containerSkills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Estilo para as imagens das habilidades */
+.habilidade {
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Inicialmente, oculta as habilidades */
+  transform: translateX(100%); /* Inicialmente, move as habilidades para fora da tela para o lado direito */
+  transition: opacity 0.5s ease, transform 1s ease; /* Transições suaves para a opacidade e para a transformação */
+}
+
+.mostrar-habilidades .habilidade {
+  background-color: yellow;
+  opacity: 1; /* Mostra as habilidades quando a classe mostrar-habilidades é aplicada */
+  transform: translateX(0); /* Move as habilidades de volta para a posição original */
 }
 
 @media screen and (min-width: 768px) {

@@ -21,54 +21,28 @@ themeToggle.addEventListener("click", () => {
 });
 
 
-//eventos para timeline + setas
-document.addEventListener('DOMContentLoaded', function () {
-    const timeline = document.getElementById('timeline');
-    const arrowLeft = document.querySelector('.arrow-left');
-    const arrowRight = document.querySelector('.arrow-right');
-    let scrollAmount = 0;
-    // Manipulação de eventos da linha do tempo
-    const events = [//obj
-      { imgSrc: './img/html.png' },
-      { imgSrc: './img/css.png' },
-      { imgSrc: './img/bootstrap.png' },
-      { imgSrc: './img/sass.png' },
-      { imgSrc: './img/js.png' },
-      { imgSrc: './img/node.js.png' },
-      { imgSrc: './img/mongo.png'},
-      { imgSrc: './img/react.png' },
-      { imgSrc: './img/kotlin.png' },
-    ];
-    //recuperando dados da const events, e add via js de forma dinâmica
-    events.forEach(event => {
-      const eventElement = document.createElement('div');
-      eventElement.classList.add('event');
-      eventElement.innerHTML = `<img src="${event.imgSrc}">`;
-      timeline.appendChild(eventElement);
-    });
-  
-    // Manipulação de setas
-    arrowLeft.addEventListener('click', function () {
-      scrollAmount -= 200;
-      timeline.scrollLeft = scrollAmount;
-    });
-  
-    arrowRight.addEventListener('click', function () {
-      scrollAmount += 200;
-      timeline.scrollLeft = scrollAmount;
-    });
-});
 
+//skills
+window.addEventListener("scroll", () => {
+  console.log("Scrolling:", window.scrollY);
 
-window.addEventListener("scroll", () => { //fazendo com que o botão suma apos scroll
-    console.log("Scrolling:", window.scrollY);
-  
-    if (window.scrollY > 20) {
+  // Botão de rolar para o topo
+  if (window.scrollY > 20) {
       scrollToTopBtn.style.display = "block";
-    } else {
+  } else {
       scrollToTopBtn.style.display = "none";
-    }
+  }
+
+  // Habilidades
+  const habilidades = document.getElementById('habilidades');
+  const alturaHabilidades = habilidades.offsetTop;
+  if (window.scrollY > alturaHabilidades - window.innerHeight / 2) {
+      habilidades.classList.add("mostrar-habilidades"); // Adiciona classe para mostrar as habilidades
+  } else {
+      habilidades.classList.remove("mostrar-habilidades"); // Remove classe para esconder as habilidades
+  }
 });
+
 
 // evento de clique ao botão para rolar suavemente para o topo
 scrollToTopBtn.addEventListener("click", () => {
@@ -82,25 +56,33 @@ scrollToTopBtn.addEventListener("click", () => {
 
 
 
-
 function buscarProjetos() {
   // Realiza um fetch para obter os detalhes dos projetos
-  fetch('http://localhost:3000/projeto')
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
       .then(response => response.json())
       .then(data => {
           // Para cada projeto, cria um botão e adiciona um evento de clique para exibir os detalhes em um modal
           data.forEach(projeto => {
-              const button = document.createElement("button");              button.textContent = "Detalhes do Projeto";
+
+              const minhaDiv = document.getElementById("minhaDiv");
+
+              const button = document.createElement("button");  
+              button.classList = ('btn_modal')           
+              button.innerHTML = '<img src ="./img/css.png" alt="Descrição">';
               button.addEventListener('click', function() {
                   exibirDetalhesDoProjeto(projeto);
               });
-              document.body.appendChild(button);
+              minhaDiv.appendChild(button);
           });
       })
       .catch(error => console.error('Erro ao buscar detalhes dos projetos:', error));
 }
 
 function exibirDetalhesDoProjeto(projeto) {
+   // Limpar qualquer conteúdo anterior
+   const modalContent = document.getElementById('modalContent');
+   modalContent.innerHTML = '';
+
   // Criar um elemento de vídeo e definir o atributo src com o caminho do vídeo
   const videoElement = document.createElement('video');
   videoElement.classList = ('video_Element');
@@ -114,9 +96,7 @@ function exibirDetalhesDoProjeto(projeto) {
   const descricaoElement = document.createElement('p');
   descricaoElement.textContent = projeto.descricao;
 
-  // Limpar qualquer conteúdo anterior
-  const modalContent = document.getElementById('modalContent');
-  modalContent.innerHTML = '';
+ 
 
   // Adicionar o elemento de vídeo, título e descrição ao modal
   modalContent.appendChild(tituloElement);
@@ -128,6 +108,31 @@ function exibirDetalhesDoProjeto(projeto) {
   modal.show();
 }
 
+function enviarFeedback(){
+  const nome = document.getElementById("nome").value;
+  const opiniao = document.getElementById("opiniao").value;
+
+  const feedbackData = {
+    nome: nome,
+    opiniao: opiniao
+  }
+
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/feedback', {
+    method:'POST',
+    headers: {
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(feedbackData) //carregando corpo da requisição com os dados recuperados pelas cont declaradas a cima, vindo do form do html
+  })
+  .then(resp => resp.json())
+  .then(data => {
+    alert("Feedback enviado com sucesso! Obrigada!");
+    document.getElementById("feedbackForm").reset();//Limpar formulario apos evio dos dados
+  })
+  .catch(error => {
+    console.error("erro ao enviar feedback")
+  })
+}
 // Chamar a função ao carregar a página
 buscarProjetos();
 
@@ -137,45 +142,3 @@ buscarProjetos();
 
 
 
-/*
-function exibirDetalhesDoProjeto() {
-  // Adiciona um evento de clique ao botão openModalBtn
-  document.getElementById('openModalBtn').addEventListener('click', () => {
-    // Realiza um fetch para obter os detalhes do projeto
-    fetch('http://localhost:3000/projeto')
-      .then(response => response.json())
-      .then(data => {
-        // Extrair os detalhes do projeto, incluindo o caminho do vídeo
-        const projeto = data[0]; // Supondo que haja apenas um projeto por enquanto
-
-        // Criar um elemento de vídeo e definir o atributo src com o caminho do vídeo
-        const videoElement = document.createElement('video');
-        videoElement.classList = ('video_Element');
-        videoElement.src = projeto.video;
-        videoElement.controls = true; // Adicionar controles de reprodução ao vídeo
-        
-
-        // Criar elementos para o título e descrição do projeto
-        const tituloElement = document.createElement('h2');
-        tituloElement.textContent = projeto.titulo;
-
-        const descricaoElement = document.createElement('p');
-        descricaoElement.textContent = projeto.descricao;
-
-        // Limpar qualquer conteúdo anterior
-        const modalContent = document.getElementById('modalContent');
-        modalContent.innerHTML = '';
-
-        // Adicionar o elemento de vídeo, título e descrição ao modal
-        modalContent.appendChild(tituloElement);
-        modalContent.appendChild(descricaoElement);
-        modalContent.appendChild(videoElement);
-
-        
-      })
-      .catch(error => console.error('Erro ao buscar detalhes do projeto:', error));
-  });
-}
-// Chamar a função ao carregar a página
-exibirDetalhesDoProjeto();
-*/

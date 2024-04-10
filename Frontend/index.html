@@ -102,38 +102,74 @@
     </div>
     </div>
 </div> 
-<!--tecnologias-->
-<div class="container skills " >
-  <h1 class="text-center fw-bold"  id="skills">SKILLS</h1>
-  <div class="timeline H" id="timeline">
-  </div>
-<!-- linha do tempo -->
-  <div class="text-center ">
-  <button  class=" btn arrow arrow-left "><i class="biArrow  bi-arrow-left"></i></button>
-  <button class=" btn arrow arrow-right"><i class="biArrow  bi-arrow-right"></i></button>
-</div>
-</div>
+
 
 <div class="container d-flex flex-wrap justify-content-center align-item-center"id="container_projetos"></div>
 
+<div class="container-fluid bg-warning pb-5 mb-5 containerSkills">
+  <div class="row">
+    <h1 class="text-center fw-bold"  id="skills">SKILLS</h1>
+    <div id="habilidades">
+      <img src="./img/html.png" class="habilidade" alt="HTML">
+      <img src="./img/css.png" class="habilidade" alt="CSS">
+      <img src="./img/bootstrap.png" class="habilidade" alt="Bootstrap">
+      <img src="./img/sass.png" class="habilidade" alt="Sass">
+      <img src="./img/js.png" class="habilidade" alt="JavaScript">
+      <img src="./img/node.js.png" class="habilidade" alt="Node.js">
+      <img src="./img/mongo.png" class="habilidade" alt="MongoDB">
+      <img src="./img/react.png" class="habilidade" alt="React">
+      <img src="./img/kotlin.png" class="habilidade" alt="Kotlin">
+    </div>
+  </div>
+</div>
+
+<!--Botoes criados pelo js dinamicos para abrir o modal-->
+<div id="minhaDiv">
+</div>
 
 <!-- Modal -->
 <div class="container">
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body justify-content-center align-item-center">
-      <div id="modalContent"><!-- Conteúdo do modal --></div>
-      <a href="http://">ir para o github</a>
-      <a href="http://">ir para o post linkedin</a>
-      <a href="http://">ir para o site</a>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      <div class="modal-body ">
+        <div id="modalContent"><!-- Conteúdo do modal --></div>
+        <div class="modal-body-link">
+          <a href="http://">ir para o github</a>
+          <a href="http://">ir para o post linkedin</a>
+          <a href="http://">ir para o site</a>
+        </div>
       </div>
     </div>
+    </div>
   </div>
+</div>
+
+<div class="container mb-3 p-md-5 m-md-5 d-md-flex justify-content-center">
+  <div class="row text-center align-items-center">
+    <div class="col-md-6">
+      <h2>Deixe seu feedback</h2>
+      <p>Estou aberta a sugestões, desde que as mesmas sejam para positivar meu conhecimentos.</p>
+    </div>
+    <div class="col-md-6 ">
+      <form id="feedbackForm">
+          <div class="form-group">
+            <input type="text" class="form-control  mb-2" id="nome" placeholder="Seu nome">
+            <textarea class="form-control" id="opiniao" placeholder="Sua opinião"></textarea>
+            <button type="button" class="btn btn-primary mt-3 w-100" onclick="enviarFeedback()">Enviar</button>
+          </div>
+      </form>
+    </div>
   </div>
+</div>
+<!--footer-->
+<div class="container-fluid p-0">
+  <footer class="footer">
+    @Vitoria Ferreira 2024
+  </footer>
 </div>
 
 <script src="./script.js"></script>

@@ -2,13 +2,13 @@ const Feedback = require('../models/feedbacks');
 
 exports.createFeedback = async (req, res) => {
   try {
-    const { nome, opniao } = req.body;
+    const { nome, opiniao } = req.body;
 
-    console.log("Dados recebidos ", nome, opniao);
+    console.log("Dados recebidos ", nome, opiniao);
 
     const feedback = await Feedback.create({
       nome,
-      opniao
+      opiniao
     });
 
     console.log("Feedback criado com sucesso:", feedback);
