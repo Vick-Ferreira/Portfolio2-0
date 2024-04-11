@@ -1,33 +1,30 @@
-//chamar express, mongoDB
 const express = require('express')
-const app = express() // precisa do ()
+const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
-require('dotenv').config(); // Carregar variáveis de ambiente do arquivo .env
+require('dotenv').config();
 const path = require('path')
-// Definição da porta do servidor
 const port = process.env.PORT || 3000;
 
-const uploads = require("./config/multer");
+
 
 // Configurar o middleware para servir arquivos estáticos do diretório 'uploads'
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads/imagens', express.static(path.join(__dirname, 'uploads/imagens')));
 
 
-// Configuração do middleware express.json()
-//Isso é importante para garantir que o corpo da solicitação seja analisado corretamente antes de ser passado para suas funções de rota.
 app.use(express.json());
-
-// Habilitar o CORS para todas as solicitações
 app.use(cors());
 
-// Importando os modelos e controladores
 const projetoRouter = require('./router/projetoRouter');
-app.use('/projeto', projetoRouter)
+app.use('/projeto', projetoRouter);
 
 
 const feedbackRouter = require('./router/feedbackRouter');
 app.use('/feedback', feedbackRouter);
+
+const imgBtnRouter = require('./router/imgBtnRouter');
+app.use('/imgBtn', imgBtnRouter);
 
 
 //configuração para servir meus arquivos estáticos

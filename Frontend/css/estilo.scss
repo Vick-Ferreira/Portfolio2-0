@@ -195,10 +195,10 @@ small{
     height: 70vh;
 }
 .btn_modal{
-    border-radius: 5px;
-    background-color: transparent;
-    justify-content: center;
-    margin: auto;
+    width: 300px;
+    margin: 15px;
+    background-size: cover; /* Ajusta a imagem para cobrir o tamanho do botão */
+
 }
 .modal-body-link{
     display: flex;

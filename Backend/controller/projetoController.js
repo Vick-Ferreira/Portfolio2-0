@@ -5,6 +5,7 @@ exports.createProjeto = async (req, res) => {
   try {
     const { titulo, descricao } = req.body;
     const video = req.file.path; // Caminho do arquivo de vídeo
+   
 
     console.log("Dados recebidos para criação do projeto:", titulo, descricao, video);
 
@@ -12,7 +13,8 @@ exports.createProjeto = async (req, res) => {
     const projeto = await Projeto.create({
       titulo,
       descricao,
-      video
+      video,
+    
     });
 
     console.log("Projeto criado com sucesso:", projeto);
