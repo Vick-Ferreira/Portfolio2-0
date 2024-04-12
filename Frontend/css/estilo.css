@@ -27,17 +27,17 @@ body.dark-theme {
   position: fixed;
   bottom: 20px;
   right: 5px;
-  width: 40px; /* Define a largura */
-  height: 40px; /* Define a altura */
-  background-color: #74342B;
+  width: 40px;
+  height: 40px;
+  background-color: #752c23;
   color: #fff;
   border: solid 1px white;
-  border-radius: 50%; /* Define o raio para criar um círculo perfeito */
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
-  justify-content: center; /* Alinha horizontalmente */
-  align-items: center; /* Alinha verticalmente */
-  font-size: 20px; /* Define o tamanho do ícone */
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 }
 
 .biArrow {
@@ -139,15 +139,8 @@ small {
   margin-bottom: 5em;
 }
 
-#user-form {
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .footer {
-  background-color: #74342B;
+  background-color: #752c23;
   text-align: center;
   align-items: center;
   color: white;
@@ -155,14 +148,8 @@ small {
 }
 
 .flexContainer {
-  background-color: #74342B;
+  background-color: #752c23;
   height: 150%;
-}
-
-.card {
-  max-width: 425px;
-  padding: 5px;
-  margin: 15px;
 }
 
 .titulo_projeto {
@@ -179,10 +166,10 @@ small {
 }
 
 .openModalBtn {
-  border: none; /* Remove a borda padrão do botão */
-  background: none; /* Remove o fundo padrão do botão */
-  padding: 0; /* Remove o espaçamento interno do botão */
-  cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .video_Element {
@@ -207,7 +194,7 @@ small {
 .btn_modal {
   height: 200px;
   min-width: 250px;
-  width: 40%;
+  width: 35%;
   margin: 15px;
   background-size: cover; /* Ajusta a imagem para cobrir o tamanho do botão */
 }

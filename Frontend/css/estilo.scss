@@ -1,275 +1,316 @@
 // Importe os estilos do Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sixtyfour&family=Tilt+Neon&display=swap');
-$font-reddit-mono: "Reddit Mono", monospace; //fica feio no nome
-$font-orbitron:  "Orbitron", sans-serif;
-
-// Outros estilos
+//estilo fonts
+$font-reddit-mono: "Reddit Mono", monospace;
+$font-orbitron: "Orbitron", sans-serif;
+//cores fonts
 $font-primary: #D18F8F;
 $font-secundary: #752c23;
-
-
+$white: white;
+$bg: #fff;
+//médias
 $mobile-widthMD: 768px;
-$mobile-widthLG: 992px;
-$mobile-widthXL: 1200px;
-$mobile-widthXXL: 1400px;
 
 
-body{
+body {
     background: linear-gradient(to right, #f5e0e0f6, #dacecc);
 }
-h1, p, a{
+
+h1,
+p,
+a {
     font-family: $font-reddit-mono;
 }
-.img_logo{
+
+.img_logo {
     height: 100px;
-   display: block;
+    display: block;
 }
+
 body.dark-theme {
     background: linear-gradient(to right, #000000f6, #552a24);
 }
-.bi-sun, .bi-moon{
-    color: #D18F8F;
+
+.bi-sun,
+.bi-moon {
+    color: $font-primary;
 }
+
 #scrollToTopBtn {
     display: none;
     position: fixed;
     bottom: 20px;
     right: 5px;
-    width: 40px; /* Define a largura */
-    height: 40px; /* Define a altura */
-    background-color: #74342B;
-    color: #fff;
-    border: solid 1px white;
-    border-radius: 50%; /* Define o raio para criar um círculo perfeito */
+    width: 40px;
+    height: 40px;
+    background-color: $font-secundary;
+    color: $bg;
+    border: solid 1px $white;
+    border-radius: 50%;
     cursor: pointer;
-    display: flex;//centrqalizar coteudo
-    justify-content: center; /* Alinha horizontalmente */
-    align-items: center; /* Alinha verticalmente */
-    font-size: 20px; /* Define o tamanho do ícone */
+    display: flex; //centralizar coteudo
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
 }
-.biArrow{
-    color: white;
+
+.biArrow {
+    color: $white;
     height: 10px;
     width: 20px;
     border-radius: 5px;
     padding: 5px;
     text-align: center;
     justify-content: center;
-    background-color: rgba(163, 160, 160, 0.7); 
+    background-color: rgba(163, 160, 160, 0.7);
 }
-.navbar{
+
+.navbar {
     background-color: transparent;
 }
-.navbar li{
+
+.navbar li {
     margin: 5px;
 }
-.navbar a{
-    color:#D18F8F;
+
+.navbar a {
+    color: $font-primary;
     font-size: 18px;
-    &:hover{
-        color:rgb(177, 168, 168);
-        border: white;
+
+    &:hover {
+        color: rgb(177, 168, 168);
+        border: $white;
         border-radius: 2px;
         text-decoration: underline;
     }
 }
-.bloco_principal{
+
+.bloco_principal {
     padding: 50px;
 }
-.apresentacaoPrincipal{
+
+.apresentacaoPrincipal {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
 }
-.apresentacaoPrincipal h1, p{
+
+.apresentacaoPrincipal h1,
+p {
     text-align: center;
     margin: 0;
     color: $font-primary;
 }
+
 .apresentacaoPrincipal h1 span {
     color: $font-secundary;
     font-family: $font-orbitron;
     font-size: 110%;
     font-weight: 700;
 }
-.apresentacaoPrincipal p:last-of-type { //menos o ultimo filho
-    color:  $font-secundary ;
+
+.apresentacaoPrincipal p:last-of-type {
+    //menos o ultimo filho
+    color: $font-secundary ;
 }
-.linkSocial a{
-    color:  #D18F8F;
+
+.linkSocial a {
+    color: $font-primary;
     padding: 5px;
     font-size: 20px;
     font-weight: bold;
-    &:hover{
-        background-color: #fff;
+
+    &:hover {
+        background-color: $bg;
         border-radius: 3px;
     }
 }
-.fotoPerfil{
+
+.fotoPerfil {
     display: none;
 }
-.conteudoBio h1,p {
-    color:#D18F8F;
+
+.conteudoBio h1,
+p {
+    color: $font-primary;
 }
-small{
+
+small {
     margin-top: 1em;
-    color:#D18F8F;
+    color: $font-primary;
 }
+
 .bgProgress {
-   background: rgb(235, 235, 91) !important;
+    background: rgb(235, 235, 91) !important;
 }
-.icones{
+
+.icones {
     display: flex;
 }
-.icones img{
+
+.icones img {
     height: 50px;
 }
-.container-card{
+
+.container-card {
     border-radius: 15px;
     margin-bottom: 5em;
 }
-#user-form{
-    max-width:800px;;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.footer{
-    background-color:#74342B;
+
+.footer {
+    background-color: $font-secundary;
     text-align: center;
-    align-items:center;
-    color:white;
+    align-items: center;
+    color: $white;
     padding: 25px;
 }
-.flexContainer{
-    background-color: #74342B;
-    height:150%;
-}
-.card{
-    max-width: 425px;  
-    padding: 5px;
-    margin: 15px;
 
+.flexContainer {
+    background-color: $font-secundary;
+    height: 150%;
 }
-.titulo_projeto{
+
+.titulo_projeto {
     text-align: center;
 }
-.descricao_projeto{
+
+.descricao_projeto {
     margin-bottom: 5px;
 }
-.img_projeto{
-  max-width: 350px ;
-  height: auto;
+
+.img_projeto {
+    max-width: 350px;
+    height: auto;
 }
+
 .openModalBtn {
-    border: none; /* Remove a borda padrão do botão */
-    background: none; /* Remove o fundo padrão do botão */
-    padding: 0; /* Remove o espaçamento interno do botão */
-    cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
 }
-.video_Element{
+
+.video_Element {
     text-align: center;
     overflow: hidden;
     width: 100%;
     height: 100%;
 }
-#minhaDiv{
+
+#minhaDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     height: 100%;
 }
-.feedback{
+
+.feedback {
     color: $font-secundary;
 }
-.btn_modal{
+
+.btn_modal {
     height: 200px;
     min-width: 250px;
-    width: 40%;//não esquecer % quando usar min
+    width: 35%; //não esquecer % quando usar min
     margin: 15px;
-    background-size: cover; /* Ajusta a imagem para cobrir o tamanho do botão */
-
+    background-size: cover;
+    /* Ajusta a imagem para cobrir o tamanho do botão */
 }
-.modal-body-link{
+
+.modal-body-link {
     display: flex;
     justify-content: center;
     gap: 15px;
 }
-.modal-body a{
+
+.modal-body a {
     text-decoration: none;
-    background-color: #D18F8F;
+    background-color: $font-primary;
     padding: 5px;
     border-radius: 5px;
-    color: #fff;
+    color: $bg;
 }
-.bg-warning{
+
+.bg-warning {
     height: 100%;
-    padding: 50px; 
+    padding: 50px;
 }
+
 .habilidade {
     display: inline;
     justify-content: center;
     align-items: center;
-    opacity: 0; /* Inicialmente, oculta as habilidades */
-    transform: translateX(100%); /* Inicialmente, move as habilidades para fora da tela para o lado direito */
-    transition: opacity 0.5s ease, transform 1s ease; /* Transições suaves para a opacidade e para a transformação */
+    opacity: 0;
+    /* Inicialmente, oculta as habilidades */
+    transform: translateX(100%);
+    /* Inicialmente, move as habilidades para fora da tela para o lado direito */
+    transition: opacity 0.5s ease, transform 1s ease;
+    /* Transições suaves para a opacidade e para a transformação */
 }
+
 .mostrar-habilidades .habilidade {
     background-color: yellow;
-    opacity: 1; /* Mostra as habilidades quando a classe mostrar-habilidades é aplicada */
-    transform: translateX(0); /* Move as habilidades de volta para a posição original */
+    opacity: 1;
+    /* Mostra as habilidades quando a classe mostrar-habilidades é aplicada */
+    transform: translateX(0);
+    /* Move as habilidades de volta para a posição original */
 }
-.containerSkills{
+
+.containerSkills {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
-.box{
-background-color: rgba(250, 194, 194, 0.877);
-width: 150px;
-border-radius: 5px;
-text-align: center;
-margin: 20px;
+
+.box {
+    background-color: rgba(250, 194, 194, 0.877);
+    width: 150px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px;
 
 
 }
+
 @media screen and (min-width: $mobile-widthMD) {
-    .flexContainer{
+    .flexContainer {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .nav-item{
+
+    .nav-item {
         padding: 1px 25px;
     }
-    .containerFotoPerfil{
+
+    .containerFotoPerfil {
         display: flex;
         justify-content: center;
         align-items: center;
- 
-        
     }
+
     .fotoPerfil {
         display: flex;
         width: 350px;
         height: 350px;
         border-radius: 50%;
     }
-    .containerFeed{
+
+    .containerFeed {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 100px;
     }
-    .bloco_principal{
+
+    .bloco_principal {
         justify-content: center;
         height: 100vh;
         padding: 0;
-       
     }
 }
