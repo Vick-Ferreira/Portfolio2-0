@@ -1,13 +1,12 @@
 // Importe os estilos do Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
-
-
-// Variáveis de fonte
-$font-reddit-mono: "Reddit Mono", monospace;
-$font-weight-reddit-mono: 400; // Peso da fonte Reddit Mono
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sixtyfour&family=Tilt+Neon&display=swap');
+$font-reddit-mono: "Reddit Mono", monospace; //fica feio no nome
+$font-orbitron:  "Orbitron", sans-serif;
 
 // Outros estilos
-$bg-font: rgb(95, 189, 233);
+$font-primary: #D18F8F;
+$font-secundary: #752c23;
 
 
 $mobile-widthMD: 768px;
@@ -18,7 +17,9 @@ $mobile-widthXXL: 1400px;
 
 body{
     background: linear-gradient(to right, #f5e0e0f6, #dacecc);
-
+}
+h1, p, a{
+    font-family: $font-reddit-mono;
 }
 .img_logo{
     height: 100px;
@@ -27,7 +28,6 @@ body{
 body.dark-theme {
     background: linear-gradient(to right, #000000f6, #552a24);
 }
-
 .bi-sun, .bi-moon{
     color: #D18F8F;
 }
@@ -66,17 +66,16 @@ body.dark-theme {
 }
 .navbar a{
     color:#D18F8F;
-    font-weight: bold;
     font-size: 18px;
     &:hover{
-        color:black;
+        color:rgb(177, 168, 168);
         border: white;
         border-radius: 2px;
         text-decoration: underline;
     }
 }
 .bloco_principal{
-    padding: 5rem;
+    padding: 50px;
 }
 .apresentacaoPrincipal{
     display: flex;
@@ -85,22 +84,19 @@ body.dark-theme {
     justify-content: center;
     
 }
-.apresentacaoPrincipal h1{
+.apresentacaoPrincipal h1, p{
     text-align: center;
     margin: 0;
-    color: #D18F8F ;
+    color: $font-primary;
 }
 .apresentacaoPrincipal h1 span {
-    color: #74342B !important;
-    font-family: $font-reddit-mono;
-    font-size: 150%;
-   
+    color: $font-secundary;
+    font-family: $font-orbitron;
+    font-size: 110%;
+    font-weight: 700;
 }
-.apresentacaoPrincipal p{
-    color:  #D18F8F;
-}
-.apresentacaoPrincipal p:last-of-type {
-    color:  #74342B ;
+.apresentacaoPrincipal p:last-of-type { //menos o ultimo filho
+    color:  $font-secundary ;
 }
 .linkSocial a{
     color:  #D18F8F;
@@ -131,17 +127,14 @@ small{
 .icones img{
     height: 50px;
 }
-
 .container-card{
     border-radius: 15px;
-        margin-bottom: 5em;
+    margin-bottom: 5em;
 }
-
 #user-form{
-   max-width:800px;;
+    max-width:800px;;
     display: flex;
     flex-direction: column;
- 
     gap: 20px;
 }
 .footer{
@@ -151,16 +144,9 @@ small{
     color:white;
     padding: 25px;
 }
-
-
 .flexContainer{
     background-color: #74342B;
-}
-.video{
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 5px;
+    height:150%;
 }
 .card{
     max-width: 425px;  
@@ -183,19 +169,27 @@ small{
     background: none; /* Remove o fundo padrão do botão */
     padding: 0; /* Remove o espaçamento interno do botão */
     cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
-  }
+}
 .video_Element{
-    width: 100%;
-    height: 315px;
     text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 #minhaDiv{
     display: flex;
     justify-content: center;
-    height: 70vh;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
+.feedback{
+    color: $font-secundary;
 }
 .btn_modal{
-    width: 300px;
+    height: 200px;
+    min-width: 250px;
+    width: 40%;//não esquecer % quando usar min
     margin: 15px;
     background-size: cover; /* Ajusta a imagem para cobrir o tamanho do botão */
 
@@ -212,15 +206,10 @@ small{
     border-radius: 5px;
     color: #fff;
 }
-.containerSkills{
-  display: flex; 
-  justify-content: center;
-  align-items: center; 
-  height: 100vh; 
+.bg-warning{
+    height: 100%;
+    padding: 50px; 
 }
-
-
-/* Estilo para as imagens das habilidades */
 .habilidade {
     display: inline;
     justify-content: center;
@@ -228,59 +217,59 @@ small{
     opacity: 0; /* Inicialmente, oculta as habilidades */
     transform: translateX(100%); /* Inicialmente, move as habilidades para fora da tela para o lado direito */
     transition: opacity 0.5s ease, transform 1s ease; /* Transições suaves para a opacidade e para a transformação */
-  }
-  
-  .mostrar-habilidades .habilidade {
+}
+.mostrar-habilidades .habilidade {
     background-color: yellow;
     opacity: 1; /* Mostra as habilidades quando a classe mostrar-habilidades é aplicada */
     transform: translateX(0); /* Move as habilidades de volta para a posição original */
-  }
+}
+.containerSkills{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.box{
+background-color: rgba(250, 194, 194, 0.877);
+width: 150px;
+border-radius: 5px;
+text-align: center;
+margin: 20px;
+
+
+}
 @media screen and (min-width: $mobile-widthMD) {
-    .bloco_principal{
-     padding-top: 9rem;
-     max-height: 750px;
-    }
-   
     .flexContainer{
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    
     .nav-item{
         padding: 1px 25px;
     }
-    .containerFotoPerfil {
-        position: relative;
-        background: linear-gradient(to right, #f0b153f6, #f1e364);
-        max-width: 350px; /* Largura fixa do círculo */
-        max-height: 350px; /* Altura fixa do círculo */
-        padding-top: 30px;
-        border-radius: 50%;
-        width: 50%;
-      }
-      
-      .fotoPerfil {
-        position: absolute;
-        top: 35%; /* Isso posiciona a parte superior da foto no meio do círculo */
-        left:50%; /* Isso posiciona a parte esquerda da foto no meio do círculo */
-        transform: translate(-50%, -44%); /* Isso ajusta o centro da foto para o centro do círculo */
-        max-width: 107%;
-        display: flex;
-    }
-
-}
-@media screen and (min-width: $mobile-widthLG){//992
-}
-@media screen and (min-width: $mobile-widthXL) {//1200
-
     .containerFotoPerfil{
-        padding-top: 10em !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+ 
+        
     }
-}
-@media screen and (min-width: $mobile-widthXXL) {
-.icones img{
-    padding: 5px;
-     
-}
+    .fotoPerfil {
+        display: flex;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+    }
+    .containerFeed{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 100px;
+    }
+    .bloco_principal{
+        justify-content: center;
+        height: 100vh;
+        padding: 0;
+       
+    }
 }

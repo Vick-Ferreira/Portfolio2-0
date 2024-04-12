@@ -1,7 +1,12 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sixtyfour&family=Tilt+Neon&display=swap");
 body {
   background: linear-gradient(to right, rgba(245, 224, 224, 0.9647058824), #dacecc);
+}
+
+h1, p, a {
+  font-family: "Reddit Mono", monospace;
 }
 
 .img_logo {
@@ -56,18 +61,17 @@ body.dark-theme {
 
 .navbar a {
   color: #D18F8F;
-  font-weight: bold;
   font-size: 18px;
 }
 .navbar a:hover {
-  color: black;
+  color: rgb(177, 168, 168);
   border: white;
   border-radius: 2px;
   text-decoration: underline;
 }
 
 .bloco_principal {
-  padding: 5rem;
+  padding: 50px;
 }
 
 .apresentacaoPrincipal {
@@ -77,24 +81,21 @@ body.dark-theme {
   justify-content: center;
 }
 
-.apresentacaoPrincipal h1 {
+.apresentacaoPrincipal h1, p {
   text-align: center;
   margin: 0;
   color: #D18F8F;
 }
 
 .apresentacaoPrincipal h1 span {
-  color: #74342B !important;
-  font-family: "Reddit Mono", monospace;
-  font-size: 150%;
-}
-
-.apresentacaoPrincipal p {
-  color: #D18F8F;
+  color: #752c23;
+  font-family: "Orbitron", sans-serif;
+  font-size: 110%;
+  font-weight: 700;
 }
 
 .apresentacaoPrincipal p:last-of-type {
-  color: #74342B;
+  color: #752c23;
 }
 
 .linkSocial a {
@@ -155,13 +156,7 @@ small {
 
 .flexContainer {
   background-color: #74342B;
-}
-
-.video {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 5px;
+  height: 150%;
 }
 
 .card {
@@ -191,19 +186,28 @@ small {
 }
 
 .video_Element {
-  width: 100%;
-  height: 315px;
   text-align: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 #minhaDiv {
   display: flex;
   justify-content: center;
-  height: 70vh;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.feedback {
+  color: #752c23;
 }
 
 .btn_modal {
-  width: 300px;
+  height: 200px;
+  min-width: 250px;
+  width: 40%;
   margin: 15px;
   background-size: cover; /* Ajusta a imagem para cobrir o tamanho do botão */
 }
@@ -222,14 +226,11 @@ small {
   color: #fff;
 }
 
-.containerSkills {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.bg-warning {
+  height: 100%;
+  padding: 50px;
 }
 
-/* Estilo para as imagens das habilidades */
 .habilidade {
   display: inline;
   justify-content: center;
@@ -245,11 +246,22 @@ small {
   transform: translateX(0); /* Move as habilidades de volta para a posição original */
 }
 
+.containerSkills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.box {
+  background-color: rgba(250, 194, 194, 0.877);
+  width: 150px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px;
+}
+
 @media screen and (min-width: 768px) {
-  .bloco_principal {
-    padding-top: 9rem;
-    max-height: 750px;
-  }
   .flexContainer {
     display: flex;
     justify-content: center;
@@ -259,30 +271,25 @@ small {
     padding: 1px 25px;
   }
   .containerFotoPerfil {
-    position: relative;
-    background: linear-gradient(to right, rgba(240, 177, 83, 0.9647058824), #f1e364);
-    max-width: 350px; /* Largura fixa do círculo */
-    max-height: 350px; /* Altura fixa do círculo */
-    padding-top: 30px;
-    border-radius: 50%;
-    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .fotoPerfil {
-    position: absolute;
-    top: 35%; /* Isso posiciona a parte superior da foto no meio do círculo */
-    left: 50%; /* Isso posiciona a parte esquerda da foto no meio do círculo */
-    transform: translate(-50%, -44%); /* Isso ajusta o centro da foto para o centro do círculo */
-    max-width: 107%;
     display: flex;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
   }
-}
-@media screen and (min-width: 1200px) {
-  .containerFotoPerfil {
-    padding-top: 10em !important;
+  .containerFeed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
   }
-}
-@media screen and (min-width: 1400px) {
-  .icones img {
-    padding: 5px;
+  .bloco_principal {
+    justify-content: center;
+    height: 100vh;
+    padding: 0;
   }
 }/*# sourceMappingURL=estilo.css.map */
