@@ -2,10 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sixtyfour&family=Tilt+Neon&display=swap");
 body {
-  background: linear-gradient(to right, rgba(245, 224, 224, 0.9647058824), #dacecc);
+  background: linear-gradient(to right, rgba(245, 224, 224, 0.9647058824), #bdbaba);
 }
 
-h1, p, a {
+h1,
+p,
+a {
   font-family: "Reddit Mono", monospace;
 }
 
@@ -18,8 +20,9 @@ body.dark-theme {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.9647058824), #552a24);
 }
 
-.bi-sun, .bi-moon {
-  color: #D18F8F;
+.bi-sun,
+.bi-moon {
+  color: #752c23;
 }
 
 #scrollToTopBtn {
@@ -51,8 +54,28 @@ body.dark-theme {
   background-color: rgba(163, 160, 160, 0.7);
 }
 
-.navbar {
-  background-color: transparent;
+.navbar-toggler {
+  border: none !important;
+}
+
+.navbar-toggler span {
+  color: #752c23;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+.navbar-collapse {
+  position: absolute;
+  background-color: #bdbaba;
+  top: 100%;
+  width: 100%;
+  z-index: 1000;
+}
+
+.content {
+  position: relative;
 }
 
 .navbar li {
@@ -60,11 +83,11 @@ body.dark-theme {
 }
 
 .navbar a {
-  color: #D18F8F;
+  color: #752c23;
   font-size: 18px;
 }
 .navbar a:hover {
-  color: rgb(177, 168, 168);
+  color: rgb(99, 96, 96);
   border: white;
   border-radius: 2px;
   text-decoration: underline;
@@ -81,7 +104,8 @@ body.dark-theme {
   justify-content: center;
 }
 
-.apresentacaoPrincipal h1, p {
+.apresentacaoPrincipal h1,
+p {
   text-align: center;
   margin: 0;
   color: #D18F8F;
@@ -113,7 +137,8 @@ body.dark-theme {
   display: none;
 }
 
-.conteudoBio h1, p {
+.conteudoBio h1,
+p {
   color: #D18F8F;
 }
 
@@ -149,7 +174,7 @@ small {
 
 .flexContainer {
   background-color: #752c23;
-  height: 150%;
+  height: 100%;
 }
 
 .titulo_projeto {
@@ -196,7 +221,8 @@ small {
   min-width: 250px;
   width: 35%;
   margin: 15px;
-  background-size: cover; /* Ajusta a imagem para cobrir o tamanho do botão */
+  background-size: cover;
+  /* Ajusta a imagem para cobrir o tamanho do botão */
 }
 
 .modal-body-link {
@@ -222,15 +248,20 @@ small {
   display: inline;
   justify-content: center;
   align-items: center;
-  opacity: 0; /* Inicialmente, oculta as habilidades */
-  transform: translateX(100%); /* Inicialmente, move as habilidades para fora da tela para o lado direito */
-  transition: opacity 0.5s ease, transform 1s ease; /* Transições suaves para a opacidade e para a transformação */
+  opacity: 0;
+  /* Inicialmente, oculta as habilidades */
+  transform: translateX(100%);
+  /* Inicialmente, move as habilidades para fora da tela para o lado direito */
+  transition: opacity 0.5s ease, transform 1s ease;
+  /* Transições suaves para a opacidade e para a transformação */
 }
 
 .mostrar-habilidades .habilidade {
   background-color: yellow;
-  opacity: 1; /* Mostra as habilidades quando a classe mostrar-habilidades é aplicada */
-  transform: translateX(0); /* Move as habilidades de volta para a posição original */
+  opacity: 1;
+  /* Mostra as habilidades quando a classe mostrar-habilidades é aplicada */
+  transform: translateX(0);
+  /* Move as habilidades de volta para a posição original */
 }
 
 .containerSkills {
@@ -276,7 +307,20 @@ small {
   }
   .bloco_principal {
     justify-content: center;
-    height: 100vh;
+    height: 80vh;
     padding: 0;
+  }
+  .bg-warning {
+    padding: 150px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .flexContainer {
+    height: 80vh;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .bg-warning {
+    height: 70vh;
   }
 }/*# sourceMappingURL=estilo.css.map */

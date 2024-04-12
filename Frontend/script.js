@@ -18,6 +18,7 @@ themeToggle.addEventListener("click", () => {
     console.log("Tema alterado para claro");
   }
 });
+
 //logica apareção btn (leva ao topo), após certa rolagem
 window.addEventListener("scroll", () => {
   console.log("Scrolling:", window.scrollY);
@@ -44,7 +45,7 @@ window.addEventListener("scroll", () => {
   }
 });
 function criarImgBtn() {
-  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/ImgBtn')
+  fetch('http://vitoriaferreiradev.com.br/ImgBtn')
     .then(resp => resp.json())
     .then(data => {
       const minhaDiv = document.getElementById("minhaDiv");
@@ -65,7 +66,7 @@ function criarImgBtn() {
     .catch(error => console.error('Erro ao buscar imagens:', error));
 }
 function buscarProjetoPorIndex(index) {// buscar o projeto correspondente com base nesse índice (ONDEM DE ADIÇÃO)
-  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
+  fetch('http://vitoriaferreiradev.com.br/projeto')
     .then(resp => resp.json())
     .then(data => {
       const projeto = data[index];
@@ -93,6 +94,7 @@ function exibirDetalhesDoProjeto(projeto) {
   modal.show();
 }
 criarImgBtn();
+
 function enviarFeedback() {//mandando dados form html
   const nome = document.getElementById("nome").value;
   const opiniao = document.getElementById("opiniao").value;
@@ -100,7 +102,7 @@ function enviarFeedback() {//mandando dados form html
     nome: nome,
     opiniao: opiniao
   }
-  fetch('http://localhost:3000/feedback', {
+  fetch('http://vitoriaferreiradev.com.br/feedback', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

@@ -17,25 +17,35 @@
 <header>
   <!--btn voltar ao topo-->
   <button class="btn p-0 m-0" id="scrollToTopBtn"><i class="bi bi-arrow-up"></i></button>
-  <nav class="navbar p-0">
-    <div class="container-fluid  p-2 justify-content-center ">
-      <ul class="nav">
+  <nav class="navbar p-0 navbar-expand-md ">
+    <div class="container-fluid p-0 d-flex">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="bi bi-three-dots-vertical icon"></i></span>
+      </button>
+      <div class="d-md-flex">
+      <button class="btn p-2 border-3" id="themeToggle">
+        <span id="themeIcon" class="bi bi-moon"></span> <!-- Ícone inicial do botão (lua) -->
+      </button>
+      </div>
+      <div class="collapse navbar-collapse d-md-flex" id="navbarNav">
         <!--btn troca de tema-->
-        <button class="btn p-2 border-3" id="themeToggle">
-          <span id="themeIcon" class="bi bi-moon"></span> <!-- Ícone inicial do botão (lua) -->
-        </button>
-        <li class="nav-item">
-          <a class="nav-link p-1  " aria-current="page" href="#projetos">Projetos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link p-1 " href="#skills">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link p-1" href="#bio">Bio</a>
-        </li>
-      </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link p-1" aria-current="page" href="#projetos">Projetos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link p-1" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link p-1" href="#bio">Bio</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
+
+
 </header>
 
 <body>
@@ -104,7 +114,7 @@
     </div>
   </div>
   <div class="container d-flex flex-wrap justify-content-center align-item-center" id="container_projetos"></div>
-  <div class="container-fluid bg-warning pb-5 mb-5  ">
+  <div class="container-fluid bg-warning " id="skills">
     <div class="containerSkills">
       <div class="box">
         <img src="./img/icons8-html-5.svg">
@@ -133,7 +143,7 @@
     </div>
   </div>
   <!--Botões criados pelo js dinamicos para abrir o modal-->
-  <div class="container">
+  <div class="container" id="projetos">
     <div id="minhaDiv">
     </div>
   </div>
