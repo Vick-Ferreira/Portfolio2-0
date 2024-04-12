@@ -50,7 +50,7 @@ scrollToTopBtn.addEventListener("click", () => {
 
 
 function criarImgBtn() {
-  fetch('http://localhost:3000/ImgBtn')
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/ImgBtn')
       .then(resp => resp.json())
       .then(data => {
           const minhaDiv = document.getElementById("minhaDiv");
@@ -72,7 +72,7 @@ function criarImgBtn() {
 }
 
 function buscarProjetoPorIndex(index) {// buscar o projeto correspondente com base nesse índice (ONDEM DE ADIÇÃO)
-  fetch('http://localhost:3000/projeto')
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
       .then(resp => resp.json())
       .then(data => {
           const projeto = data[index];
