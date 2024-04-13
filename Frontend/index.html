@@ -17,41 +17,39 @@
 <header>
   <!--btn voltar ao topo-->
   <button class="btn p-0 m-0" id="scrollToTopBtn"><i class="bi bi-arrow-up"></i></button>
-  <nav class="navbar p-0 navbar-expand-md ">
-    <div class="container-fluid p-0 d-flex">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span><i class="bi bi-three-dots-vertical icon"></i></span>
+
+  <nav class="navbar mb-5 navbar-expand-lg ">
+    <div class="container-fluid p-md-5 pt-md-0 pb-md-0">
+      <button class="btn p-2 border-0" id="themeToggle">
+        <span id="themeIcon" class="bi bi-moon"></span>
       </button>
-      <div class="d-md-flex">
-      <button class="btn p-2 border-3" id="themeToggle">
-        <span id="themeIcon" class="bi bi-moon"></span> <!-- Ícone inicial do botão (lua) -->
+      <!--some em telas maiores de 768px-->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-three-dots-vertical"></i>
       </button>
-      </div>
-      <div class="collapse navbar-collapse d-md-flex" id="navbarNav">
-        <!--btn troca de tema-->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link p-1" aria-current="page" href="#projetos">Projetos</a>
+      <div class="collapse justify-content-md-end navbar-collapse" id="navbarText">
+        <ul class="navbar-nav text-center mb-2 mb-lg-0">
+          <li class="nav-item ">
+            <a class="nav-link" aria-current="page" href="#projetos">Projetos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link p-1" href="#skills">Skills</a>
+            <a class="nav-link" href="#skills">Skills</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link p-1" href="#bio">Bio</a>
+            <a class="nav-link" href="#bio">Bio</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-
 </header>
 
 <body>
   <!--container principal-->
   <div class="container-fluid justify-content-center  ">
-    <div class="row p-0">
+    <div class="row p-lg-5 ">
       <div class=" d-md-flex bloco_principal">
         <div class=" col-md-6 text-center apresentacaoPrincipal ">
           <h1 class=" pt-xl-1">Eu sou <span>Vitoria Ferreira</span></h1>
@@ -67,7 +65,7 @@
             </a>
           </div>
         </div>
-        <div class="col-md-6 text-center containerFotoPerfil"><!--DIV IMAGEM PERFIL-->
+        <div class="text-center containerFotoPerfil"><!--DIV IMAGEM PERFIL-->
           <img src="./img/foto.png" class="fotoPerfil" alt="">
         </div>
       </div>

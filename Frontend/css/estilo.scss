@@ -36,7 +36,9 @@ body.dark-theme {
 
 .bi-sun,
 .bi-moon {
-    color: $font-secundary
+    color: $font-secundary;
+
+
 }
 
 #scrollToTopBtn {
@@ -68,45 +70,29 @@ body.dark-theme {
     background-color: rgba(163, 160, 160, 0.7);
 }
 
-.navbar-toggler {
-    border: none !important;
+.dark-theme .navbar {
+    background-color: rgba(110, 50, 50, 0.459);
+
+    .nav-link,
+    .bi-sun,
+    .bi {
+        color: $font-primary;
+    }
 }
 
-.navbar-toggler span {
-    color: $font-secundary;
+.nav-bar {
+    background-color: yellow;
 }
 
 .navbar-toggler:focus {
     box-shadow: none !important;
 }
 
-.navbar-collapse {
-    position: absolute;
-    background-color: #bdbaba;
-    top: 100%;
-    width: 100%;
-    z-index: 1000; //permite que o conteudo fique 100% sopreposto ao outro
-}
-
-.content {
-    //corpo
-    position: relative;
-}
-
-.navbar li {
-    margin: 5px;
-}
-
-.navbar a {
+.nav-item:hover {
+    background-color: rgba(226, 177, 177, 0.459);
     color: $font-secundary;
-    font-size: 18px;
+    border-radius: 5px;
 
-    &:hover {
-        color: rgb(99, 96, 96);
-        border: $white;
-        border-radius: 2px;
-        text-decoration: underline;
-    }
 }
 
 .bloco_principal {
@@ -305,15 +291,11 @@ small {
         display: flex;
         justify-content: center;
         align-items: center;
-    }
- 
-    
-    .nav-item {
-        padding: 1px 25px;
+
     }
 
     .containerFotoPerfil {
-        display: flex;
+
         justify-content: center;
         align-items: center;
     }
@@ -323,6 +305,7 @@ small {
         width: 350px;
         height: 350px;
         border-radius: 50%;
+
     }
 
     .containerFeed {
@@ -334,8 +317,7 @@ small {
 
     .bloco_principal {
         justify-content: center;
-        height: 80vh;
-        padding: 0;
+        height: 60vh;
     }
 
     .bg-warning {
@@ -348,6 +330,7 @@ small {
     .flexContainer {
         height: 80vh;
     }
+
 }
 
 @media screen and (min-width: $mobile-widthXL) {
