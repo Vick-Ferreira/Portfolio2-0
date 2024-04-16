@@ -45,7 +45,7 @@ window.addEventListener("scroll", () => {
   }
 });
 function criarImgBtn() {
-  fetch('http://vitoriaferreiradev.com.br/ImgBtn')
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/ImgBtn')
     .then(resp => resp.json())
     .then(data => {
       const minhaDiv = document.getElementById("minhaDiv");
@@ -66,7 +66,7 @@ function criarImgBtn() {
     .catch(error => console.error('Erro ao buscar imagens:', error));
 }
 function buscarProjetoPorIndex(index) {// buscar o projeto correspondente com base nesse índice (ONDEM DE ADIÇÃO)
-  fetch('http://vitoriaferreiradev.com.br/projeto')
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/projeto')
     .then(resp => resp.json())
     .then(data => {
       const projeto = data[index];
@@ -102,7 +102,7 @@ function enviarFeedback() {//mandando dados form html
     nome: nome,
     opiniao: opiniao
   }
-  fetch('http://vitoriaferreiradev.com.br/feedback', {
+  fetch('https://vitoriaferreira-portfolio-84cf0f46ab85.herokuapp.com/feedback', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
