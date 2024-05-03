@@ -275,8 +275,8 @@ small {
   }
   .fotoPerfil {
     display: flex;
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
   }
   .containerFeed {
@@ -287,10 +287,8 @@ small {
   }
   .bloco_principal {
     justify-content: center;
+    align-items: center;
     height: 60vh;
-  }
-  .bg-warning {
-    padding: 150px;
   }
 }
 @media screen and (min-width: 992px) {

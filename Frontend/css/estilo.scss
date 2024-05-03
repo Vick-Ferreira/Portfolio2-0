@@ -302,8 +302,8 @@ small {
 
     .fotoPerfil {
         display: flex;
-        width: 350px;
-        height: 350px;
+        width: 300px;
+        height: 300px;
         border-radius: 50%;
 
     }
@@ -317,12 +317,10 @@ small {
 
     .bloco_principal {
         justify-content: center;
+        align-items: center;
         height: 60vh;
     }
 
-    .bg-warning {
-        padding: 150px;
-    }
 }
 
 
