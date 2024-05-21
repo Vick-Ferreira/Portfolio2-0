@@ -53,6 +53,7 @@ function criarImgBtn() {
         const button = document.createElement("button");
         button.classList.add('btn_modal');
         const imagePath = imgBtn.imagem.replace(/\\/g, '/');
+        const imageUrl = `https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/uploads/imagens/${imagePath}`;
         button.style.backgroundImage = `url(${imagePath})`;
         button.style.backgroundSize = 'contain';
         button.style.backgroundRepeat = 'no-repeat';
