@@ -27,7 +27,7 @@ window.addEventListener("scroll", () => {
   } else {
     scrollToTopBtn.style.display = "none";
   }
-  // evento de clique ao botão para rolar suavemente para o topo APÓS aparecer.
+  // evento de clique ao botão para rolar suuavemente para o topo APÓS aparecer.
   scrollToTopBtn.addEventListener("click", () => {
     console.log("Botão de volta ao topo clicado");
     window.scrollTo({
