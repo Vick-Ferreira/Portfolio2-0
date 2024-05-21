@@ -14,7 +14,7 @@ COPY Backend ./Backend
 
 
 # Copia o diretório public para o diretório de trabalho
-COPY public ./public
+COPY Frontend ./Frontend
 
 
 # Define o diretório de trabalho
