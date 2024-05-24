@@ -20,8 +20,8 @@ COPY Frontend ./Frontend
 # Define o diretório de trabalho
 WORKDIR /usr/src/app/
 
-# Expõe a porta 3000
-EXPOSE 3000
+# Expõe a porta
+EXPOSE 8080
 
 # Comando para iniciar a aplicação
 CMD [ "npm", "start" ]
