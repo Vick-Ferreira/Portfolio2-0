@@ -14,6 +14,9 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(cors());
 
+const feedbackRouter = require('./routers/feedbackRouter');
+app.use('/feedback', feedbackRouter);
+
 // Configuração para servir arquivos estáticos
 const frontendPath = path.join(__dirname, '../Frontend');
 app.use(express.static(frontendPath));
