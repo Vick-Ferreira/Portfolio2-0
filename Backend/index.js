@@ -7,6 +7,10 @@ const path = require('path');
 const multer = require('multer');
 const { MongoClient, GridFSBucket, ObjectId } = require('mongodb');
 const { Readable } = require('stream');
+const fs = require('fs');
+const https = require('https');
+
+
 
 const port = process.env.PORT || 8080;
 
@@ -29,6 +33,16 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
   });
+
+  
+// Carregar certificados SSL
+const privateKey = fs.readFileSync('./certificados/key.pem', 'utf8');
+const certificate = fs.readFileSync('./certificados/cert.pem', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
+// Crie um servidor HTTPS
+const httpsServer = https.createServer(credentials, app);
+
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -252,8 +266,7 @@ app.get('/videos/index/:index', async (req, res) => {
 
 
 
-
-// Inicialização do servidor
-app.listen(port, () => {
-  console.log(`Servidor está rodando na porta: ${port}`);
+// Inicialização do servidor HTTPS
+httpsServer.listen(port, () => {
+  console.log(`Servidor HTTPS rodando na porta ${port}`);
 });
