@@ -44,56 +44,78 @@ window.addEventListener("scroll", () => {
     habilidades.classList.remove("mostrar-habilidades"); // Remove classe para esconder as habilidades
   }
 });
+
+
+
 function criarImgBtn() {
-  fetch('http://localhost:3000/ImgBtn')
+  fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/files')
     .then(resp => resp.json())
     .then(data => {
       const minhaDiv = document.getElementById("minhaDiv");
+      minhaDiv.innerHTML = ''; // Limpa a div antes de adicionar novos botões
       data.forEach((imgBtn, index) => { //A IMAGEM E A POSIÇÃO DA MESMA
         const button = document.createElement("button");
         button.classList.add('btn_modal');
-        const imagePath = imgBtn.imagem.replace(/\\/g, '/');
-        button.style.backgroundImage = `url(${imagePath})`;
+        const imageUrl = `https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/files/index/${index}`;
+        button.style.backgroundImage = `url(${imageUrl})`;
         button.style.backgroundSize = 'contain';
         button.style.backgroundRepeat = 'no-repeat';
+        button.style.width = '100px'; // Defina um tamanho para o botão
+        button.style.height = '100px'; // Defina um tamanho para o botão
         button.addEventListener('click', function () {
-          buscarProjetoPorIndex(index); //associar cada botão de imagem ao projeto correspondente pelo índice na matriz de projetos. 
-          //Chama função e passa posição da imagem que associa a posição do projeto
+          buscarVideoPorIndex(index); // Chama a função e passa o índice correto
         });
         minhaDiv.appendChild(button);
       });
     })
     .catch(error => console.error('Erro ao buscar imagens:', error));
 }
-function buscarProjetoPorIndex(index) {// buscar o projeto correspondente com base nesse índice (ONDEM DE ADIÇÃO)
-  fetch('http://localhost:3000/projeto')
+
+// Função para buscar vídeo pelo índice
+function buscarVideoPorIndex(index) {
+  fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/videos')
     .then(resp => resp.json())
     .then(data => {
-      const projeto = data[index];
-      exibirDetalhesDoProjeto(projeto);
+      const video = data[index]; // Busca o vídeo pelo índice
+      if (video) {
+        exibirDetalhesDoVideo(video, index);
+      } else {
+        console.error('Vídeo não encontrado para o índice:', index);
+      }
     })
-    .catch(error => console.error('Erro ao buscar detalhes do projeto:', error));
+    .catch(error => console.error('Erro ao buscar detalhes do vídeo:', error));
 }
-function exibirDetalhesDoProjeto(projeto) {
+// Função para exibir os detalhes do vídeo no modal
+function exibirDetalhesDoVideo(video, index) {
   const videoElement = document.createElement('video');
-  videoElement.classList = ('video_Element');
-  videoElement.src = projeto.video;
-  videoElement.controls = true; //controles de reprodução ao vídeo
+  videoElement.classList.add('video_Element');
+  
+  // Constrói a URL para o vídeo usando o índice
+  videoElement.src = `https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/videos/index/${index}`;
+  videoElement.controls = true;
+
   const tituloElement = document.createElement('h2');
-  tituloElement.textContent = projeto.titulo;
+  tituloElement.textContent = video.metadata.titulo;
+
   const descricaoElement = document.createElement('p');
-  descricaoElement.textContent = projeto.descricao;
-  // Add elemento de vídeo, título e descrição ao modal
+  descricaoElement.textContent = video.metadata.descricao;
+
+  // Adiciona elementos ao modal
   const modalContent = document.getElementById('modalContent');
   modalContent.innerHTML = '';
   modalContent.appendChild(tituloElement);
   modalContent.appendChild(descricaoElement);
   modalContent.appendChild(videoElement);
+
   // Exibir o modal
   const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
   modal.show();
 }
+// Chama a função para criar os botões ao carregar a página
 criarImgBtn();
+
+
+
 
 function enviarFeedback() {//mandando dados form html
   const nome = document.getElementById("nome").value;
@@ -102,7 +124,7 @@ function enviarFeedback() {//mandando dados form html
     nome: nome,
     opiniao: opiniao
   }
-  fetch('http://localhost:3000/feedback', {
+  fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/feedback', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
