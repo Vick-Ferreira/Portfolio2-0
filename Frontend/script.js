@@ -19,34 +19,66 @@ themeToggle.addEventListener("click", () => {
   }
 });
 
-//logica apareção btn (leva ao topo), após certa rolagem
-window.addEventListener("scroll", () => {
-  console.log("Scrolling:", window.scrollY);
-  if (window.scrollY > 20) {
-    scrollToTopBtn.style.display = "block";
-  } else {
-    scrollToTopBtn.style.display = "none";
+
+//BOTÃO TOPO
+function botaoTopo() {
+  // Função para mostrar o botão apenas quando a página é rolada para baixo
+  function handleScroll() {
+    if (window.scrollY === 0) {
+      scrollToTopBtn.style.display = "none";
+    } else {
+      scrollToTopBtn.style.display = "block";
+    }
   }
-  // evento de clique ao botão para rolar suuavemente para o topo APÓS aparecer.
-  scrollToTopBtn.addEventListener("click", () => {
-    console.log("Botão de volta ao topo clicado");
+  // Função para rolar suavemente a página para o topo
+  function scrollToTop() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-  });
-  // Habilidades, logica entrada e saida de habilidades da tela
-  const habilidades = document.getElementById('habilidades');
-  const alturaHabilidades = habilidades.offsetTop;
-  if (window.scrollY > alturaHabilidades - window.innerHeight / 2) {
-    habilidades.classList.add("mostrar-habilidades"); // Adiciona classe para mostrar as habilidades
-  } else {
-    habilidades.classList.remove("mostrar-habilidades"); // Remove classe para esconder as habilidades
   }
-});
+  // Adiciona o evento de rolagem para mostrar ou esconder o botão
+  window.addEventListener("scroll", handleScroll);
+  // Adiciona o evento de clique para rolar a página suavemente para o topo
+  scrollToTopBtn.addEventListener("click", scrollToTop);
+  // Chama a função para definir o estado inicial do botão corretamente
+  handleScroll();
+}
+// Chama a função para inicializar o comportamento do botão
+botaoTopo();
+
+//SKILLS
+// Função para verificar se as habilidades estão visíveis na tela
+function verificarVisibilidade(elemento) {
+  const posicaoTela = window.innerHeight;
+  const elementoTopo = elemento.getBoundingClientRect().top;
+
+  return elementoTopo < posicaoTela;
+}
+// Variável para armazenar a posição anterior do scroll
+let posicaoScrollAnterior = window.scrollY || document.documentElement.scrollTop;
+// Função para adicionar ou remover classe quando as habilidades estiverem visíveis ou não
+function mostrarHabilidades() {
+  const habilidades = document.querySelector('.habilidades');
+  const posicaoScrollAtual = window.scrollY || document.documentElement.scrollTop;
+  
+  if (posicaoScrollAtual > posicaoScrollAnterior) {
+      // Scroll para baixo
+      habilidades.classList.add('mostrar');
+  } else {
+      // Scroll para cima
+      habilidades.classList.remove('mostrar');
+  }
+  
+  // Atualiza a posição anterior do scroll
+  posicaoScrollAnterior = posicaoScrollAtual;
+}
+window.addEventListener('scroll', mostrarHabilidades);
+mostrarHabilidades(); // Chamar a função inicialmente para verificar a visibilidade
 
 
 
+//ELEMENTOS CRIADOS DINAMICOS COM RECUPERAÇÃO DE DADOS BACKEND.
 function criarImgBtn() {
   fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/files')
     .then(resp => resp.json())
@@ -60,8 +92,8 @@ function criarImgBtn() {
         button.style.backgroundImage = `url(${imageUrl})`;
         button.style.backgroundSize = 'contain';
         button.style.backgroundRepeat = 'no-repeat';
-        button.style.width = '100px'; // Defina um tamanho para o botão
-        button.style.height = '100px'; // Defina um tamanho para o botão
+        button.style.width = '50px'; // Defina um tamanho para o botão
+        button.style.height = '120px'; // Defina um tamanho para o botão
         button.addEventListener('click', function () {
           buscarVideoPorIndex(index); // Chama a função e passa o índice correto
         });
@@ -70,7 +102,6 @@ function criarImgBtn() {
     })
     .catch(error => console.error('Erro ao buscar imagens:', error));
 }
-
 // Função para buscar vídeo pelo índice
 function buscarVideoPorIndex(index) {
   fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/videos')
@@ -93,6 +124,9 @@ function exibirDetalhesDoVideo(video, index) {
   // Constrói a URL para o vídeo usando o índice
   videoElement.src = `https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/videos/index/${index}`;
   videoElement.controls = true;
+  videoElement.autoplay = true; // Tenta reproduzir automaticamente (alguns navegadores móveis exigem que o vídeo esteja mudo para isso funcionar)
+  videoElement.muted = true;    // Muta o vídeo para permitir reprodução automática em alguns navegadores móveis
+  videoElement.playsInline = true; // Permite reprodução inline em navegadores móveis
 
   const tituloElement = document.createElement('h2');
   tituloElement.textContent = video.metadata.titulo;

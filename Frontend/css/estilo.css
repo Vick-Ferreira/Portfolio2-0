@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ojuju:wght@200..800&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Reddit+Mono:wght@200..900&family=Reem+Kufi+Fun:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sixtyfour&family=Tilt+Neon&display=swap");
 body {
   background: linear-gradient(to right, rgba(245, 224, 224, 0.9647058824), #bdbaba);
+  position: relative;
 }
 
 h1,
@@ -26,7 +27,6 @@ body.dark-theme {
 }
 
 #scrollToTopBtn {
-  display: none;
   position: fixed;
   bottom: 20px;
   right: 5px;
@@ -79,6 +79,18 @@ body.dark-theme {
 
 .bloco_principal {
   padding: 50px;
+}
+
+.elementoUm {
+  position: absolute;
+  top: 50px;
+  border: solid 1px rgb(194, 160, 8);
+  height: 100px;
+  width: 80px;
+  border-top-left-radius: 15px 40px; /* Raio para o canto superior esquerdo (X, Y) */
+  border-top-right-radius: 105px; /* Raio para o canto superior direito (X, Y) */
+  border-bottom-left-radius: 35px; /* Raio para o canto inferior esquerdo (X, Y) */
+  border-bottom-right-radius: 10px 35px; /* Raio para o canto inferior direito (X, Y) */
 }
 
 .apresentacaoPrincipal {
@@ -223,29 +235,18 @@ small {
   color: #fff;
 }
 
+.habilidades {
+  opacity: 0;
+  transition: opacity 2s ease-in;
+}
+
+.mostrar {
+  opacity: 1;
+}
+
 .bg-warning {
   height: 100%;
   padding: 50px;
-}
-
-.habilidade {
-  display: inline;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  /* Inicialmente, oculta as habilidades */
-  transform: translateX(100%);
-  /* Inicialmente, move as habilidades para fora da tela para o lado direito */
-  transition: opacity 0.5s ease, transform 1s ease;
-  /* Transições suaves para a opacidade e para a transformação */
-}
-
-.mostrar-habilidades .habilidade {
-  background-color: yellow;
-  opacity: 1;
-  /* Mostra as habilidades quando a classe mostrar-habilidades é aplicada */
-  transform: translateX(0);
-  /* Move as habilidades de volta para a posição original */
 }
 
 .containerSkills {

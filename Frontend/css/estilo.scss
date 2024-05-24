@@ -17,6 +17,7 @@ $mobile-widthXL: 1400px;
 
 body {
     background: linear-gradient(to right, #f5e0e0f6, #bdbaba);
+    position: relative;
 }
 
 h1,
@@ -42,7 +43,6 @@ body.dark-theme {
 }
 
 #scrollToTopBtn {
-    display: none;
     position: fixed;
     bottom: 20px;
     right: 5px;
@@ -98,7 +98,17 @@ body.dark-theme {
 .bloco_principal {
     padding: 50px;
 }
-
+.elementoUm{
+    position: absolute;
+    top: 50px;
+    border: solid 1px rgb(194, 160, 8);
+    height: 100px;
+    width: 80px;
+    border-top-left-radius: 15px 40px; /* Raio para o canto superior esquerdo (X, Y) */
+    border-top-right-radius: 105px ; /* Raio para o canto superior direito (X, Y) */
+    border-bottom-left-radius: 35px ; /* Raio para o canto inferior esquerdo (X, Y) */
+    border-bottom-right-radius: 10px 35px; /* Raio para o canto inferior direito (X, Y) */
+}
 .apresentacaoPrincipal {
     display: flex;
     flex-direction: column;
@@ -244,31 +254,24 @@ small {
     color: $bg;
 }
 
+
+.habilidades {
+    opacity: 0;
+    //reversão da tranformação!
+    transition: opacity 2s ease-in; //ease : função de temporização,controla como a mudança de propriedade ocorre ao longo do tempo
+    //transition:tranformação
+}
+
+.mostrar {
+    opacity: 1;
+    
+}
+
+
 .bg-warning {
     height: 100%;
     padding: 50px;
 }
-
-.habilidade {
-    display: inline;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    /* Inicialmente, oculta as habilidades */
-    transform: translateX(100%);
-    /* Inicialmente, move as habilidades para fora da tela para o lado direito */
-    transition: opacity 0.5s ease, transform 1s ease;
-    /* Transições suaves para a opacidade e para a transformação */
-}
-
-.mostrar-habilidades .habilidade {
-    background-color: yellow;
-    opacity: 1;
-    /* Mostra as habilidades quando a classe mostrar-habilidades é aplicada */
-    transform: translateX(0);
-    /* Move as habilidades de volta para a posição original */
-}
-
 .containerSkills {
     display: flex;
     justify-content: center;
