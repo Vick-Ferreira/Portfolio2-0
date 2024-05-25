@@ -155,27 +155,33 @@ criarImgBtn();
 function enviarFeedback() {//mandando dados form html
   const nome = document.getElementById("nome").value;
   const opiniao = document.getElementById("opiniao").value;
-  const feedbackData = {
-    nome: nome,
-    opiniao: opiniao
+  
+  if(nome === '' || opiniao === '' ){
+     alert('Por favor, preencha todos os campos.');
+  }else{
+    const feedbackData = {
+      nome: nome,
+      opiniao: opiniao
+    }
+    fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/feedback', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(feedbackData)
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        alert("Feedback enviado com sucesso! Obrigada!");
+        document.getElementById("feedbackForm").reset();//Limpar formulario apos evio dos dados
+      })
+      .catch(error => {
+        console.error("erro ao enviar feedback", error);
+        alert("Ocorreu um erro ao enviar seu feedback. Por favor, tente novamente.");
+      })
   }
-  fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/feedback', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(feedbackData)
-  })
-    .then(resp => resp.json())
-    .then(data => {
-      alert("Feedback enviado com sucesso! Obrigada!");
-      document.getElementById("feedbackForm").reset();//Limpar formulario apos evio dos dados
-    })
-    .catch(error => {
-      console.error("erro ao enviar feedback")
-    })
 }
-
+  
 
 
 

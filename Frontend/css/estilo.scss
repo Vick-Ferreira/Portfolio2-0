@@ -39,15 +39,13 @@ body.dark-theme {
     background: linear-gradient(to right, #000000f6, #552a24);
 }
 
-.dark-theme .navbar {
-
-    .nav-link,
+.dark-theme {
     .bi-sun,
-    .bi {
+    .bi,
+    .skills {
         color: $font-secundary;
     }
 }
-
 .bi-sun,
 .bi-moon {
 
@@ -147,6 +145,9 @@ body.dark-theme {
     border-bottom-right-radius: 0px;
 
 }
+.nav-link{
+    color: $font-secundary
+}
 
 .nav-item img {
     height: 30px;
@@ -234,14 +235,12 @@ small {
 }
 
 .bar-container {
-    width: 20%;
-
+    width: 15%;
     height: 300px;
-
     background-color: #f1f1f1;
     position: relative;
     display: inline-block;
-    margin-right: 20px;
+    margin: 15px;
 
 }
 
@@ -362,7 +361,7 @@ small {
 .habilidades {
     opacity: 0;
     //reversão da tranformação!
-    transition: opacity 4s ease; //ease : função de temporização,controla como a mudança de propriedade ocorre ao longo do tempo
+    transition: opacity 8s ease; //ease : função de temporização,controla como a mudança de propriedade ocorre ao longo do tempo
     //transition:tranformação
 }
 
