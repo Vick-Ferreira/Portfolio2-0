@@ -145,8 +145,8 @@ body.dark-theme {
     border-bottom-right-radius: 0px;
 
 }
-.nav-link{
-    color: $font-secundary
+.nav-bar{
+    color: $font-secundary;
 }
 
 .nav-item img {
@@ -361,11 +361,11 @@ small {
 .habilidades {
     opacity: 0;
     //reversão da tranformação!
-    transition: opacity 8s ease; //ease : função de temporização,controla como a mudança de propriedade ocorre ao longo do tempo
+    transition: opacity 5s ease-in-out; //ease : função de temporização,controla como a mudança de propriedade ocorre ao longo do tempo
     //transition:tranformação
 }
 
-.mostrar {
+.habilidades.mostrar  {
     opacity: 1;
 
 }

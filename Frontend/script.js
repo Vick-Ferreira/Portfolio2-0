@@ -57,17 +57,22 @@ function verificarVisibilidade(elemento) {
 }
 
 // Função para adicionar ou remover classe quando as habilidades estiverem visíveis ou não
-function mostrarHabilidades() {
+document.addEventListener('DOMContentLoaded', () => {
   const habilidades = document.querySelector('.habilidades');
-  const habilidadesVisiveis = verificarVisibilidade(habilidades);
 
-  // Verifica se as habilidades estão visíveis e se a classe 'mostrar' já está aplicada
-  if (habilidadesVisiveis && !habilidades.classList.contains('mostrar')) {
-    habilidades.classList.add('mostrar');
-  } else if (!habilidadesVisiveis && habilidades.classList.contains('mostrar')) {
-    habilidades.classList.remove('mostrar');
-  }
-}
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        habilidades.classList.add('mostrar');
+      } else {
+        habilidades.classList.remove('mostrar');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(habilidades);
+});
+
 
 // Adiciona o evento de scroll para chamar a função
 window.addEventListener('scroll', mostrarHabilidades);
