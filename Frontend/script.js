@@ -55,26 +55,25 @@ function verificarVisibilidade(elemento) {
 
   return elementoTopo < posicaoTela;
 }
-// Variável para armazenar a posição anterior do scroll
-let posicaoScrollAnterior = window.scrollY || document.documentElement.scrollTop;
+
 // Função para adicionar ou remover classe quando as habilidades estiverem visíveis ou não
 function mostrarHabilidades() {
   const habilidades = document.querySelector('.habilidades');
-  const posicaoScrollAtual = window.scrollY || document.documentElement.scrollTop;
-  
-  if (posicaoScrollAtual > posicaoScrollAnterior) {
-      // Scroll para baixo
-      habilidades.classList.add('mostrar');
-  } else {
-      // Scroll para cima
-      habilidades.classList.remove('mostrar');
+  const habilidadesVisiveis = verificarVisibilidade(habilidades);
+
+  // Verifica se as habilidades estão visíveis e se a classe 'mostrar' já está aplicada
+  if (habilidadesVisiveis && !habilidades.classList.contains('mostrar')) {
+    habilidades.classList.add('mostrar');
+  } else if (!habilidadesVisiveis && habilidades.classList.contains('mostrar')) {
+    habilidades.classList.remove('mostrar');
   }
-  
-  // Atualiza a posição anterior do scroll
-  posicaoScrollAnterior = posicaoScrollAtual;
 }
+
+// Adiciona o evento de scroll para chamar a função
 window.addEventListener('scroll', mostrarHabilidades);
-mostrarHabilidades(); // Chamar a função inicialmente para verificar a visibilidade
+
+// Chama a função inicialmente para verificar a visibilidade
+mostrarHabilidades();
 
 
 
@@ -92,8 +91,10 @@ function criarImgBtn() {
         button.style.backgroundImage = `url(${imageUrl})`;
         button.style.backgroundSize = 'contain';
         button.style.backgroundRepeat = 'no-repeat';
-        button.style.width = '50px'; // Defina um tamanho para o botão
-        button.style.height = '120px'; // Defina um tamanho para o botão
+        button.style.border = 'none';
+        button.style.width = '300px';
+        button.style.height = '300px';
+        button.style.borderRadius = '10%';
         button.addEventListener('click', function () {
           buscarVideoPorIndex(index); // Chama a função e passa o índice correto
         });
@@ -120,7 +121,7 @@ function buscarVideoPorIndex(index) {
 function exibirDetalhesDoVideo(video, index) {
   const videoElement = document.createElement('video');
   videoElement.classList.add('video_Element');
-  
+
   // Constrói a URL para o vídeo usando o índice
   videoElement.src = `https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/videos/index/${index}`;
   videoElement.controls = true;

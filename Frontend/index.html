@@ -12,24 +12,26 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"
     defer></script>
-  <title>Desenvolvedora Web - Vitoria Ferreira.</title>
+  <title>Desenvolvedora de Software - Vitoria Ferreira.</title>
 </head>
 <header>
   <!--btn voltar ao topo-->
   <button class="btn p-0 m-0" id="scrollToTopBtn"><i class="bi bi-arrow-up"></i></button>
 
-  <nav class="navbar mb-5 navbar-expand-lg ">
+  <nav class="navbar m-5 mt-0 navbar-expand-lg border-bottom ">
     <div class="container-fluid p-md-5 pt-md-0 pb-md-0">
+
       <button class="btn p-2 border-0" id="themeToggle">
         <span id="themeIcon" class="bi bi-moon"></span>
       </button>
+
       <!--some em telas maiores de 768px-->
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bi bi-three-dots-vertical"></i>
       </button>
-      <div class="collapse justify-content-md-end navbar-collapse" id="navbarText">
-        <ul class="navbar-nav text-center mb-2 mb-lg-0">
+      <div class="collapse justify-content-md-center navbar-collapse" id="navbarText">
+        <ul class="navbar-nav text-center mb-2 mb-lg-0 w-100">
           <li class="nav-item ">
             <a class="nav-link" aria-current="page" href="#projetos">Projetos</a>
           </li>
@@ -38,6 +40,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#bio">Bio</a>
+          </li>
+          <li class="nav-item nav-item-right pt-1 d-flex justify-content-center text-center">
+            <p class="lead m-0 pe-1">Vitoria Ferreira</p>
+            <img src="./img/favicon.icon.png" alt="Icon">
           </li>
         </ul>
       </div>
@@ -48,45 +54,57 @@
 
 <body>
   <div class="elementoUm"></div>
+
   <!--container principal-->
   <div class="container-fluid justify-content-center  ">
     <div class="row p-lg-5 ">
       <div class=" d-md-flex bloco_principal">
-        <div class=" col-md-6 text-center apresentacaoPrincipal ">
-          <h1 class=" pt-xl-1">Eu sou <span>Vitoria Ferreira</span></h1>
-          <p class="lead">Desenvolvedora de Software</p>
-          <p class="lead"> Hello, I am software developer</p>
-          <p class="lead fw-bold  mb-1">Acompanhe meu desenvolvimento...</p>
-          <div class="linkSocial p-4">
-            <a href="https://www.linkedin.com/in/vitoria-ferreira-ti/" class="text-decoration-none  me-2 border-bottom">
-              <i class="bi-linkedin pe-1"></i>Linkedin
+        <div class=" me-md-5 text-center apresentacaoPrincipal ">
+          <h1 class=" pt-xl-1"><span>Bem vindos!</span></h1>
+          <p class="lead   mb-1">Acompanhe meu desenvolvimento...</p>
+          <div class="linkSocial ">
+
+            <a href="https://www.linkedin.com/in/vitoria-ferreira-ti/" class="text-decoration-none">
+              <i class="bi-linkedin "></i>
             </a>
-            <a href="https://github.com/Vick-Ferreira" class="text-decoration-none border-bottom ">
-              <i class="bi-github pe-1"></i>Github
+            <a href="https://github.com/Vick-Ferreira" class="text-decoration-none">
+              <i class="bi-github "></i>
             </a>
+
           </div>
         </div>
-        <div class="text-center containerFotoPerfil"><!--DIV IMAGEM PERFIL-->
+        <div class="ms-md-5 text-center containerFotoPerfil"><!--DIV IMAGEM PERFIL-->
           <img src="./img/foto.png" class="fotoPerfil" alt="">
         </div>
       </div>
     </div>
   </div>
+
+  <div class="container-elementoDois">
+    <div class="elementoDois"></div>
+  </div>
+
+  <div class="elementoTres"></div>
+
   <!--container bio-->
-  <div class="container-fluid  flexContainer p-3" id="bio">
-    <div class=" container  w-50  pt-3 text-center justify-content-md-center">
+  <div class="container-fluid  flexContainer " id="bio">
+
+    <div class=" container   pt-3 text-center justify-content-md-center">
       <div class="row">
-        <div class="conteudoBio">
-          <h1 class="fs-4 mt-3">Inglês:</h1>
-          <div class="progress" role="progressbar" >
-            <div class="progress-bar  text-bg-warning progress-bar-striped" style="width: 15%">15%</div>
-          </div>
-          <h1 class="fs-4 mt-3">Graduação:</h1>
-          <div class="progress" role="progressbar" >
-            <div class="progress-bar text-bg-warning progress-bar-striped" style="width: 40%">40%</div>
+
+        <div class="conteudoBio p-0">
+          <div class="bar-container">
+            <div class="bar english" style="height: 15%;">15%</div>
+            <div class="scale">Inglês</div>
           </div>
 
+          <div class="bar-container">
+            <div class="bar graduation" style="height: 45%;">45%</div>
+            <div class="scale">Graduação</div>
+          </div>
         </div>
+
+
       </div>
     </div>
     <div class="container-fluid conteudoBio ">
@@ -110,11 +128,17 @@
       </div>
     </div>
   </div>
-  <!--PROJETOS-->
-  <div class="container d-flex flex-wrap justify-content-center align-item-center" id="container_projetos"></div>
+  </div>
+
+
+
+
   <!--SKILLS-->
   <div class="container-fluid bg-warning " id="skills">
-    <div class="containerSkills  habilidades" >
+    <div class=" text-center ">
+      <h1>Skills</h1>
+    </div>
+    <div class="containerSkills  habilidades">
       <div class="box">
         <img src="./img/icons8-html-5.svg">
       </div>
@@ -142,7 +166,7 @@
     </div>
   </div>
   <!--Botões criados pelo js dinamicos para abrir o modal-->
-  <div class="container" id="projetos">
+  <div class="container p-md-5 mt-md-5 mt-xl-5 mb-xl-5 text-center" id="projetos">
     <div id="minhaDiv">
     </div>
   </div>
@@ -157,27 +181,25 @@
           <div class="modal-body ">
             <div id="modalContent"><!-- Conteúdo do modal --></div>
             <div class="modal-body-link">
-              <a href="http://">ir para o github</a>
-              <a href="http://">ir para o post linkedin</a>
-              <a href="http://">ir para o site</a>
+              <!--conteudo  botões modal-->
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="container mb-3 ">
+  <div class="container mb-3 container-form">
     <div class="row p-md-5 text-center align-items-center">
       <div class="col-md-6">
-        <h2 class="feedback">Deixe seu feedback</h2>
+        <h2 class="feedback mt-3">Deixe seu feedback</h2>
         <p>Estou aberta a sugestões, desde que as mesmas sejam para positivar meus conhecimentos.</p>
       </div>
       <div class="col-md-6 ">
         <form id="feedbackForm">
           <div class="form-group">
-            <input type="text" class="form-control  mb-2" id="nome" placeholder="Seu nome">
+            <input type="text" class="form-control mb-2" id="nome" placeholder="Seu nome">
             <textarea class="form-control" id="opiniao" placeholder="Sua opinião"></textarea>
-            <button type="button" class="btn btn-primary mt-3 w-100" onclick="enviarFeedback()">Enviar</button>
+            <button type="button" class="btn mb-3 btn_form mt-3 w-100" onclick="enviarFeedback()">Enviar</button>
           </div>
         </form>
       </div>
