@@ -79,7 +79,7 @@ mostrarHabilidades();
 
 //ELEMENTOS CRIADOS DINAMICOS COM RECUPERAÇÃO DE DADOS BACKEND.
 function criarImgBtn() {
-  fetch('hhttps://portfolio2-0-k2jz3gicva-uw.a.run.app/files')
+  fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/files')
     .then(resp => resp.json())
     .then(data => {
       const minhaDiv = document.getElementById("minhaDiv");
@@ -87,7 +87,7 @@ function criarImgBtn() {
       data.forEach((imgBtn, index) => { //A IMAGEM E A POSIÇÃO DA MESMA
         const button = document.createElement("button");
         button.classList.add('btn_modal');
-        const imageUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/files/index/${index}`;
+        const imageUrl = `hhttps://portfolio2-0-k2jz3gicva-uw.a.run.app/files/index/${index}`;
         button.style.backgroundImage = `url(${imageUrl})`;
         button.style.backgroundSize = 'contain';
         button.style.backgroundRepeat = 'no-repeat';
@@ -157,7 +157,7 @@ function enviarFeedback() {//mandando dados form html
   const opiniao = document.getElementById("opiniao").value;
   
   if(nome === '' || opiniao === '' ){
-     alert('Por favor, preencha todos os campos.');
+  alert('Por favor, preencha todos os campos.');
   }else{
     const feedbackData = {
       nome: nome,
