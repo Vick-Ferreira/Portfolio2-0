@@ -40,9 +40,7 @@ body.dark-theme {
 }
 
 .dark-theme {
-    .bi-sun,
-    .bi,
-    .skills {
+    .bi-sun {
         color: $font-secundary;
     }
 }
@@ -145,7 +143,7 @@ body.dark-theme {
     border-bottom-right-radius: 0px;
 
 }
-.nav-bar{
+.nav-item a, .nav-item p,  .skills{
     color: $font-secundary;
 }
 
@@ -361,7 +359,7 @@ small {
 .habilidades {
     opacity: 0;
     //reversão da tranformação!
-    transition: opacity 5s ease-in-out; //ease : função de temporização,controla como a mudança de propriedade ocorre ao longo do tempo
+    transition: opacity 2s ease-in-out; //ease : função de temporização,controla como a mudança de propriedade ocorre ao longo do tempo
     //transition:tranformação
 }
 

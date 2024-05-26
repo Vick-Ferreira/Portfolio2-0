@@ -20,9 +20,7 @@ body.dark-theme {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.9647058824), #552a24);
 }
 
-.dark-theme .bi-sun,
-.dark-theme .bi,
-.dark-theme .skills {
+.dark-theme .bi-sun {
   color: #a8483b;
 }
 
@@ -117,7 +115,7 @@ body.dark-theme {
   border-bottom-right-radius: 0px;
 }
 
-.nav-bar {
+.nav-item a, .nav-item p, .skills {
   color: #a8483b;
 }
 
@@ -323,7 +321,7 @@ small {
 
 .habilidades {
   opacity: 0;
-  transition: opacity 5s ease-in-out;
+  transition: opacity 2s ease-in-out;
 }
 
 .habilidades.mostrar {
