@@ -79,7 +79,7 @@ mostrarHabilidades();
 
 //ELEMENTOS CRIADOS DINAMICOS COM RECUPERAÇÃO DE DADOS BACKEND.
 function criarImgBtn() {
-  fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/files')
+  fetch('hhttps://portfolio2-0-k2jz3gicva-uw.a.run.app/files')
     .then(resp => resp.json())
     .then(data => {
       const minhaDiv = document.getElementById("minhaDiv");
@@ -87,7 +87,7 @@ function criarImgBtn() {
       data.forEach((imgBtn, index) => { //A IMAGEM E A POSIÇÃO DA MESMA
         const button = document.createElement("button");
         button.classList.add('btn_modal');
-        const imageUrl = `https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/files/index/${index}`;
+        const imageUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/files/index/${index}`;
         button.style.backgroundImage = `url(${imageUrl})`;
         button.style.backgroundSize = 'contain';
         button.style.backgroundRepeat = 'no-repeat';
@@ -105,7 +105,7 @@ function criarImgBtn() {
 }
 // Função para buscar vídeo pelo índice
 function buscarVideoPorIndex(index) {
-  fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/videos')
+  fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos')
     .then(resp => resp.json())
     .then(data => {
       const video = data[index]; // Busca o vídeo pelo índice
@@ -123,7 +123,7 @@ function exibirDetalhesDoVideo(video, index) {
   videoElement.classList.add('video_Element');
 
   // Constrói a URL para o vídeo usando o índice
-  videoElement.src = `https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/videos/index/${index}`;
+  videoElement.src = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
   videoElement.controls = true;
   videoElement.autoplay = true; // Tenta reproduzir automaticamente (alguns navegadores móveis exigem que o vídeo esteja mudo para isso funcionar)
   videoElement.muted = true;    // Muta o vídeo para permitir reprodução automática em alguns navegadores móveis
@@ -163,7 +163,7 @@ function enviarFeedback() {//mandando dados form html
       nome: nome,
       opiniao: opiniao
     }
-    fetch('https://portfolio2-0-g6xxmbq6ra-uw.a.run.app/feedback', {
+    fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/feedback', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
