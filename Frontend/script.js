@@ -87,7 +87,7 @@ function criarImgBtn() {
       data.forEach((imgBtn, index) => { //A IMAGEM E A POSIÇÃO DA MESMA
         const button = document.createElement("button");
         button.classList.add('btn_modal');
-        const imageUrl = `hhttps://portfolio2-0-k2jz3gicva-uw.a.run.app/files/index/${index}`;
+        const imageUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/files/index/${index}`;
         button.style.backgroundImage = `url(${imageUrl})`;
         button.style.backgroundSize = 'contain';
         button.style.backgroundRepeat = 'no-repeat';
