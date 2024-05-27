@@ -93,8 +93,8 @@ function criarImgBtn() {
         button.style.backgroundRepeat = 'no-repeat';
         button.style.border = 'none';
         button.style.width = '300px';
-        button.style.height = '300px';
-        button.style.borderRadius = '10%';
+        button.style.height = '200px';
+        button.style.borderRadius = '5%';
         button.addEventListener('click', function () {
           buscarVideoPorIndex(index); // Chama a função e passa o índice correto
         });
