@@ -137,9 +137,11 @@ function exibirDetalhesDoVideo(video, index) {
 
   const tituloElement = document.createElement('h2');
   tituloElement.textContent = video.metadata.titulo;
+  tituloElement.classList.add('tituloElement');
 
   const descricaoElement = document.createElement('p');
   descricaoElement.textContent = video.metadata.descricao;
+  descricaoElement.classList.add('descricaoElement');
 
   // Adiciona elementos ao modal
   const modalContent = document.getElementById('modalContent');

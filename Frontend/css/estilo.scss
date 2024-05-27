@@ -143,7 +143,7 @@ body.dark-theme {
     border-bottom-right-radius: 0px;
 
 }
-.nav-item a, .nav-item p,  .skills{
+.nav-item a, .nav-item p,  .tituloContainer{
     color: $font-secundary;
 }
 
@@ -226,13 +226,15 @@ p {
 p {
     color: $font-primary;
 }
-
+.smallBio{
+    color: $font-primary;
+}
 small {
     margin-top: 1em;
-    color: $font-secundary
+    color: $font-secundary;
 }
 
-.bar-container {
+.bar-container { 
     width: 25%;
     height: 300px;
     background-color: #f1f1f1;
@@ -349,20 +351,14 @@ small {
     background-repeat: no-repeat; 
    
 }
-.modal-body-link {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+.tituloElement{
+    color: $font-terceira;
+    text-align: center;
 }
-
-.modal-body a {
-    text-decoration: none;
-    background-color: $font-primary;
-    padding: 5px;
-    border-radius: 5px;
-    color: $bg;
+.descricaoElement{
+    color: $font-terceira;
+    text-align:left;
 }
-
 
 .habilidades {
     opacity: 0;

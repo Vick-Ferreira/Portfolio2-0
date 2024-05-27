@@ -12,7 +12,7 @@ exports.uploadImage = async (req, res) => {
 
   const client = new MongoClient(url);
   try {
-    await client.connect();
+    await client.connect();//abrindo conexão com o banco no inicio da operação
     const database = client.db(dbName);
     const bucket = new GridFSBucket(database, { bucketName: 'uploads' });
 
@@ -22,7 +22,7 @@ exports.uploadImage = async (req, res) => {
 
     const uploadStream = bucket.openUploadStream(req.file.originalname);
 
-    readableStream.pipe(uploadStream);
+    readableStream.pipe(uploadStream);//está dizendo ao Node.js para pegar os dados do readableStream e enviá-los para o uploadStream
 
     uploadStream.on('error', (error) => {
       console.error('Erro ao enviar arquivo:', error);
