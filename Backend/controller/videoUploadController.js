@@ -46,25 +46,25 @@ exports.uploadVideo = async (req, res) => {
 };
 
 // Rota GET para listar todos os vídeos com metadados
-exports.listarVideos =  async (req, res) => {
-    const client = new MongoClient(url);
-    try {
-        await client.connect();
-        const database = client.db(dbName);
-        const videosCollection = database.collection('videos.files');
+exports.listarVideos = async (req, res) => {
+  const client = new MongoClient(url);
+  try {
+    await client.connect();
+    const database = client.db(dbName);
+    const videosCollection = database.collection('videos.files');
 
-        const videos = await videosCollection.find().toArray();
-        res.status(200).json(videos);
-    } catch (error) {
-        console.error('Erro ao conectar ao MongoDB:', error);
-        res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
-    } finally {
-        client.close();
-    }
+    const videos = await videosCollection.find().toArray();
+    res.status(200).json(videos);
+  } catch (error) {
+    console.error('Erro ao conectar ao MongoDB:', error);
+    res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
+  } finally {
+    client.close();
+  }
 };
 
 // Rota GET para baixar o vídeo pelo índice
-exports.downloadVideo =  async (req, res) => {
+exports.downloadVideo = async (req, res) => {
   const index = parseInt(req.params.index, 10);
 
   if (isNaN(index)) {

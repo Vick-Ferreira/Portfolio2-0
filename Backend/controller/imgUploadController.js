@@ -5,7 +5,7 @@ require('dotenv').config();
 const dbName = process.env.DB_NAME;
 const url = process.env.MONGODB_URI;
 
-exports.uploadImage =  async (req, res) => {
+exports.uploadImage = async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'Nenhum arquivo enviado' });
   }
@@ -42,21 +42,21 @@ exports.uploadImage =  async (req, res) => {
 };
 
 
-exports.listarFiles =  async (req, res) => {
-    const client = new MongoClient(url);
-    try {
-      await client.connect();
-      const database = client.db(dbName);
-      const filesCollection = database.collection('uploads.files');
-  
-      const files = await filesCollection.find().toArray();
-      res.status(200).json(files);
-    } catch (error) {
-      console.error('Erro ao conectar ao MongoDB:', error);
-      res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
-    } finally {
-      client.close(); // Fechar a conexão aqui
-    }
+exports.listarFiles = async (req, res) => {
+  const client = new MongoClient(url);
+  try {
+    await client.connect();
+    const database = client.db(dbName);
+    const filesCollection = database.collection('uploads.files');
+
+    const files = await filesCollection.find().toArray();
+    res.status(200).json(files);
+  } catch (error) {
+    console.error('Erro ao conectar ao MongoDB:', error);
+    res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
+  } finally {
+    client.close(); // Fechar a conexão aqui
+  }
 };
 
 exports.dowloadImage = async (req, res) => {

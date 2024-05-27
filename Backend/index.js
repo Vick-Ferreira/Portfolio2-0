@@ -34,7 +34,7 @@ mongoose.connect(process.env.MONGODB_URI)
     console.error('Erro ao conectar ao MongoDB:', error);
   });
 
-  
+
 // Adiciona listeners para os eventos de conexão do Mongoose
 mongoose.connection.on('connected', () => {
   console.log('Conexão com o MongoDB estabelecida');

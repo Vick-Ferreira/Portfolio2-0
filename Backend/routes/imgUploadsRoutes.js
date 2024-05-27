@@ -8,7 +8,6 @@ const imgUploadController = require('../controller/imgUploadController');
 const imgStorage = multer.memoryStorage();
 const imgUpload = multer({ storage: imgStorage });
 
-
 // Rota POST para lidar com o upload de arquivos(imagem)
 router.post('/upload', imgUpload.single('imagem'), imgUploadController.uploadImage);
 
@@ -27,5 +26,6 @@ router.get('/files', imgUploadController.listarFiles);
 //arquivo especifico para renderizar
 
 router.get('/files/index/:index', imgUploadController.dowloadImage);
+
 
 module.exports = router;

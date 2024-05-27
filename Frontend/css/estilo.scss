@@ -233,7 +233,7 @@ small {
 }
 
 .bar-container {
-    width: 15%;
+    width: 25%;
     height: 300px;
     background-color: #f1f1f1;
     position: relative;
@@ -417,9 +417,7 @@ small {
 }
 
 @media screen and (min-width: $mobile-widthMD) {
-    .nav-item-right {
-        margin-left: auto;
-    }
+   
 
     .flexContainer {
         display: flex;
@@ -466,6 +464,9 @@ small {
 @media screen and (min-width: $mobile-widthLG) {
     .flexContainer {
         height: 70vh;
+    }
+    .nav-item-right {
+        margin-left: auto;
     }
 }
 
