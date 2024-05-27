@@ -84,25 +84,31 @@ function criarImgBtn() {
     .then(data => {
       const minhaDiv = document.getElementById("minhaDiv");
       minhaDiv.innerHTML = ''; // Limpa a div antes de adicionar novos botões
-      data.forEach((imgBtn, index) => { //A IMAGEM E A POSIÇÃO DA MESMA
+      data.forEach((imgBtn, index) => {
         const button = document.createElement("button");
         button.classList.add('btn_modal');
+
         const imageUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/files/index/${index}`;
-        button.style.backgroundImage = `url(${imageUrl})`;
-        button.style.backgroundSize = 'contain';
-        button.style.backgroundRepeat = 'no-repeat';
-        button.style.border = 'none';
-        button.style.width = '300px';
-        button.style.height = '130px';
-        button.style.borderRadius = '5%';
+
+        // Criar a imagem
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = 'Imagem do botão'; // Adicione um atributo alt para acessibilidade
+
+        // Adicionar a imagem como filho do botão
+        button.appendChild(img);
+
+        // Adicionar evento de clique ao botão
         button.addEventListener('click', function () {
-          buscarVideoPorIndex(index); // Chama a função e passa o índice correto
+          buscarVideoPorIndex(index);
         });
+
         minhaDiv.appendChild(button);
       });
     })
     .catch(error => console.error('Erro ao buscar imagens:', error));
 }
+
 // Função para buscar vídeo pelo índice
 function buscarVideoPorIndex(index) {
   fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos')
