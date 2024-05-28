@@ -7,6 +7,7 @@ const url = process.env.MONGODB_URI;
 
 exports.uploadVideo = async (req, res) => {
   if (!req.file) {
+    console.error('Nenhum arquivo enviado');
     return res.status(400).json({ error: 'Nenhum arquivo enviado' });
   }
 
@@ -15,6 +16,7 @@ exports.uploadVideo = async (req, res) => {
   const client = new MongoClient(url);
   try {
     await client.connect();
+    console.log('Conectado ao MongoDB para upload de vídeo');
     const database = client.db(dbName);
     const bucket = new GridFSBucket(database, { bucketName: 'videos' });
 
@@ -35,6 +37,7 @@ exports.uploadVideo = async (req, res) => {
     });
 
     uploadStream.on('finish', () => {
+      console.log('Arquivo enviado com sucesso:', req.file.originalname);
       res.status(200).json({ message: 'Arquivo enviado com sucesso' });
       client.close();
     });
@@ -45,11 +48,11 @@ exports.uploadVideo = async (req, res) => {
   }
 };
 
-// Rota GET para listar todos os vídeos com metadados
 exports.listarVideos = async (req, res) => {
   const client = new MongoClient(url);
   try {
     await client.connect();
+    console.log('Conectado ao MongoDB para listar vídeos');
     const database = client.db(dbName);
     const videosCollection = database.collection('videos.files');
 
@@ -63,7 +66,6 @@ exports.listarVideos = async (req, res) => {
   }
 };
 
-// Rota GET para baixar o vídeo pelo índice
 exports.downloadVideo = async (req, res) => {
   const index = parseInt(req.params.index, 10);
 
@@ -88,6 +90,10 @@ exports.downloadVideo = async (req, res) => {
     const downloadStream = bucket.openDownloadStream(video._id);
 
     res.set('Content-Type', 'video/mp4'); // ou o tipo MIME correto para o seu vídeo
+    res.set('Accept-Ranges', 'bytes'); // Permite que o navegador faça requisições parciais para streaming
+    res.set('Cache-Control', 'no-cache'); // Controla o cache do vídeo
+    res.set('Content-Disposition', `inline; filename="${video.filename}"`); // Sugere um nome de arquivo ao navegador
+    
     downloadStream.pipe(res);
 
     downloadStream.on('error', (error) => {
@@ -105,6 +111,3 @@ exports.downloadVideo = async (req, res) => {
     client.close();
   }
 };
-
-
-
