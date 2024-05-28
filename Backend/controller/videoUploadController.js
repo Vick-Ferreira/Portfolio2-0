@@ -64,6 +64,7 @@ exports.listarVideos = async (req, res) => {
 };
 
 // Rota GET para baixar o vídeo pelo índice
+
 exports.downloadVideo = async (req, res) => {
   const index = parseInt(req.params.index, 10);
 
@@ -85,13 +86,45 @@ exports.downloadVideo = async (req, res) => {
 
     const video = videos[index];
     const bucket = new GridFSBucket(database, { bucketName: 'videos' });
-    const downloadStream = bucket.openDownloadStream(video._id);
 
-    res.set('Content-Type', 'video/mp4'); // ou o tipo MIME correto para o seu vídeo
-    res.set('Accept-Ranges', 'bytes'); // Permite que o navegador faça requisições parciais para streaming
-    res.set('Cache-Control', 'no-cache'); // Controla o cache do vídeo
-    res.set('Content-Disposition', `inline; filename="${video.filename}"`); // Sugere um nome de arquivo ao navegador
-    
+    const range = req.headers.range;
+    if (!range) {
+      console.log('Requisição sem range');
+      res.status(416).send('Range Not Satisfiable');
+      return;
+    }
+
+    const videoSize = video.length;
+    const parts = range.replace(/bytes=/, "").split("-");
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : videoSize - 1;
+
+    if (start >= videoSize || end >= videoSize) {
+      console.log('Range fora dos limites');
+      res.status(416).send('Range Not Satisfiable');
+      return;
+    }
+
+    console.log(`Servindo range: ${start}-${end}/${videoSize}`);
+
+    const contentLength = (end - start) + 1;
+    const headers = {
+      'Content-Range': `bytes ${start}-${end}/${videoSize}`,
+      'Accept-Ranges': 'bytes',
+      'Content-Length': contentLength,
+      'Content-Type': 'video/mp4',
+      'Cache-Control': 'no-cache, no-store, must-revalidate', // Desativa cache
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    };
+
+    res.writeHead(206, headers);
+
+    const downloadStream = bucket.openDownloadStream(video._id, {
+      start,
+      end,
+    });
+
     downloadStream.pipe(res);
 
     downloadStream.on('error', (error) => {
@@ -101,6 +134,7 @@ exports.downloadVideo = async (req, res) => {
     });
 
     downloadStream.on('end', () => {
+      console.log('Download do vídeo completo.');
       client.close();
     });
   } catch (error) {
