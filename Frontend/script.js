@@ -153,7 +153,15 @@ function exibirDetalhesDoVideo(video, index) {
   // Exibir o modal
   const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
   modal.show();
+
+  // Tentativa de reproduzir o vídeo
+  videoElement.addEventListener('canplay', () => {
+    videoElement.play().catch(error => {
+      console.error('Erro ao tentar reproduzir o vídeo:', error);
+    });
+  });
 }
+
 // Chama a função para criar os botões ao carregar a página
 criarImgBtn();
 

@@ -88,6 +88,10 @@ exports.downloadVideo = async (req, res) => {
     const downloadStream = bucket.openDownloadStream(video._id);
 
     res.set('Content-Type', 'video/mp4'); // ou o tipo MIME correto para o seu vídeo
+    res.set('Accept-Ranges', 'bytes'); // Permite que o navegador faça requisições parciais para streaming
+    res.set('Cache-Control', 'no-cache'); // Controla o cache do vídeo
+    res.set('Content-Disposition', `inline; filename="${video.filename}"`); // Sugere um nome de arquivo ao navegador
+    
     downloadStream.pipe(res);
 
     downloadStream.on('error', (error) => {
@@ -105,6 +109,3 @@ exports.downloadVideo = async (req, res) => {
     client.close();
   }
 };
-
-
-
