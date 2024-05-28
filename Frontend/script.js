@@ -123,18 +123,25 @@ function buscarVideoPorIndex(index) {
     })
     .catch(error => console.error('Erro ao buscar detalhes do vídeo:', error));
 }
+
 // Função para exibir os detalhes do vídeo no modal
 function exibirDetalhesDoVideo(video, index) {
+  console.log('Detalhes do vídeo:', video);
+  console.log('Índice do vídeo:', index);
+
   const videoElement = document.createElement('video');
   videoElement.classList.add('video_Element');
 
   // Constrói a URL para o vídeo usando o índice
-  videoElement.src = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
+  console.log('Construindo URL do vídeo...');
+  const videoUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
+  console.log('URL do vídeo:', videoUrl);
+  videoElement.src = videoUrl;
+
   videoElement.controls = true;
   videoElement.autoplay = true; // Tenta reproduzir automaticamente (alguns navegadores móveis exigem que o vídeo esteja mudo para isso funcionar)
   videoElement.muted = true;    // Muta o vídeo para permitir reprodução automática em alguns navegadores móveis
   videoElement.playsInline = true; // Permite reprodução inline em navegadores móveis
-  videoElement.setAttribute('webkit-playsinline', 'true'); // Compatibilidade com iOS antigos
 
   const tituloElement = document.createElement('h2');
   tituloElement.textContent = video.metadata.titulo;
@@ -145,15 +152,25 @@ function exibirDetalhesDoVideo(video, index) {
   descricaoElement.classList.add('descricaoElement');
 
   // Adiciona elementos ao modal
+  const modalContent = document.getElementById('modalContent');
+  modalContent.innerHTML = '';
   modalContent.appendChild(tituloElement);
   modalContent.appendChild(descricaoElement);
   modalContent.appendChild(videoElement);
 
   // Exibir o modal
-  const modalElement = document.getElementById('exampleModal');
-  const modal = new bootstrap.Modal(modalElement);
+  const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
   modal.show();
+
+  // Tentativa de reproduzir o vídeo
+  videoElement.addEventListener('canplay', () => {
+    console.log('Vídeo pronto para reprodução.');
+    videoElement.play().catch(error => {
+      console.error('Erro ao tentar reproduzir o vídeo:', error);
+    });
+  });
 }
+
 // Chama a função para criar os botões ao carregar a página
 criarImgBtn();
 
