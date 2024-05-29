@@ -157,42 +157,19 @@ function exibirDetalhesDoVideo(video, index) {
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
 
-  // Tentativa de reproduzir o vídeo
-  videoElement.addEventListener('canplay', () => {
-    console.log('Vídeo pode ser reproduzido');
-    videoElement.play().catch(error => {
-      console.error('Erro ao tentar reproduzir o vídeo:', error);
-    });
-  });
+  // Função para manipular o vídeo
+  const handleVideoInteraction = (event) => {
+    const rect = videoElement.getBoundingClientRect();
+    const clickPosition = event.clientX - rect.left;
+    const videoWidth = rect.width;
+    const clickPercentage = (clickPosition / videoWidth) * 100;
+    const newPosition = (clickPercentage / 100) * videoElement.duration;
+    videoElement.currentTime = newPosition;
+  };
 
-  // Garantir que o vídeo seja pausado ao fechar o modal, mas não removido
-  modalElement.addEventListener('hidden.bs.modal', () => {
-    console.log('Modal fechado, pausando vídeo');
-    videoElement.pause();
-  });
-
-  // Adicionar evento para rastrear quando o vídeo está pronto para uso
-  videoElement.addEventListener('loadedmetadata', () => {
-    console.log('Metadados carregados, vídeo pronto para navegação.');
-  });
-
-  videoElement.addEventListener('error', (e) => {
-    console.error('Erro ao carregar o vídeo:', e);
-  });
-
-  videoElement.addEventListener('waiting', () => {
-    console.log('Esperando o vídeo carregar mais dados.');
-  });
-
-  videoElement.addEventListener('stalled', () => {
-    console.log('O carregamento do vídeo foi interrompido.');
-  });
-
-  videoElement.addEventListener('playing', () => {
-    console.log('Vídeo está sendo reproduzido.');
-  });
+  // Adicionar evento de clique ao vídeo para avançar ou retroceder
+  videoElement.addEventListener('click', handleVideoInteraction);
 }
-
 
 
 
