@@ -123,21 +123,17 @@ function buscarVideoPorIndex(index) {
     })
     .catch(error => console.error('Erro ao buscar detalhes do vídeo:', error));
 }
+// IMPORTANTE: vídeo esteja carregado o suficiente para permitir a interação do usuário assim que o modal for aberto
 
-
-// Função para exibir os detalhes do vídeo no modal
 function exibirDetalhesDoVideo(video, index) {
+  console.log('Abrindo modal para o vídeo index:', index);
+
   const modalContent = document.getElementById('modalContent');
   modalContent.innerHTML = ''; // Limpa o conteúdo do modal
+  console.log('Modal content limpo.');
 
   const videoElement = document.createElement('video');
   videoElement.classList.add('video_Element');
-  videoElement.src = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
-  videoElement.controls = true;  // Ativa os controles de reprodução (play, pause, seek)
-  videoElement.autoplay = true;  // Tenta reproduzir automaticamente
-  videoElement.muted = true;     // Muta o vídeo para permitir reprodução automática em navegadores móveis
-  videoElement.playsInline = true; // Permite reprodução inline em navegadores móveis
-  videoElement.setAttribute('webkit-playsinline', 'true'); // Compatibilidade com iOS antigos
 
   const tituloElement = document.createElement('h2');
   tituloElement.textContent = video.metadata.titulo;
@@ -152,40 +148,73 @@ function exibirDetalhesDoVideo(video, index) {
   modalContent.appendChild(descricaoElement);
   modalContent.appendChild(videoElement);
 
+  console.log('Elementos adicionados ao modal.');
+
   // Exibir o modal
   const modalElement = document.getElementById('exampleModal');
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
+  console.log('Modal exibido.');
 
-  // Função para manipular o vídeo
-  const handleVideoInteraction = (event) => {
-    const rect = videoElement.getBoundingClientRect();
-    const clickPosition = event.clientX - rect.left;
-    const videoWidth = rect.width;
-    const clickPercentage = (clickPosition / videoWidth) * 100;
-    const newPosition = (clickPercentage / 100) * videoElement.duration;
-    videoElement.currentTime = newPosition;
+  // Função para limpar event listeners quando o modal é fechado
+  const handleModalHide = () => {
+    videoElement.pause();
+    modalElement.removeEventListener('hidden.bs.modal', handleModalHide);
+    console.log('Modal escondido. Event listeners removidos.');
   };
 
-  // Adicionar evento de clique ao vídeo para avançar ou retroceder
-  videoElement.addEventListener('click', handleVideoInteraction);
+  // Adicionar evento de limpeza quando o modal é fechado
+  modalElement.addEventListener('hidden.bs.modal', handleModalHide);
+  console.log('Event listener para fechamento do modal adicionado.');
+
+  // Carregar e iniciar o vídeo
+  carregarEIniciarVideo(videoElement, index);
+  console.log('Vídeo carregando.');
 }
 
+function carregarEIniciarVideo(videoElement, index) {
+  // Carregar o vídeo
+  videoElement.src = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
+  videoElement.controls = true;
+  videoElement.autoplay = false; // Não iniciar automaticamente
+  videoElement.muted = true;
+  videoElement.setAttribute('playsinline', '');
+  videoElement.setAttribute('webkit-playsinline', 'true');
 
+  // Adicionar evento para verificar se o vídeo está carregado
+  videoElement.addEventListener('loadedmetadata', handleVideoLoaded);
+
+  function handleVideoLoaded() {
+    console.log('Vídeo completamente carregado. Pronto para interação.');
+    // Permitir interação do usuário
+    videoElement.controls = true; // Habilita os controles do vídeo
+    videoElement.addEventListener('click', () => {
+      if (videoElement.paused) {
+        videoElement.play();
+      } else {
+        videoElement.pause();
+      }
+    });
+  }
+}
+
+// Certifique-se de que o modal está completamente removido do DOM ao ser fechado
+document.getElementById('exampleModal').addEventListener('hidden.bs.modal', () => {
+  const modalContent = document.getElementById('modalContent');
+  modalContent.innerHTML = '';
+  console.log('Modal content removido após fechar o modal.');
+});
 
 // Chama a função para criar os botões ao carregar a página
 criarImgBtn();
 
-
-
-
 function enviarFeedback() {//mandando dados form html
   const nome = document.getElementById("nome").value;
   const opiniao = document.getElementById("opiniao").value;
-  
-  if(nome === '' || opiniao === '' ){
-  alert('Por favor, preencha todos os campos.');
-  }else{
+
+  if (nome === '' || opiniao === '') {
+    alert('Por favor, preencha todos os campos.');
+  } else {
     const feedbackData = {
       nome: nome,
       opiniao: opiniao
@@ -208,7 +237,7 @@ function enviarFeedback() {//mandando dados form html
       })
   }
 }
-  
+
 
 
 
