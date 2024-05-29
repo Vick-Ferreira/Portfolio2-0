@@ -126,17 +126,20 @@ function buscarVideoPorIndex(index) {
 
 // Função para exibir os detalhes do vídeo no modal
 function exibirDetalhesDoVideo(video, index) {
-  const modalContent = document.getElementById('modalContent');
-  modalContent.innerHTML = ''; // Limpa o conteúdo do modal
+  console.log('Exibindo detalhes do vídeo:', video);
+  console.log('Índice do vídeo:', index);
 
   const videoElement = document.createElement('video');
   videoElement.classList.add('video_Element');
-  videoElement.src = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
+
+  // Constrói a URL para o vídeo usando o índice
+  const videoUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
+  console.log('URL do vídeo:', videoUrl);
+  videoElement.src = videoUrl;
   videoElement.controls = true;  // Ativa os controles de reprodução (play, pause, seek)
   videoElement.autoplay = true;  // Tenta reproduzir automaticamente
   videoElement.muted = true;     // Muta o vídeo para permitir reprodução automática em navegadores móveis
   videoElement.playsInline = true; // Permite reprodução inline em navegadores móveis
-  videoElement.setAttribute('webkit-playsinline', 'true'); // Compatibilidade com iOS antigos
 
   const tituloElement = document.createElement('h2');
   tituloElement.textContent = video.metadata.titulo;
@@ -147,50 +150,18 @@ function exibirDetalhesDoVideo(video, index) {
   descricaoElement.classList.add('descricaoElement');
 
   // Adiciona elementos ao modal
+  const modalContent = document.getElementById('modalContent');
+  modalContent.innerHTML = '';
   modalContent.appendChild(tituloElement);
   modalContent.appendChild(descricaoElement);
   modalContent.appendChild(videoElement);
 
   // Exibir o modal
-  const modalElement = document.getElementById('exampleModal');
-  const modal = new bootstrap.Modal(modalElement);
+  const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
   modal.show();
 
-  // Tentativa de reproduzir o vídeo
-  videoElement.addEventListener('canplay', () => {
-    console.log('Vídeo pode ser reproduzido');
-    videoElement.play().catch(error => {
-      console.error('Erro ao tentar reproduzir o vídeo:', error);
-    });
-  });
-
-  // Garantir que o vídeo seja pausado ao fechar o modal, mas não removido
-  modalElement.addEventListener('hidden.bs.modal', () => {
-    console.log('Modal fechado, pausando vídeo');
-    videoElement.pause();
-  });
-
-  // Adicionar evento para rastrear quando o vídeo está pronto para uso
-  videoElement.addEventListener('loadedmetadata', () => {
-    console.log('Metadados carregados, vídeo pronto para navegação.');
-  });
-
-  videoElement.addEventListener('error', (e) => {
-    console.error('Erro ao carregar o vídeo:', e);
-  });
-
-  videoElement.addEventListener('waiting', () => {
-    console.log('Esperando o vídeo carregar mais dados.');
-  });
-
-  videoElement.addEventListener('stalled', () => {
-    console.log('O carregamento do vídeo foi interrompido.');
-  });
-
-  videoElement.addEventListener('playing', () => {
-    console.log('Vídeo está sendo reproduzido.');
-  });
 }
+
 
 
 // Chama a função para criar os botões ao carregar a página
