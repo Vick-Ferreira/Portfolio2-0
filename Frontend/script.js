@@ -178,7 +178,7 @@ function carregarEIniciarVideo(videoElement, index) {
   videoElement.controls = true;
   videoElement.autoplay = false; // Não iniciar automaticamente
   videoElement.muted = true;
-  videoElement.setAttribute('playsinline', '');
+  videoElement.playsInline = true;
   videoElement.setAttribute('webkit-playsinline', 'true');
 
   // Adicionar evento para verificar se o vídeo está carregado
