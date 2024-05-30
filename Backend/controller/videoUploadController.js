@@ -63,69 +63,7 @@ exports.listarVideos = async (req, res) => {
   }
 };
 
-/* Rota GET para baixar o vídeo pelo índice
-exports.downloadVideo = async (req, res) => {
-  const index = parseInt(req.params.index, 10);
-  console.log('Índice do vídeo:', index);
-
-  if (isNaN(index)) {
-    console.log('Índice inválido');
-    return res.status(400).json({ error: 'Índice inválido' });
-  }
-
-  const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
-  try {
-    console.log('Conectando ao banco de dados MongoDB...');
-    await client.connect();
-    console.log('Conexão ao MongoDB estabelecida');
-    
-    const database = client.db(dbName);
-    const videosCollection = database.collection('videos.files');
-
-    console.log('Buscando vídeos no banco de dados...');
-    const videos = await videosCollection.find().toArray();
-    console.log('Vídeos encontrados:', videos.length);
-
-    if (index < 0 || index >= videos.length) {
-      console.log('Vídeo não encontrado');
-      return res.status(404).json({ error: 'Vídeo não encontrado' });
-    }
-
-    const video = videos[index];
-    console.log('Detalhes do vídeo:', video);
-
-    const bucket = new GridFSBucket(database, { bucketName: 'videos' });
-    console.log('Abrindo download stream para o vídeo com ID:', video._id);
-
-    const downloadStream = bucket.openDownloadStream(video._id);
-
-    
-    console.log('Iniciando download do vídeo...');
-    res.set('Content-Type', 'video/mp4');
-    res.set('Accept-Ranges', 'bytes');
-    res.set('Cache-Control', 'no-cache');
-    res.set('Content-Disposition', `inline; filename="${video.filename}"`);
-
-    downloadStream.pipe(res);
-
-    downloadStream.on('error', (error) => {
-      console.error('Erro ao baixar vídeo:', error);
-      res.status(500).json({ error: 'Erro ao baixar vídeo', details: error.message });
-      client.close();
-    });
-
-    downloadStream.on('end', () => {
-      console.log('Download do vídeo completo.');
-      client.close();
-    });
-  } catch (error) {
-    console.error('Erro ao conectar ao MongoDB:', error);
-    res.status(500).json({ error: 'Erro ao conectar ao MongoDB', details: error.message });
-    client.close();
-  }
-};
-*/
-
+//GET LISTA POR INDEX
 exports.downloadVideo = async (req, res) => {
   const index = parseInt(req.params.index, 10);
   console.log('Índice do vídeo:', index);
@@ -171,6 +109,12 @@ exports.downloadVideo = async (req, res) => {
     const start = Number(range.replace(/\D/g, ''));
     const end = videoSize - 1;
     const contentLength = end - start + 1;
+
+    console.log('Range:', range);
+    console.log('Tamanho do vídeo:', videoSize);
+    console.log('Início:', start);
+    console.log('Fim:', end);
+    console.log('Tamanho do conteúdo:', contentLength);
 
     const headers = {
       'Content-Range': `bytes ${start}-${end}/${videoSize}`,
@@ -272,6 +216,8 @@ exports.updateVideo = async (req, res) => {
     return res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
   }
 };
+
+
 exports.deleteVideo = async (req, res) => {
   const index = parseInt(req.params.index, 10);
 
