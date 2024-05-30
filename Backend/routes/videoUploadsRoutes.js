@@ -13,4 +13,9 @@ router.get('/videos', videoUploadController.listarVideos);
 
 router.get('/videos/index/:index', videoUploadController.downloadVideo);
 
+router.put('/videos/index/:index', videoUpload.single('video'), videoUploadController.updateVideo);
+
+router.delete('/videos/index/:index', videoUploadController.deleteVideo);
+
+
 module.exports = router;

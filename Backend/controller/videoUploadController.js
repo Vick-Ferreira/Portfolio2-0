@@ -136,6 +136,7 @@ exports.downloadVideo = async (req, res) => {
   }
 
   const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
   try {
     console.log('Conectando ao banco de dados MongoDB...');
     await client.connect();
@@ -191,7 +192,6 @@ exports.downloadVideo = async (req, res) => {
     downloadStream.on('error', (error) => {
       console.error('Erro ao baixar vídeo:', error);
       res.status(500).json({ error: 'Erro ao baixar vídeo', details: error.message });
-      client.close();
     });
 
     downloadStream.on('end', () => {
@@ -201,6 +201,110 @@ exports.downloadVideo = async (req, res) => {
   } catch (error) {
     console.error('Erro ao conectar ao MongoDB:', error);
     res.status(500).json({ error: 'Erro ao conectar ao MongoDB', details: error.message });
+  } finally {
     client.close();
+  }
+};
+
+
+//o GridFS não suporta a atualização direta de arquivos. 
+exports.updateVideo = async (req, res) => {
+  const index = parseInt(req.params.index, 10);
+
+  if (isNaN(index)) {
+    return res.status(400).json({ error: 'Índice inválido' });
+  }
+
+  const client = new MongoClient(url);
+
+  try {
+    await client.connect();
+    const database = client.db(dbName);
+    const videosCollection = database.collection('videos.files');
+
+    const videos = await videosCollection.find().toArray();
+
+    if (index < 0 || index >= videos.length) {
+      await client.close();
+      return res.status(404).json({ error: 'Vídeo não encontrado' });
+    }
+
+    const videoId = videos[index]._id;
+    const bucket = new GridFSBucket(database, { bucketName: 'videos' });
+
+    // Excluir o vídeo anterior
+    await videosCollection.deleteOne({ _id: videoId });
+    const chunksCollection = database.collection('videos.chunks');
+    await chunksCollection.deleteMany({ files_id: videoId });
+
+    // Verificar se há um arquivo de vídeo na requisição
+    if (!req.file) {
+      await client.close();
+      return res.status(400).json({ error: 'Nenhum arquivo enviado' });
+    }
+
+    const { titulo, descricao } = req.body;
+
+    // Adicionar o novo vídeo
+    const readableStream = new Readable();
+    readableStream.push(req.file.buffer);
+    readableStream.push(null);
+
+    const uploadStream = bucket.openUploadStream(req.file.originalname, {
+      metadata: { titulo, descricao }
+    });
+
+    readableStream.pipe(uploadStream);
+
+    uploadStream.on('error', async (error) => {
+      console.error('Erro ao enviar arquivo:', error);
+      await client.close();
+      return res.status(500).json({ error: 'Erro ao enviar arquivo' });
+    });
+
+    uploadStream.on('finish', async () => {
+      res.status(200).json({ message: 'Arquivo enviado com sucesso' });
+      await client.close();
+    });
+  } catch (error) {
+    console.error('Erro ao conectar ao MongoDB:', error);
+    await client.close();
+    return res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
+  }
+};
+exports.deleteVideo = async (req, res) => {
+  const index = parseInt(req.params.index, 10);
+
+  if (isNaN(index)) {
+    return res.status(400).json({ error: 'Índice inválido' });
+  }
+
+  const client = new MongoClient(url);
+
+  try {
+    await client.connect();
+    const database = client.db(dbName);
+    const videosCollection = database.collection('videos.files');
+    const chunksCollection = database.collection('videos.chunks');
+
+    const videos = await videosCollection.find().toArray();
+
+    if (index < 0 || index >= videos.length) {
+      await client.close();
+      return res.status(404).json({ error: 'Vídeo não encontrado' });
+    }
+
+    const videoId = videos[index]._id;
+
+    // Excluir o vídeo e seus chunks associados
+    await videosCollection.deleteOne({ _id: videoId });
+    await chunksCollection.deleteMany({ files_id: videoId });
+
+    await client.close();
+    return res.status(200).json({ message: 'Vídeo excluído com sucesso' });
+  } catch (error) {
+    console.error('Erro ao conectar ao MongoDB:', error);
+    await client.close();
+    return res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
   }
 };

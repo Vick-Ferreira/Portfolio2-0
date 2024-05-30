@@ -26,5 +26,8 @@ router.get('/files', imgUploadController.listarFiles);
 //arquivo especifico para renderizar
 router.get('/files/index/:index', imgUploadController.dowloadImage);
 
+router.put('/files/index/:index', imgUpload.single('file'), imgUploadController.updateImage);
+
+router.delete('/files/index/:index', imgUploadController.deleteImage);
 
 module.exports = router;

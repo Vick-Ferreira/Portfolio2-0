@@ -105,8 +105,78 @@ exports.dowloadImage = async (req, res) => {
   }
 };
 
+// Função para atualização de imagem
+//Por se tratar de arquivos binarios e usar GridFs que divide o arquivo em partes é necessário a excluisão e a adição do mesmo, chamando o Post
+exports.updateImage = async (req, res) => {
+  const index = parseInt(req.params.index, 10);
 
-//novo
+  if (isNaN(index)) {
+    return res.status(400).json({ error: 'Índice inválido' });
+  }
+
+  const client = new MongoClient(url);
+
+  try {
+    await client.connect();
+    const database = client.db(dbName);
+    const filesCollection = database.collection('uploads.files');
+
+    const files = await filesCollection.find().toArray();
+
+    if (index < 0 || index >= files.length) {
+      return res.status(404).json({ error: 'Arquivo não encontrado' });
+    }
+
+    const file = files[index];
+    const bucket = new GridFSBucket(database, { bucketName: 'uploads' });
+
+    // Remover o arquivo antigo
+    await bucket.delete(file._id);
+
+    // A função de upload de imagem é chamada diretamente após a remoção do arquivo antigo
+    exports.uploadImage(req, res);
+  } catch (error) {
+    console.error('Erro ao conectar ao MongoDB:', error);
+    res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
+    client.close();
+  }
+};
+
+exports.deleteImage = async (req, res) => {
+  const index = parseInt(req.params.index, 10);
+
+  if (isNaN(index)) {
+    return res.status(400).json({ error: 'Índice inválido' });
+  }
+
+  const client = new MongoClient(url);
+
+  try {
+    await client.connect();
+    const database = client.db(dbName);
+    const filesCollection = database.collection('uploads.files');
+
+    const files = await filesCollection.find().toArray();
+
+    if (index < 0 || index >= files.length) {
+      return res.status(404).json({ error: 'Arquivo não encontrado' });
+    }
+
+    const file = files[index];
+    const bucket = new GridFSBucket(database, { bucketName: 'uploads' });
+
+    // Remover o arquivo
+    await bucket.delete(file._id);
+
+    res.status(200).json({ message: 'Arquivo deletado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao conectar ao MongoDB:', error);
+    res.status(500).json({ error: 'Erro ao conectar ao MongoDB' });
+  } finally {
+    client.close();
+  }
+};
+
 
 
 
