@@ -1,6 +1,8 @@
-const { MongoClient, GridFSBucket } = require('mongodb');
+const { MongoClient, GridFSBucket, ObjectId } = require('mongodb');
 const { Readable } = require('stream');
 require('dotenv').config();
+
+
 
 const dbName = process.env.DB_NAME;
 const url = process.env.MONGODB_URI;
@@ -102,4 +104,11 @@ exports.dowloadImage = async (req, res) => {
     client.close();
   }
 };
+
+
+//novo
+
+
+
+
 

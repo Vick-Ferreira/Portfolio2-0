@@ -24,7 +24,6 @@ router.get('/files', imgUploadController.listarFiles);
 //Fornece o conteúdo do arquivo (imagem) para renderização.
 //Esta rota é responsável por fornecer o conteúdo binário do arquivo específico, permitindo que o front-end exiba a imagem.
 //arquivo especifico para renderizar
-
 router.get('/files/index/:index', imgUploadController.dowloadImage);
 
 
