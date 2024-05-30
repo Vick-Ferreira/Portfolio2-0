@@ -1,5 +1,7 @@
 const { MongoClient, GridFSBucket } = require('mongodb');
 const { Readable } = require('stream');
+
+
 require('dotenv').config();
 
 const dbName = process.env.DB_NAME;
@@ -73,9 +75,11 @@ exports.downloadVideo = async (req, res) => {
     return res.status(400).json({ error: 'Índice inválido' });
   }
 
-  const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+  let client;
 
   try {
+    client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
     console.log('Conectando ao banco de dados MongoDB...');
     await client.connect();
     console.log('Conexão ao MongoDB estabelecida');
@@ -98,38 +102,14 @@ exports.downloadVideo = async (req, res) => {
     const bucket = new GridFSBucket(database, { bucketName: 'videos' });
     console.log('Abrindo download stream para o vídeo com ID:', video._id);
 
-    const range = req.headers.range;
-    if (!range) {
-      console.log('Sem cabeçalho de range. Servindo vídeo completo.');
-      res.status(416).send('Requer cabeçalho de range');
-      return;
-    }
-
-    const videoSize = video.length;
-    const start = Number(range.replace(/\D/g, ''));
-    const end = videoSize - 1;
-    const contentLength = end - start + 1;
-
-    console.log('Range:', range);
-    console.log('Tamanho do vídeo:', videoSize);
-    console.log('Início:', start);
-    console.log('Fim:', end);
-    console.log('Tamanho do conteúdo:', contentLength);
-
     const headers = {
-      'Content-Range': `bytes ${start}-${end}/${videoSize}`,
-      'Accept-Ranges': 'bytes',
-      'Content-Length': contentLength,
       'Content-Type': 'video/mp4',
       'Cache-Control': 'no-cache'
     };
 
-    res.writeHead(206, headers);
+    res.writeHead(200, headers);
 
-    const downloadStream = bucket.openDownloadStream(video._id, {
-      start,
-      end: end + 1
-    });
+    const downloadStream = bucket.openDownloadStream(video._id);
 
     downloadStream.pipe(res);
 
@@ -145,10 +125,13 @@ exports.downloadVideo = async (req, res) => {
   } catch (error) {
     console.error('Erro ao conectar ao MongoDB:', error);
     res.status(500).json({ error: 'Erro ao conectar ao MongoDB', details: error.message });
-  } finally {
-    client.close();
+    if (client) {
+      client.close();
+    }
   }
 };
+
+
 
 
 //o GridFS não suporta a atualização direta de arquivos. 

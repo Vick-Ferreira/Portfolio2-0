@@ -124,7 +124,6 @@ function buscarVideoPorIndex(index) {
     .catch(error => console.error('Erro ao buscar detalhes do vídeo:', error));
 }
 // IMPORTANTE: vídeo esteja carregado o suficiente para permitir a interação do usuário assim que o modal for aberto
-
 function exibirDetalhesDoVideo(video, index) {
   console.log('Abrindo modal para o vídeo index:', index);
 
