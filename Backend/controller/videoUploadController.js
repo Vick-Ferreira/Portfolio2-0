@@ -66,6 +66,7 @@ exports.listarVideos = async (req, res) => {
 };
 
 //GET LISTA POR INDEX
+
 exports.downloadVideo = async (req, res) => {
   const index = parseInt(req.params.index, 10);
   console.log('Índice do vídeo:', index);
@@ -132,6 +133,9 @@ exports.downloadVideo = async (req, res) => {
 };
 
 
+/*
+streaming é o processo de transmitir dados, como áudio ou vídeo, pela internet de forma contínua, permitindo que o conteúdo seja reproduzido enquanto ainda está sendo transferido. Isso contrasta com 
+o download tradicional, onde o conteúdo deve ser completamente baixado antes que a reprodução possa começar.*/
 
 
 //o GridFS não suporta a atualização direta de arquivos. 
