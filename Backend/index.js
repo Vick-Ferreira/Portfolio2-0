@@ -57,6 +57,7 @@ process.on('SIGINT', () => {
   });
 });
 
+
 // Inicialização do servidor
 app.listen(port, () => {
   console.log(`Servidor está rodando na porta: ${port}`);

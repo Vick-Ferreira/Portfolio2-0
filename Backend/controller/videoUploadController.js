@@ -69,7 +69,6 @@ exports.listarVideos = async (req, res) => {
 
 exports.downloadVideo = async (req, res) => {
   const index = parseInt(req.params.index, 10);
-  console.log('Índice do vídeo:', index);
 
   if (isNaN(index)) {
     console.log('Índice inválido');
@@ -103,16 +102,8 @@ exports.downloadVideo = async (req, res) => {
     const bucket = new GridFSBucket(database, { bucketName: 'videos' });
     console.log('Abrindo download stream para o vídeo com ID:', video._id);
 
-    const headers = {
-      'Content-Type': 'video/mp4',
-      'Cache-Control': 'no-cache'
-    };
-
-    res.writeHead(200, headers);
-
     const downloadStream = bucket.openDownloadStream(video._id);
-
-    downloadStream.pipe(res);
+    downloadStream.pipe(res); // Pipe diretamente para a resposta HTTP
 
     downloadStream.on('error', (error) => {
       console.error('Erro ao baixar vídeo:', error);

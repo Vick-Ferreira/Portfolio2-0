@@ -112,7 +112,12 @@ function criarImgBtn() {
 // Função para buscar vídeo pelo índice
 function buscarVideoPorIndex(index) {
   fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos')
-    .then(resp => resp.json())
+    .then(resp => {
+      if (!resp.ok) {
+        throw new Error('Erro ao buscar vídeos');
+      }
+      return resp.json();
+    })
     .then(data => {
       const video = data[index]; // Busca o vídeo pelo índice
       if (video) {
@@ -121,18 +126,43 @@ function buscarVideoPorIndex(index) {
         console.error('Vídeo não encontrado para o índice:', index);
       }
     })
-    .catch(error => console.error('Erro ao buscar detalhes do vídeo:', error));
+    .catch(error => {
+      console.error('Erro ao buscar detalhes do vídeo:', error);
+    });
 }
-// IMPORTANTE: vídeo esteja carregado o suficiente para permitir a interação do usuário assim que o modal for aberto
-function exibirDetalhesDoVideo(video, index) {
-  console.log('Abrindo modal para o vídeo index:', index);
 
-  const modalContent = document.getElementById('modalContent');
-  modalContent.innerHTML = ''; // Limpa o conteúdo do modal
-  console.log('Modal content limpo.');
+
+
+
+
+
+// IMPORTANTE: vídeo esteja carregado o suficiente para permitir a interação do usuário assim que o modal for aberto
+// Função para exibir os detalhes do vídeo no modal
+function exibirDetalhesDoVideo(video, index) {
+  console.log('Exibindo detalhes do vídeo:', video);
+  console.log('Índice do vídeo:', index);
 
   const videoElement = document.createElement('video');
   videoElement.classList.add('video_Element');
+
+  // Constrói a URL para o vídeo usando o índice
+  const videoUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
+  console.log('URL do vídeo:', videoUrl);
+  
+  const startTime = performance.now(); // Registro do tempo de início
+
+  // Adiciona um listener para o evento 'loadedmetadata' para registrar o tempo quando o vídeo estiver carregado
+  videoElement.addEventListener('loadedmetadata', () => {
+    const endTime = performance.now(); // Registro do tempo de fim
+    const loadTime = endTime - startTime; // Calcula o tempo de carregamento do vídeo
+    console.log(`Tempo de carregamento do vídeo: ${loadTime} ms`);
+  });
+
+  videoElement.src = videoUrl;
+  videoElement.controls = true;  // Ativa os controles de reprodução (play, pause, seek)
+  videoElement.autoplay = true;  // Tenta reproduzir automaticamente
+  videoElement.muted = true;     // Muta o vídeo para permitir reprodução automática em navegadores móveis
+  videoElement.playsInline = true; // Permite reprodução inline em navegadores móveis
 
   const tituloElement = document.createElement('h2');
   tituloElement.textContent = video.metadata.titulo;
@@ -143,66 +173,23 @@ function exibirDetalhesDoVideo(video, index) {
   descricaoElement.classList.add('descricaoElement');
 
   // Adiciona elementos ao modal
+  const modalContent = document.getElementById('modalContent');
+  modalContent.innerHTML = '';
   modalContent.appendChild(tituloElement);
   modalContent.appendChild(descricaoElement);
   modalContent.appendChild(videoElement);
 
-  console.log('Elementos adicionados ao modal.');
-
   // Exibir o modal
-  const modalElement = document.getElementById('exampleModal');
-  const modal = new bootstrap.Modal(modalElement);
+  const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
   modal.show();
-  console.log('Modal exibido.');
-
-  // Função para limpar event listeners quando o modal é fechado
-  const handleModalHide = () => {
-    videoElement.pause();
-    modalElement.removeEventListener('hidden.bs.modal', handleModalHide);
-    console.log('Modal escondido. Event listeners removidos.');
-  };
-
-  // Adicionar evento de limpeza quando o modal é fechado
-  modalElement.addEventListener('hidden.bs.modal', handleModalHide);
-  console.log('Event listener para fechamento do modal adicionado.');
-
-  // Carregar e iniciar o vídeo
-  carregarEIniciarVideo(videoElement, index);
-  console.log('Vídeo carregando.');
 }
 
-function carregarEIniciarVideo(videoElement, index) {
-  // Carregar o vídeo
-  videoElement.src = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
-  videoElement.controls = true;
-  videoElement.autoplay = false; // Não iniciar automaticamente
-  videoElement.muted = true;
-  videoElement.playsInline = true;
-  videoElement.setAttribute('webkit-playsinline', 'true');
 
-  // Adicionar evento para verificar se o vídeo está carregado
-  videoElement.addEventListener('loadedmetadata', handleVideoLoaded);
 
-  function handleVideoLoaded() {
-    console.log('Vídeo completamente carregado. Pronto para interação.');
-    // Permitir interação do usuário
-    videoElement.controls = true; // Habilita os controles do vídeo
-    videoElement.addEventListener('click', () => {
-      if (videoElement.paused) {
-        videoElement.play();
-      } else {
-        videoElement.pause();
-      }
-    });
-  }
-}
 
-// Certifique-se de que o modal está completamente removido do DOM ao ser fechado
-document.getElementById('exampleModal').addEventListener('hidden.bs.modal', () => {
-  const modalContent = document.getElementById('modalContent');
-  modalContent.innerHTML = '';
-  console.log('Modal content removido após fechar o modal.');
-});
+
+
+
 
 // Chama a função para criar os botões ao carregar a página
 criarImgBtn();
