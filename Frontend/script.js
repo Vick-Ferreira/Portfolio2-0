@@ -79,7 +79,7 @@ mostrarHabilidades();
 
 //ELEMENTOS CRIADOS DINAMICOS COM RECUPERAÇÃO DE DADOS BACKEND.
 function criarImgBtn() {
-  fetch('http://localhost:8080/files')
+  fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/files')
     .then(resp => resp.json())
     .then(data => {
       const minhaDiv = document.getElementById("minhaDiv");
@@ -88,7 +88,7 @@ function criarImgBtn() {
         const button = document.createElement("button");
         button.classList.add('btn_modal');
 
-        const imageUrl = `http://localhost:8080/files/index/${index}`;
+        const imageUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/files/index/${index}`;
 
         // Criar a imagem
         const img = document.createElement('img');
@@ -111,7 +111,7 @@ function criarImgBtn() {
 
 // Função para buscar vídeo pelo índice
 function buscarVideoPorIndex(index) {
-  fetch('http://localhost:8080/videos')
+  fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos')
     .then(resp => {
       if (!resp.ok) {
         throw new Error('Erro ao buscar vídeos');
@@ -133,11 +133,7 @@ function buscarVideoPorIndex(index) {
 
 
 
-
-
-
 // IMPORTANTE: vídeo esteja carregado o suficiente para permitir a interação do usuário assim que o modal for aberto
-// Função para exibir os detalhes do vídeo no modal
 function exibirDetalhesDoVideo(video, index) {
   console.log('Exibindo detalhes do vídeo:', video);
   console.log('Índice do vídeo:', index);
@@ -145,24 +141,22 @@ function exibirDetalhesDoVideo(video, index) {
   const videoElement = document.createElement('video');
   videoElement.classList.add('video_Element');
 
-  // Constrói a URL para o vídeo usando o índice
-  const videoUrl = `http://localhost:8080/videos/index/${index}`;
+  const videoUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
   console.log('URL do vídeo:', videoUrl);
-  
-  const startTime = performance.now(); // Registro do tempo de início
 
-  // Adiciona um listener para o evento 'loadedmetadata' para registrar o tempo quando o vídeo estiver carregado
+  const startTime = performance.now();
+
   videoElement.addEventListener('loadedmetadata', () => {
-    const endTime = performance.now(); // Registro do tempo de fim
-    const loadTime = endTime - startTime; // Calcula o tempo de carregamento do vídeo
+    const endTime = performance.now();
+    const loadTime = endTime - startTime;
     console.log(`Tempo de carregamento do vídeo: ${loadTime} ms`);
   });
 
   videoElement.src = videoUrl;
-  videoElement.controls = true;  // Ativa os controles de reprodução (play, pause, seek)
-  videoElement.autoplay = true;  // Tenta reproduzir automaticamente
-  videoElement.muted = true;     // Muta o vídeo para permitir reprodução automática em navegadores móveis
-  videoElement.playsInline = true; // Permite reprodução inline em navegadores móveis
+  videoElement.controls = true;
+  videoElement.autoplay = true;
+  videoElement.muted = true;
+  videoElement.playsInline = true;
 
   const tituloElement = document.createElement('h2');
   tituloElement.textContent = video.metadata.titulo;
@@ -172,17 +166,19 @@ function exibirDetalhesDoVideo(video, index) {
   descricaoElement.textContent = video.metadata.descricao;
   descricaoElement.classList.add('descricaoElement');
 
-  // Adiciona elementos ao modal
   const modalContent = document.getElementById('modalContent');
   modalContent.innerHTML = '';
   modalContent.appendChild(tituloElement);
   modalContent.appendChild(descricaoElement);
   modalContent.appendChild(videoElement);
 
-  // Exibir o modal
   const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
   modal.show();
 }
+
+
+
+
 
 
 // Chama a função para criar os botões ao carregar a página
@@ -200,7 +196,7 @@ function enviarFeedback() {//mandando dados form html
       nome: nome,
       opiniao: opiniao
     }
-    fetch('http://localhost:8080/feedback', {
+    fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/feedback', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

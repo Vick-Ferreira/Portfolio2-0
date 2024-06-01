@@ -66,19 +66,17 @@ exports.listarVideos = async (req, res) => {
 };
 
 //GET LISTA POR INDEX
-
 exports.downloadVideo = async (req, res) => {
   const index = parseInt(req.params.index, 10);
 
   if (isNaN(index)) {
-    console.log('Índice inválido');
     return res.status(400).json({ error: 'Índice inválido' });
   }
 
   let client;
 
   try {
-    client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    client = new MongoClient(url);
 
     console.log('Conectando ao banco de dados MongoDB...');
     await client.connect();
@@ -92,7 +90,6 @@ exports.downloadVideo = async (req, res) => {
     console.log('Vídeos encontrados:', videos.length);
 
     if (index < 0 || index >= videos.length) {
-      console.log('Vídeo não encontrado');
       return res.status(404).json({ error: 'Vídeo não encontrado' });
     }
 
@@ -102,12 +99,34 @@ exports.downloadVideo = async (req, res) => {
     const bucket = new GridFSBucket(database, { bucketName: 'videos' });
     console.log('Abrindo download stream para o vídeo com ID:', video._id);
 
-    // Configura o cabeçalho da resposta para indicar streaming de vídeo
-    res.setHeader('Content-Type', 'video/mp4');
-    res.setHeader('Content-Disposition', `inline; filename="${video.filename}"`);
+    const range = req.headers.range;
+    if (!range) {
+      return res.status(416).send('Requires Range header');
+    }
 
-    // Abre o stream de download do GridFSBucket e o pipe para a resposta HTTP
-    bucket.openDownloadStream(video._id).pipe(res);
+    const videoSize = video.length;
+    const CHUNK_SIZE = 10 ** 6; // 1MB
+    const start = Number(range.replace(/\D/g, ""));
+    const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
+
+    const contentLength = end - start + 1;
+    const headers = {
+      "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+      "Accept-Ranges": "bytes",
+      "Content-Length": contentLength,
+      "Content-Type": "video/mp4",
+    };
+
+    res.writeHead(206, headers);
+
+    const downloadStream = bucket.openDownloadStream(video._id, { start, end: end + 1 });
+
+    downloadStream.on('error', (error) => {
+      console.error('Erro durante o streaming do vídeo:', error);
+      res.status(500).json({ error: 'Erro durante o streaming do vídeo', details: error.message });
+    });
+
+    downloadStream.pipe(res);
 
   } catch (error) {
     console.error('Erro ao conectar ao MongoDB:', error);
@@ -117,6 +136,7 @@ exports.downloadVideo = async (req, res) => {
     }
   }
 };
+
 
 
 /*
