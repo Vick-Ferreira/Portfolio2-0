@@ -102,18 +102,13 @@ exports.downloadVideo = async (req, res) => {
     const bucket = new GridFSBucket(database, { bucketName: 'videos' });
     console.log('Abrindo download stream para o vídeo com ID:', video._id);
 
-    const downloadStream = bucket.openDownloadStream(video._id);
-    downloadStream.pipe(res); // Pipe diretamente para a resposta HTTP
+    // Configura o cabeçalho da resposta para indicar streaming de vídeo
+    res.setHeader('Content-Type', 'video/mp4');
+    res.setHeader('Content-Disposition', `inline; filename="${video.filename}"`);
 
-    downloadStream.on('error', (error) => {
-      console.error('Erro ao baixar vídeo:', error);
-      res.status(500).json({ error: 'Erro ao baixar vídeo', details: error.message });
-    });
+    // Abre o stream de download do GridFSBucket e o pipe para a resposta HTTP
+    bucket.openDownloadStream(video._id).pipe(res);
 
-    downloadStream.on('end', () => {
-      console.log('Download do vídeo completo.');
-      client.close();
-    });
   } catch (error) {
     console.error('Erro ao conectar ao MongoDB:', error);
     res.status(500).json({ error: 'Erro ao conectar ao MongoDB', details: error.message });

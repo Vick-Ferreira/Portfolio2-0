@@ -79,7 +79,7 @@ mostrarHabilidades();
 
 //ELEMENTOS CRIADOS DINAMICOS COM RECUPERAÇÃO DE DADOS BACKEND.
 function criarImgBtn() {
-  fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/files')
+  fetch('http://localhost:8080/files')
     .then(resp => resp.json())
     .then(data => {
       const minhaDiv = document.getElementById("minhaDiv");
@@ -88,7 +88,7 @@ function criarImgBtn() {
         const button = document.createElement("button");
         button.classList.add('btn_modal');
 
-        const imageUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/files/index/${index}`;
+        const imageUrl = `http://localhost:8080/files/index/${index}`;
 
         // Criar a imagem
         const img = document.createElement('img');
@@ -111,7 +111,7 @@ function criarImgBtn() {
 
 // Função para buscar vídeo pelo índice
 function buscarVideoPorIndex(index) {
-  fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos')
+  fetch('http://localhost:8080/videos')
     .then(resp => {
       if (!resp.ok) {
         throw new Error('Erro ao buscar vídeos');
@@ -146,7 +146,7 @@ function exibirDetalhesDoVideo(video, index) {
   videoElement.classList.add('video_Element');
 
   // Constrói a URL para o vídeo usando o índice
-  const videoUrl = `https://portfolio2-0-k2jz3gicva-uw.a.run.app/videos/index/${index}`;
+  const videoUrl = `http://localhost:8080/videos/index/${index}`;
   console.log('URL do vídeo:', videoUrl);
   
   const startTime = performance.now(); // Registro do tempo de início
@@ -185,14 +185,9 @@ function exibirDetalhesDoVideo(video, index) {
 }
 
 
-
-
-
-
-
-
 // Chama a função para criar os botões ao carregar a página
 criarImgBtn();
+
 
 function enviarFeedback() {//mandando dados form html
   const nome = document.getElementById("nome").value;
@@ -205,7 +200,7 @@ function enviarFeedback() {//mandando dados form html
       nome: nome,
       opiniao: opiniao
     }
-    fetch('https://portfolio2-0-k2jz3gicva-uw.a.run.app/feedback', {
+    fetch('http://localhost:8080/feedback', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
