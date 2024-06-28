@@ -245,7 +245,7 @@ small {
 }
 
 .processos {
-  height: 50vh;
+  height: 100%;
 }
 
 .processosMarketing {
@@ -260,6 +260,7 @@ small {
 
 .processosMarketing h1 {
   box-shadow: 0 0 20px rgb(255, 2, 2);
+  margin-bottom: 40px;
 }
 
 .processosMarketing p {
