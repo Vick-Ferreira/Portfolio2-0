@@ -22,28 +22,40 @@ themeToggle.addEventListener("click", () => {
 //animação letras
 //função recursiva
 var textAnimado = document.getElementById("textoAnimado");
-var texto = textAnimado.textContent.trim(); // Obtém o texto do elemento e remove espaços em branco
+var textAnimado2 = document.getElementById("textoAnimado2");
+var texto1 = textAnimado.textContent.trim(); // Texto do primeiro h1
+var texto2 = textAnimado2.textContent.trim(); // Texto do segundo h1
 
-function animarTexto() {
-  textAnimado.textContent = ""; //limpa o conteudo original
-  //.textContent = obtendo ou definindo o texto dentro desse elemento.
+function animarTexto1() {
+  textAnimado.textContent = ""; // Limpa o conteúdo original
 
-  // Adiciona cada letra, até o ultimo caracter, com um atraso de 100 milissegundos
-  for (var i = 0; i < texto.length; i++) {
-    setTimeout(
-      function (i) {
-        //recuperando a letra do i da interação
-        textAnimado.textContent = textAnimado.textContent + texto[i];
-        if (i == texto.length - 1) {
-          setTimeout(animarTexto, 1000);
-        }
-      },
-      100 * i,
-      i
-    );
+  // Adiciona cada letra do primeiro texto, com um atraso de 100 milissegundos
+  for (var i = 0; i < texto1.length; i++) {
+    setTimeout(function(i) {
+      textAnimado.textContent += texto1[i];
+      if (i === texto1.length - 1) {
+        setTimeout(animarTexto2, 1000); // Após terminar o primeiro texto, inicia o segundo
+      }
+    }, 100 * i, i);
   }
 }
-animarTexto();
+
+function animarTexto2() {
+  textAnimado2.textContent = ""; // Limpa o conteúdo original do segundo texto
+
+  // Adiciona cada letra do segundo texto, com um atraso de 100 milissegundos
+  for (var j = 0; j < texto2.length; j++) {
+    setTimeout(function(j) {
+      textAnimado2.textContent += texto2[j];
+      if (j === texto2.length - 1) {
+        setTimeout(animarTexto1, 1000); // Após terminar o segundo texto, reinicia o primeiro
+      }
+    }, 100 * j, j);
+  }
+}
+
+// Inicia a animação do primeiro texto
+animarTexto1();
 
 //BOTÃO TOPO
 function botaoTopo() {

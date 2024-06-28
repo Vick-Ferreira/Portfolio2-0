@@ -119,14 +119,19 @@ body.dark-theme {
           user-select: none;
 }
 
-#textoAnimado {
-  height: 140;
+#textoAnimadoContainer {
   box-shadow: 0 0 20px rgb(230, 226, 8);
+  max-width: 800px;
+  margin-bottom: 25px;
+}
+
+#textoAnimado, #textoAnimado2 {
   margin-bottom: 35px;
-  width: 800px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  height: 30px;
+  white-space: pre-wrap;
 }
 
 .elementosMarketing p,

@@ -131,13 +131,20 @@ body.dark-theme {
   font-size: 20px;
   user-select: none;
 }
-
-#textoAnimado {
-  height: 140;
+#textoAnimadoContainer {
   box-shadow: 0 0 20px rgb(230, 226, 8);
+  max-width: 800px;
+  margin-bottom: 25px;
+}
+
+#textoAnimado,
+#textoAnimado2 {
   margin-bottom: 35px;
-  width: 800px;
+
   user-select: none;
+  height: 30px;
+
+  white-space: pre-wrap;
 }
 
 .elementosMarketing p,
@@ -401,7 +408,7 @@ small {
   .btn_form {
     background-color: #d18f8f;
     color: #fff;
-    box-shadow: 0 0 20px rgb(255, 2, 2);//sombra
+    box-shadow: 0 0 20px rgb(255, 2, 2); //sombra
 
     &:hover {
       background-color: #fff;
