@@ -1,226 +1,337 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/estilo.css" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <title>Desenvolvedora de Software - Vitoria Ferreira.</title>
+  </head>
+  <header>
+    <!--btn voltar ao topo-->
+    <button class="btn p-0 m-0" id="scrollToTopBtn">
+      <i class="bi bi-arrow-up"></i>
+    </button>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"
-    defer></script>
-  <title>Desenvolvedora de Software - Vitoria Ferreira.</title>
-</head>
-<header>
-  <!--btn voltar ao topo-->
-  <button class="btn p-0 m-0" id="scrollToTopBtn"><i class="bi bi-arrow-up"></i></button>
+    <nav class="navbar mt-0 navbar-expand-lg p-lg-0">
+      <div class="container-fluid p-md-5 pt-md-0 pb-md-0">
+        <button class="btn p-2 border-0" id="themeToggle">
+          <span id="themeIcon" class="bi bi-moon"></span>
+        </button>
 
-  <nav class="navbar m-5 mt-0 navbar-expand-lg border-bottom ">
-    <div class="container-fluid p-md-5 pt-md-0 pb-md-0">
-
-      <button class="btn p-2 border-0" id="themeToggle">
-        <span id="themeIcon" class="bi bi-moon"></span>
-      </button>
-
-      <!--some em telas maiores de 992px-->
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="bi bi-three-dots-vertical"></i>
-      </button>
-      <div class="collapse justify-content-md-center navbar-collapse" id="navbarText">
-        <ul class="navbar-nav text-center mb-2 mb-lg-0 w-100">
-          <li class="nav-item ">
-            <a class="nav-link" aria-current="page" href="#projetos">Projetos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#skills">Skills</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#bio">Bio</a>
-          </li>
-          <li class="nav-item nav-item-right pt-1 d-flex justify-content-center text-center">
-            <p class="lead m-0 pe-1">Vitoria Ferreira</p>
-            <img src="./img/favicon.icon.png" alt="Icon">
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-</header>
-
-<body>
-  <div class="elementoUm"></div>
-
-  <!--container principal-->
-  <div class="container-fluid justify-content-center  ">
-    <div class="row p-lg-5 ">
-      <div class=" d-md-flex bloco_principal">
-        <div class=" me-md-5 text-center apresentacaoPrincipal ">
-          <h1 class=" pt-xl-1"><span>Bem vindos!</span></h1>
-          <p class="lead   mb-1"> I am software developer.</p>
-          <p class="lead   mb-1">Eu sou desenvolvedora de software.</p>
-          <small class="text-center pb-1">
-            Acompanhe meu desenvolvimento...
-          </small>
-          <div class="linkSocial ">
-
-            <a href="https://www.linkedin.com/in/vitoria-ferreira-ti/" class="text-decoration-none">
-              <i class="bi-linkedin "></i>
-            </a>
-            <a href="https://github.com/Vick-Ferreira" class="text-decoration-none">
-              <i class="bi-github "></i>
-            </a>
-
-          </div>
-        </div>
-        <div class="ms-md-5 text-center containerFotoPerfil"><!--DIV IMAGEM PERFIL-->
-          <img src="./img/foto.png" class="fotoPerfil" alt="">
+        <!--some em telas maiores de 992px-->
+        <button
+          class="navbar-toggler border-0 p-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="bi bi-three-dots-vertical"></i>
+        </button>
+        <div
+          class="collapse justify-content-md-center navbar-collapse"
+          id="navbarText"
+        >
+          <ul class="navbar-nav text-center mb-2 mb-lg-0 w-100">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#projetos"
+                >Projetos</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#bio">Bio</a>
+            </li>
+            <li
+              class="nav-item nav-item-right d-flex justify-content-center text-center"
+            >
+              <img src="./img/favicon.icon.png" alt="Icon" />
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-  </div>
+    </nav>
+  </header>
 
-  <div class="container-elementoDois">
-    <div class="elementoDois"></div>
-  </div>
-
-  <div class="elementoTres"></div>
-
-  <!--container bio-->
-  <div class="container-fluid  flexContainer " id="bio">
-
-    <div class="container pt-3 text-center justify-content-md-center">
-      <div class="row">
-        <!--grafico -->
-        <div class=" p-0 text-center">
-          <div class="bar-container">
-            <div class="bar english" style="height: 15%;">15%</div>
-            <div class="scale">Inglês</div>
-          </div>
-
-          <div class="bar-container">
-            <div class="bar graduation text-center" style="height: 45%;">45%</div><!--grafico-->
-            <div class="scale text-center">Graduação</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid conteudoBio ">
-      <div class="row d-md-flex  justify-content-center ">
-        <div class="col col-xl-8 p-3 ">
-          <p class="lead mt-2 pt-5 pt-md-5 mt-md-5 ">
-            Este portfólio é resultado dos meus estudos diários, visando iniciar
-            minha carreira como desenvolvedora. Representa uma amostra do meu
-            trabalho e teve como foco criar interfaces criativas e funcionais.
-            Fique à vontade para entrar em contato comigo em caso de dúvidas,
-            sugestões ou oportunidades.<br />
-          <p class="lead pb-3">
-            <small class="smallBio text-center fw-bold">
-              Acredito que o aprendizado é contínuo, e estou comprometida em aprimorar constantemente minhas
-              habilidades.
+  <body>
+    <!--container principal-->
+    <div class="container-fluid justify-content-center">
+      <video autoplay muted loop class="video-background">
+        <source src="./img/9584-220312371.mp4" type="video/mp4" />
+      </video>
+      <div class="row p-lg-5">
+        <div class="d-md-flex bloco_principal">
+          <div class="text-center apresentacaoPrincipal">
+            <h1 class="lead mb-1">Sou, desenvolvedora web.</h1>
+            <h2 class="pt-xl-1"><span>Bem vindos!</span></h2>
+            <small class="text-center pb-1">
+              Acompanhe meu desenvolvimento...
             </small>
-          </p>
-          <br />
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-
-
-
-  <!--SKILLS-->
-  <div class="container-fluid bg-warning " id="skills">
-    <div class=" text-center ">
-      <h1 class="tituloContainer">Skills</h1>
-    </div>
-    <div class="containerSkills  habilidades">
-      <div class="box">
-        <img src="./img/icons8-html-5.svg">
-      </div>
-      <div class="box">
-        <img src="./img/icons8-css.svg">
-      </div>
-      <div class="box">
-        <img src="./img/icons8-bootstrap.svg">
-      </div>
-      <div class="box">
-        <img src="./img/icons8-sass.svg">
-      </div>
-      <div class="box">
-        <img src="./img/icons8-javascript.svg">
-      </div>
-      <div class="box">
-        <img src="./img/icons8-nodejs.svg">
-      </div>
-      <div class="box">
-        <img src="./img/mongodb.svg">
-      </div>
-      <div class="box">
-        <img src="./img/icons8-kotlin.svg">
-      </div>
-      <div class="box">
-        <img src="./img/icons8-nativo-de-reagir.svg">
-      </div>
-    </div>
-  </div>
-  <!--Botões criados pelo js dinamicos para abrir o modal-->
-  <div class="container p-md-5 mt-md-5 mt-xl-5 mb-xl-5 text-center" id="projetos">
-    <h1 class="tituloContainer">Projetos</h1>
-    <small class="fw-bold text-center pb-1 border-bottom">
-      Projetos em processo de implementação, código font disponivel no github.
-    </small>
-    <div id="minhaDiv">
-    </div>
-  </div>
-  <!-- Modal -->
-  <div class="container">
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header border-0"><!--botão de fechar do modal-->
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body ">
-            <div id="modalContent">
-              <!-- Conteúdo do modal 
-                titulo, decrição e video--></div>
-           
+            <div class="linkSocial">
+              <a
+                href="https://www.linkedin.com/in/vitoria-ferreira-ti/"
+                class="text-decoration-none"
+              >
+                <i class="bi-linkedin"></i>
+              </a>
+              <a
+                href="https://github.com/Vick-Ferreira"
+                class="text-decoration-none"
+              >
+                <i class="bi-github"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container mb-3 container-form">
-    <div class="row p-md-5 text-center align-items-center">
-      <div class="col-md-6">
-        <h2 class="feedback mt-3">Deixe seu feedback</h2>
-        <p>Estou aberta a sugestões, desde que as mesmas sejam para positivar meus conhecimentos.</p>
-      </div>
-      <div class="col-md-6 ">
-        <form id="feedbackForm">
-          <div class="form-group">
-            <input type="text" class="form-control mb-2" id="nome" placeholder="Seu nome">
-            <textarea class="form-control" id="opiniao" placeholder="Sua opinião"></textarea>
-            <button type="button" class="btn mb-3 btn_form mt-3 w-100" onclick="enviarFeedback()">Enviar</button>
-          </div>
-        </form>
+
+    <div class="container elementosMarketing p-5">
+      <div
+        class="row p-0 d-md-flex justify-content-md-center align-md-items-center"
+      >
+        <h1 id="textoAnimado" class="entrada text-center">
+          Por que você PRECISA ter seu site? Tire suas ideias do papel!
+        </h1>
+        <div class="col-md-5 text-center p-3 cards">
+          <img src="./img/icons8-internet-30.png" alt="" />
+          <span class="fw-bold">Você precisa ser encontrado:</span>
+          <p class="lead mt-3">
+            Hoje em dia, a primeira coisa que as pessoas fazem é procurar no
+            Google. Se sua empresa não está lá, você está perdendo
+            oportunidades.
+          </p>
+        </div>
+        <div class="col-md-5 text-center p-3 cards">
+          <img src="./img/icons8-brilho-30.png" alt="" />
+          <span class="fw-bold">Brilhe mais que a concorrência:</span>
+          <p class="lead mt-3">
+            Um site bem-feito mostra que você é profissional e leva seu negócio
+            a sério. Impressione seus clientes desde o primeiro clique.
+          </p>
+        </div>
+        <div class="col-md-5 text-center p-3 cards">
+          <img src="./img/icons8-crescimento-30.png" alt="" />
+          <span class="fw-bold">Crescimento sem limites:</span>
+          <p class="lead mt-3">
+            Um site permite que você alcance clientes além do seu bairro, cidade
+            ou até mesmo país. Seu mercado potencial se torna global.
+          </p>
+        </div>
+        <div class="col-md-5 text-center p-3 cards">
+          <img src="./img/icons8-ferramentas-30.png" alt="" />
+          <span class="fw-bold">Sua loja está sempre aberta:</span>
+          <p class="lead mt-3">
+            Um site funciona 24/7, permitindo que seus clientes saibam mais
+            sobre você e seus serviços a qualquer hora do dia ou da noite.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <!--footer-->
-  <div class="container-fluid p-0">
-    <footer class="footer">
-      @Vitoria Ferreira 2024
-    </footer>
-  </div>
-  <script src="./script.js"></script>
-</body>
+    <!--container bio-->
+    <div class="container-fluid img flexContainer" id="bio">
+      <!--grafico -->
+      <div class="container pt-3 text-center justify-content-md-center">
+        <div class="row">
+          <div class="p-0 text-center">
+            <div class="bar-container">
+              <div class="bar english" style="height: 15%">15%</div>
+              <div class="scale">Inglês</div>
+            </div>
 
+            <div class="bar-container">
+              <div class="bar graduation text-center" style="height: 45%">
+                45%
+              </div>
+              <!--grafico-->
+              <div class="scale text-center">Graduação</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--MELHORAR-->
+      <div class="container-fluid conteudoBio">
+        <div class="row d-md-flex justify-content-center">
+          <div class="col combo">
+            <img src="./img/foto.png" class="fotoPerfil" alt="" />
+            <p class="lead mt-2 pt-3">
+              Este portfólio é resultado dos meus estudos diários, visando
+              iniciar minha carreira como desenvolvedora. Representa uma amostra
+              do meu trabalho e teve como foco criar interfaces criativas e
+              funcionais.
+              <br />Freelancer em Desenvolvimento Frontend.
+            </p>
+
+            <p class="lead pb-3">
+              <small class="smallBio text-center fw-bold">
+                Acredito que o aprendizado é contínuo, e estou comprometida em
+                aprimorar constantemente minhas habilidades.
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--SKILLS-->
+    <div class="container bg-warning" id="skills">
+      <div class="text-center">
+        <h1 class="tituloContainer">Skills</h1>
+      </div>
+      <div class="containerSkills habilidades">
+        <div class="box">
+          <img src="./img/icons8-html-5.svg" />
+        </div>
+        <div class="box">
+          <img src="./img/icons8-css.svg" />
+        </div>
+        <div class="box">
+          <img src="./img/icons8-bootstrap.svg" />
+        </div>
+        <div class="box">
+          <img src="./img/icons8-sass.svg" />
+        </div>
+        <div class="box">
+          <img src="./img/icons8-javascript.svg" />
+        </div>
+        <div class="box">
+          <img src="./img/icons8-nodejs.svg" />
+        </div>
+        <div class="box">
+          <img src="./img/mongodb.svg" />
+        </div>
+        <div class="box">
+          <img src="./img/icons8-kotlin.svg" />
+        </div>
+        <div class="box">
+          <img src="./img/icons8-nativo-de-reagir.svg" />
+        </div>
+      </div>
+    </div>
+    <!--Botões criados pelo js dinamicos para abrir o modal-->
+    <div
+      class="container p-md-5 mt-md-5 mt-xl-5 mb-xl-5 text-center"
+      id="projetos"
+    >
+      <h1 class="tituloContainer">Projetos</h1>
+      <small class="fw-bold text-center pb-1 border-bottom">
+        Projetos em processo de implementação, código fonte disponivel no
+        github.
+      </small>
+      <div id="minhaDiv"></div>
+    </div>
+    <!-- Modal -->
+    <div class="container">
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <!--botão de fechar do modal-->
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div id="modalContent">
+                <!-- Conteúdo do modal 
+                titulo, decrição e video-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mb-3 container-form">
+      <div class="row p-md-5 text-center align-items-center">
+        <div class="col-md-6">
+          <h2 class="feedback mt-3">Fale comigo:</h2>
+          <p>Entre em contato para futuras oportunidade.</p>
+          <p>
+            Deixe seu feedback. Estou aberta a sugestões, desde que as mesmas
+            sejam para positivar meus conhecimentos.<br />Faça seu orçamento sem
+            compromisso!
+          </p>
+        </div>
+        <div class="col-md-6">
+          <form id="feedbackForm">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mb-2"
+                id="nome"
+                placeholder="Seu nome"
+              />
+              <textarea
+                class="form-control"
+                id="opiniao"
+                placeholder="Sua opinião"
+              ></textarea>
+              <button
+                type="button"
+                class="btn mb-3 btn_form mt-3 w-100"
+                onclick="enviarFeedback()"
+              >
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--footer-->
+    <div class="container-fluid p-0">
+      <footer class="footer">
+        <div class="acessosFooter">
+          <ul class="ulFooter">
+            <p class="lead tituloFooter">Menu</p>
+            <li class="liFooter"><a href="" class="linkFooter">Home</a></li>
+            <li class="liFooter"><a href="#bio" class="linkFooter">Bio</a></li>
+            <li class="liFooter">
+              <a href="#projetos" class="linkFooter">Projetos</a>
+            </li>
+          </ul>
+
+          <ul class="ulFooter">
+            <p class="lead tituloFooter">Rede/Contato</p>
+            <li class="liFooter"><a href="" class="linkFooter">Linkdin</a></li>
+            <li class="liFooter"><a href="" class="linkFooter">Gmail</a></li>
+          </ul>
+        </div>
+
+        @Vitoria Ferreira 2024
+      </footer>
+    </div>
+    <script src="./script.js"></script>
+  </body>
 </html>
