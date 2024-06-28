@@ -28,7 +28,7 @@ var texto2 = textAnimado2.textContent.trim(); // Texto do segundo h1
 
 function animarTexto1() {
   textAnimado.textContent = ""; // Limpa o conteúdo original
-
+  textAnimado2.textContent = ""; 
   // Adiciona cada letra do primeiro texto, com um atraso de 100 milissegundos
   for (var i = 0; i < texto1.length; i++) {
     setTimeout(function(i) {
@@ -41,7 +41,7 @@ function animarTexto1() {
 }
 
 function animarTexto2() {
-  textAnimado2.textContent = ""; // Limpa o conteúdo original do segundo texto
+  // Limpa o conteúdo original do segundo texto
 
   // Adiciona cada letra do segundo texto, com um atraso de 100 milissegundos
   for (var j = 0; j < texto2.length; j++) {

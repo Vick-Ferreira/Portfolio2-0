@@ -120,12 +120,11 @@ body.dark-theme {
 }
 
 #textoAnimadoContainer {
-  box-shadow: 0 0 20px rgb(230, 226, 8);
   max-width: 800px;
-  margin-bottom: 25px;
 }
 
-#textoAnimado, #textoAnimado2 {
+#textoAnimado,
+#textoAnimado2 {
   margin-bottom: 35px;
   -webkit-user-select: none;
      -moz-user-select: none;
