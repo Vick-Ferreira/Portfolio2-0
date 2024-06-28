@@ -85,14 +85,14 @@ body.dark-theme {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 70vh;
+  height: 50%;
   object-fit: cover;
   z-index: -1;
   /* Coloca o vídeo atrás do conteúdo */
 }
 
 .bloco_principal {
-  height: 70vh;
+  height: 50vh;
 }
 
 //está dentro do bloco_principal
@@ -245,7 +245,6 @@ small {
 }
 .processos{
 height: 50vh;
-margin-bottom: 20px;
 }
 //dentro do processo
 .processosMarketing{
@@ -253,11 +252,22 @@ margin-bottom: 20px;
     border-radius: 15px;
     height: 100%;
     align-items: center;
-   
+    user-select: none;
 
 }
+.processosMarketing h1{
+  box-shadow: 0 0 20px rgb(255, 2, 2);
+
+}
+
 .processosMarketing p{
   color: $font-secundary;
+  
+}
+.liServicos li{
+  text-decoration: none;
+  padding: 5px;
+  list-style-type:none;
   
 }
 .footer {
@@ -415,6 +425,7 @@ margin-bottom: 20px;
 
   .feedback {
     color: $font-primary;
+    text-decoration: underline white;
   }
 
   .btn_form {
