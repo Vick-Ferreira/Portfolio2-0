@@ -260,11 +260,13 @@ small {
 
 .processosMarketing h1 {
   box-shadow: 0 0 20px rgb(255, 2, 2);
+  border-radius: 15px;
   margin-bottom: 40px;
+  color: #c09104;
 }
 
 .processosMarketing p {
-  color: #a8483b;
+  color: #c09104;
 }
 
 .liServicos li {
