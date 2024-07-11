@@ -133,14 +133,17 @@ body.dark-theme {
   white-space: pre-wrap;
 }
 
-.elementosMarketing p,
-.container-form p {
+.elementosMarketing p {
   color: #151515;
+}
+
+.container-form p {
+  color: #fff;
   font-size: 18px !important;
 }
 
 .cards {
-  background-color: rgba(188, 195, 218, 0.438);
+  background-color: rgba(253, 177, 149, 0.2666666667);
   border-radius: 10px;
   margin: 5px;
   padding: 8px;
@@ -259,7 +262,6 @@ small {
 }
 
 .processosMarketing h1 {
-  box-shadow: 0 0 20px rgb(255, 2, 2);
   border-radius: 15px;
   margin-bottom: 40px;
   color: #c09104;
@@ -346,6 +348,7 @@ small {
   overflow: hidden;
   width: 100%;
   height: 100%;
+  margin-top: 25px;
 }
 
 #minhaDiv {
@@ -354,6 +357,14 @@ small {
   align-items: center;
   flex-wrap: wrap;
   height: 100%;
+}
+
+.modal-header {
+  background-color: rgba(253, 177, 149, 0.5058823529);
+}
+
+.modal-body {
+  background-color: #dd8d86;
 }
 
 .btn_modal {
@@ -369,7 +380,7 @@ small {
      -moz-user-select: none;
           user-select: none;
   overflow: hidden;
-  box-shadow: 0 0 5px rgba(161, 48, 48, 0.7333333333);
+  box-shadow: 0 0 10px rgba(161, 48, 48, 0.7333333333);
   /* Para garantir que a imagem não ultrapasse os limites do botão */
 }
 
@@ -397,21 +408,30 @@ small {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: #fff;
   font-size: 16px;
   z-index: 3; /* Garante que o texto fique acima da camada de filtro */
   pointer-events: none; /* Permite clicar através do texto */
 }
 
 .tituloElement {
-  color: #151515;
+  color: #fff;
   text-align: center;
 }
 
 .descricaoElement {
-  color: #151515;
+  color: #fff;
   text-align: left;
   font-size: 18px;
+}
+
+.linkElement {
+  border-radius: 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  background-color: rgba(253, 177, 149, 0.5058823529);
 }
 
 .habilidades {
@@ -428,6 +448,7 @@ small {
   padding: 50px;
   border-radius: 10px;
   margin: 10px;
+  padding: 10px;
 }
 
 .containerSkills {
@@ -454,7 +475,7 @@ small {
   padding: auto;
 }
 .container-form .feedback {
-  color: #151515;
+  color: #fff;
   -webkit-text-decoration: underline white;
           text-decoration: underline white;
 }

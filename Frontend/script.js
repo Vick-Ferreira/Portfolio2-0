@@ -209,7 +209,8 @@ function exibirDetalhesDoVideo(video, index) {
   descricaoElement.classList.add("descricaoElement");
 
   const linkElement = document.createElement("a");
-  linkElement.textContent = video.metadata.link;
+  linkElement.textContent = "Ver pagina.";
+  linkElement.href = video.metadata.link;
   linkElement.classList.add("linkElement");
 
   const modalContent = document.getElementById("modalContent");

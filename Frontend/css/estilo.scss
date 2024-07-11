@@ -143,14 +143,16 @@ body.dark-theme {
   white-space: pre-wrap;
 }
 
-.elementosMarketing p,
-.container-form p {
+.elementosMarketing p{
   color: $font-primary;
+}
+.container-form p {
+  color: #fff;
   font-size: 18px !important;
 }
 
 .cards {
-  background-color: rgba(188, 195, 218, 0.438);
+  background-color: #fdb19544;
   border-radius: 10px;
   margin: 5px;
   padding: 8px;
@@ -256,7 +258,6 @@ height: 100%;
 
 }
 .processosMarketing h1{
-  box-shadow: 0 0 20px rgb(255, 2, 2);
   border-radius: 15px;
   margin-bottom: 40px;
   color: #c09104;
@@ -343,6 +344,7 @@ height: 100%;
   overflow: hidden;
   width: 100%;
   height: 100%;
+  margin-top: 25px;
 }
 
 #minhaDiv {
@@ -352,7 +354,15 @@ height: 100%;
   flex-wrap: wrap;
   height: 100%;
 }
+.modal-header{
+  background-color: #fdb19581;
 
+
+}
+.modal-body{
+  background-color: #dd8d86;
+
+}
 .btn_modal {
   position: relative;
   width: 350px;
@@ -364,7 +374,7 @@ height: 100%;
   border-radius: 5px;
   user-select: none;
   overflow: hidden;
-  box-shadow: 0 0 5px #a13030bb; //sombra
+  box-shadow: 0 0 10px #a13030bb; //sombra
   /* Para garantir que a imagem não ultrapasse os limites do botão */
 }
 
@@ -390,20 +400,30 @@ height: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: #fff;
   font-size: 16px;
   z-index: 3; /* Garante que o texto fique acima da camada de filtro */
   pointer-events: none; /* Permite clicar através do texto */
 }
+
 .tituloElement {
-  color: $font-primary;
+  color: #fff;
   text-align: center;
 }
 
 .descricaoElement {
-  color: $font-primary;
+  color: #fff;
   text-align: left;
   font-size: 18px;
+}
+.linkElement{
+  border-radius: 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  background-color: #fdb19581;
+
 }
 
 .habilidades {
@@ -422,6 +442,7 @@ height: 100%;
   padding: 50px;
   border-radius: 10px;
   margin: 10px;
+  padding: 10px;
 }
 
 .containerSkills {
@@ -449,7 +470,7 @@ height: 100%;
   padding: auto;
 
   .feedback {
-    color: $font-primary;
+    color: #fff;
     text-decoration: underline white;
   }
 
