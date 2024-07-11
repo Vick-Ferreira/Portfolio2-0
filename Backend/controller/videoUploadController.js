@@ -12,7 +12,12 @@ exports.uploadVideo = async (req, res) => {
     return res.status(400).json({ error: 'Nenhum arquivo enviado' });
   }
 
-  const { titulo, descricao } = req.body;
+  const { titulo, descricao, link } = req.body;
+  console.log('Corpo da requisição:', req.body);
+
+  if (!link) {
+    return res.status(400).json({ error: 'Campo link é obrigatório' });
+  }
 
   const client = new MongoClient(url);
   try {
@@ -25,8 +30,9 @@ exports.uploadVideo = async (req, res) => {
     readableStream.push(null);
 
     const uploadStream = bucket.openUploadStream(req.file.originalname, {
-      metadata: { titulo, descricao }
+      metadata: { titulo, descricao, link }
     });
+    
 
     readableStream.pipe(uploadStream);
 
@@ -180,7 +186,7 @@ exports.updateVideo = async (req, res) => {
       return res.status(400).json({ error: 'Nenhum arquivo enviado' });
     }
 
-    const { titulo, descricao } = req.body;
+    const { titulo, descricao, link } = req.body;
 
     // Adicionar o novo vídeo
     const readableStream = new Readable();
@@ -188,7 +194,7 @@ exports.updateVideo = async (req, res) => {
     readableStream.push(null);
 
     const uploadStream = bucket.openUploadStream(req.file.originalname, {
-      metadata: { titulo, descricao }
+      metadata: { titulo, descricao, link }
     });
 
     readableStream.pipe(uploadStream);

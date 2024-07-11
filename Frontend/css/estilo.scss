@@ -354,14 +354,17 @@ height: 100%;
 }
 
 .btn_modal {
-  width: 300px;
-  height: 150px;
+  position: relative;
+  width: 350px;
+  height: 200px;
   border: none;
+  opacity: 2;
   margin: 5%;
   padding: 0px;
   border-radius: 5px;
   user-select: none;
   overflow: hidden;
+  box-shadow: 0 0 5px #a13030bb; //sombra
   /* Para garantir que a imagem não ultrapasse os limites do botão */
 }
 
@@ -372,7 +375,26 @@ height: 100%;
   background-position: center;
   background-repeat: no-repeat;
 }
-
+.btn_modal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(34, 33, 33, 0.5); /* Cor preta com 50% de opacidade */
+  z-index: 2; /* Garante que a camada de filtro fique acima da imagem */
+}
+.button-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  z-index: 3; /* Garante que o texto fique acima da camada de filtro */
+  pointer-events: none; /* Permite clicar através do texto */
+}
 .tituloElement {
   color: $font-primary;
   text-align: center;

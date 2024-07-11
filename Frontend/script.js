@@ -42,7 +42,6 @@ function animarTexto1() {
 
 function animarTexto2() {
   // Limpa o conteúdo original do segundo texto
-
   // Adiciona cada letra do segundo texto, com um atraso de 100 milissegundos
   for (var j = 0; j < texto2.length; j++) {
     setTimeout(function(j) {
@@ -133,8 +132,15 @@ function criarImgBtn() {
         img.src = imageUrl;
         img.alt = "Imagem do botão"; // Adicione um atributo alt para acessibilidade
 
+         // Cria o texto
+         const buttonText = document.createElement("span");
+         buttonText.classList.add("button-text");
+         buttonText.textContent = "Saiba mais";
+
         // Adicionar a imagem como filho do botão
         button.appendChild(img);
+        button.appendChild(buttonText);
+
 
         // Adicionar evento de clique ao botão
         button.addEventListener("click", function () {
@@ -202,10 +208,15 @@ function exibirDetalhesDoVideo(video, index) {
   descricaoElement.textContent = video.metadata.descricao;
   descricaoElement.classList.add("descricaoElement");
 
+  const linkElement = document.createElement("a");
+  linkElement.textContent = video.metadata.link;
+  linkElement.classList.add("linkElement");
+
   const modalContent = document.getElementById("modalContent");
   modalContent.innerHTML = "";
   modalContent.appendChild(tituloElement);
   modalContent.appendChild(descricaoElement);
+  modalContent.appendChild(linkElement);
   modalContent.appendChild(videoElement);
 
   const modal = new bootstrap.Modal(document.getElementById("exampleModal"));
