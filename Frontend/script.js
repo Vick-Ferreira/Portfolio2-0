@@ -212,6 +212,8 @@ function exibirDetalhesDoVideo(video, index) {
   linkElement.textContent = "Ver pagina.";
   linkElement.href = video.metadata.link;
   linkElement.classList.add("linkElement");
+  linkElement.target = "_blank"; // Adiciona o atributo target com o valor "_blank" abrir link em outra aba
+
 
   const modalContent = document.getElementById("modalContent");
   modalContent.innerHTML = "";
