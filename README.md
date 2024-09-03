@@ -1,4 +1,4 @@
-**Projeto desenvolvido para demonstrar minhas habilidades como desenvolvedora de software júnior. DesenvProjeto de Desenvolvimento de Software
+Projeto de Desenvolvimento de Software
 Este projeto demonstra minhas habilidades como desenvolvedora de software júnior. Desenvolvi a aplicação usando JavaScript e MongoDB, com Node.js para criar uma API RESTful funcional com Express. A aplicação inclui várias funcionalidades no frontend e um backend robusto para gerenciar e exibir projetos.
 
 Tecnologias Utilizadas
@@ -19,10 +19,3 @@ CRUD completo para adicionar, editar, e remover projetos.
 API RESTful com os métodos POST, GET, PATCH e DELETE.
 Feedback:
 Funcionalidade para o usuário enviar comentários sobre o trabalho.
-
-Tecnologias e Funcionalidades Utilizadas:
-
-Arquitetura MVC
-Bootstrap/Sass
-Métodos HTTP: POST/GET/PATCH/DELETE
-Responsividade
