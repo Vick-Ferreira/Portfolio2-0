@@ -2,6 +2,9 @@
 
 Este projeto demonstra minhas habilidades como desenvolvedora de software júnior. Desenvolvi a aplicação usando JavaScript e MongoDB, com Node.js para criar uma API RESTful funcional com Express. A aplicação inclui várias funcionalidades no frontend e um backend robusto para gerenciar e exibir projetos.
 
+Testes com Postman
+Utilizei o Postman para testar as funcionalidades da API RESTful desenvolvida. Com o Postman, pude realizar operações de POST, GET, PUT, e DELETE para verificar o funcionamento das endpoints da API e garantir que o backend estivesse respondendo corretamente às solicitações.
+
 ## Tecnologias Utilizadas
 
 - **JavaScript**: Linguagem principal do projeto.
