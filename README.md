@@ -23,7 +23,7 @@ Utilizei o Postman para testar as funcionalidades da API RESTful desenvolvida. C
   - Redirecionamento de links.
   
 - **Backend**:
-  - CRUD completo para adicionar, editar, e remover projetos.
+  - CRUD completo para adicionar, editar, listar e remover projetos.
   - API RESTful com os métodos POST, GET, PATCH e DELETE.
   
 - **Feedback**:
